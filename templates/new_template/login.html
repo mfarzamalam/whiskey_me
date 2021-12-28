@@ -1,0 +1,35 @@
+{% extends 'new_template/base.html' %}
+{% block newMain %}
+
+
+<div class="container d-flex justify-content-center">
+    <div class="row ">
+        <div id="login-form" >
+            <form class="col-12 p-2 ">
+                <h1 class=" fw-bold text-dark my-3 text-center">
+                    Welcome back  <br />to curiosity 
+                </h1>
+                <p class="text-center text-muted my-2">
+                    To make a purchase you need to sign into an account
+                </p>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 d-flex justify-content-center">
+                        <input type="email" name="email" id="email" placeholder=" Email" class="form-input col-12 my-2 " required="">
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <input type="password" name="login-password" id="login-password" placeholder=" Password" class="form-input col-12 my-2 " required="">
+                    </div>
+                    <a href="#" class="text-dark text-center my-2 fw-bold">Forgot?</a>
+                    <a href="#" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Sign in</button></a>
+                    <div class="text-center">
+                        <p class="my-2">
+                            Not created an account before? <span><a href="sign-in.html" class="text-dark fw-bold"><ins>Join now</ins></a></span>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock newMain %}

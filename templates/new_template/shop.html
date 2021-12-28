@@ -1,0 +1,661 @@
+
+{% extends 'new_template/base.html' %}
+{% load static %}
+
+{% block newMain %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 bg-black">
+            <img src="assets/imgs/shop.jpg" class="img-fluid">
+        </div>
+        <div class="col-12 col-md-6 bg-black fw-bold text-white d-flex justify-content-center align-items-center">
+            <div class="fw-bold text-white text-center">
+                <h1 class="text-white fw-bold">
+                    The Cellar
+                </h1>
+                <p>
+                    All of our past and present whiskies <br /> available to purchase in one place.<br /> Refine the collection by flavour,<br /> region or distillery to hone in on<br /> your perfect dram.
+                </p>
+            </div>
+        </div>
+        <div class="bg-orange text-black fw-bold py-1 mb-3">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#product-navigation" aria-controls="mainnavigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <h3 class="text-white fw-bold"><b>More Whiskeys</b>   <span>  <i class="fas fa-wine-bottle"></i></span></h3>
+                    </button>
+                    <div class="collapse navbar-collapse" id="product-navigation">
+                        <ul class="navbar-nav d-flex justify-content-between fw-bold ">
+                            <li class="nav-item">
+                                <a class="nav-link text-black fw-bold" href="#ALL-WHISKIES" class="text-white"><ins>ALL WHISKIES</ins></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-bold text-black ms-2" href="Scottish-Single-Malt">Scottish Single Malt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black fw-bold ms-2" href="#World-Whisky">World Whisky</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black fw-bold ms-2" href="#Whisky-Me-Exclusives">Whisky Me Exclusives</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row d-flex justify-content-between">
+        <div class="col-12 col-md-6 col-lg-3">
+            <div id="filter">
+                <div class="border-0">
+                    <h2 class="accordion-header" id="filter-dropdown">
+                        <button class="filter-button mb-3 " type="button" data-bs-toggle="collapse" data-bs-target="#filter-body" aria-expanded="false" aria-controls="filter-body">
+                            <h5 class="my-auto fw-bold">filter<span><i class="ms-3 fas fa-arrow-down"></i></span></h5>
+                        </button>
+                    </h2>
+                    <div id="filter-body" class="accordion-collapse 
+                        collapse" aria-labelledby="filter-dropdown" data-bs-parent="#filter">
+                        <div id="price">
+                            <div class="accordian-header-box border-0">
+                                <h2 class="accordion-header" id="price-dropdown">
+                                    <button class="accordian-header-box" type="button" data-bs-toggle="collapse" data-bs-target="#price-body" aria-expanded="false" aria-controls="price-body">
+                                        <h5 class="my-auto fw-bold">price</h5>
+                                    </button>
+                                </h2>
+                                <div id="price-body" class="accordion-collapse 
+                                    collapse" aria-labelledby="price-dropdown" data-bs-parent="#price">
+                                    <div class="accordion-body p-0 ">
+                                        <button class="filter-button-inside my-1 ">
+                                        under £50
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        £100 - £150
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        £50 - £100
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="DISTILLERY">
+                            <div class="accordian-header-box border-0">
+                                <h2 class="accordion-header" id="DISTILLERY-dropdown">
+                                    <button class="accordian-header-box" type="button" data-bs-toggle="collapse" data-bs-target="#DISTILLERY-body" aria-expanded="false" aria-controls="DISTILLERY-body">
+                                        <h5 class="my-auto fw-bold">DISTILLERY</h5>
+                                    </button>
+                                </h2>
+                                <div id="DISTILLERY-body" class="accordion-collapse 
+                                    collapse" aria-labelledby="DISTILLERY-dropdown" data-bs-parent="#DISTILLERY">
+                                    <div class="accordion-body p-0 ">
+                                        <button class="filter-button-inside my-1 ">
+                                        Ardbeg Distillery
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        Balblair Distillery
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        Bunnahabhain 
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        Cardhu Distillery
+                                        </button><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="REGION">
+                            <div class="accordian-header-box border-0">
+                                <h2 class="accordion-header" id="REGION-dropdown">
+                                    <button class="accordian-header-box" type="button" data-bs-toggle="collapse" data-bs-target="#REGION-body" aria-expanded="false" aria-controls="REGION-body">
+                                        <h5 class="my-auto fw-bold">REGION</h5>
+                                    </button>
+                                </h2>
+                                <div id="REGION-body" class="accordion-collapse 
+                                    collapse" aria-labelledby="REGION-dropdown" data-bs-parent="#REGION">
+                                    <div class="accordion-body p-0 ">
+                                        <button class="filter-button-inside my-1 ">
+                                        America
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        California
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        Campbeltown
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        Islay
+                                        </button><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="AGE">
+                            <div class="accordian-header-box border-0">
+                                <h2 class="accordion-header" id="AGE-dropdown">
+                                    <button class="accordian-header-box" type="button" data-bs-toggle="collapse" data-bs-target="#AGE-body" aria-expanded="false" aria-controls="AGE-body">
+                                        <h5 class="my-auto fw-bold">AGE</h5>
+                                    </button>
+                                </h2>
+                                <div id="AGE-body" class="accordion-collapse 
+                                    collapse" aria-labelledby="AGE-dropdown" data-bs-parent="#AGE">
+                                    <div class="accordion-body p-0 ">
+                                        <button class="filter-button-inside my-1 ">
+                                        10
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        11
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        12
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        13
+                                        </button><br />
+                                        <button class="filter-button-inside my-1 ">
+                                        2 Year
+                                        </button><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="FLAVOUR" class="mb-2">
+                            <div class="accordian-header-box border-0">
+                                <h2 class="accordion-header" id="FLAVOUR-dropdown">
+                                    <button class="accordian-header-last" type="button" data-bs-toggle="collapse" data-bs-target="#FLAVOUR-body" aria-expanded="false" aria-controls="FLAVOUR-body">
+                                        <h5 class="my-auto fw-bold">FLAVOUR</h5>
+                                    </button>
+                                </h2>
+                                <div id="FLAVOUR-body" class="accordion-collapse 
+                                    collapse" aria-labelledby="FLAVOUR-dropdown" data-bs-parent="#FLAVOUR">
+                                    <div class="accordion-body p-0 ">
+                                        <a href="#"> <button class="flavor-button-1 border-0 my-1 ">
+                                        Balance
+                                        </button><br /></a>
+                                    </div>
+                                    <div class="accordion-body p-0 ">
+                                        <a href="#"> <button class="flavor-button-2 border-0 my-1 ">
+                                        Fragrant
+                                        </button><br /></a>
+                                    </div>
+                                    <div class="accordion-body p-0 ">
+                                        <a href="#"> <button class="flavor-button-3 border-0 my-1 ">
+                                        Fruit
+                                        </button><br /></a>
+                                    </div>
+                                    <div class="accordion-body p-0 ">
+                                        <a href="#"> <button class="flavor-button-4 border-0 my-1 ">
+                                        Fruit
+                                        </button><br /></a>
+                                    </div>
+                                    <div class="accordion-body p-0 ">
+                                        <a href="#"> <button class="flavor-button-5 border-0 my-1 ">
+                                        Smoke
+                                        </button><br /></a>
+                                    </div>
+                                    <div class="accordion-body p-0 ">
+                                        <a href="#"> <button class="flavor-button-6 border-0 my-1 ">
+                                        Spice
+                                        </button><br /></a>
+                                    </div>
+                                    <div class="accordion-body p-0 ">
+                                        <a href="#"> <button class="flavor-button-7 border-0 my-1 ">
+                                        Sweet
+                                        </button><br /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <!-- <p>search </p> -->
+        </div>
+    </div>
+</div>
+
+<div id="shop-product" class="container mb-3">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="bg-yellow border-radius p-3">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="text-black fw-bold">
+                            <h3 class="text-black fw-bold mb-3">
+                                Want a little more?
+                            </h3>
+                            <p class="fw-bold mb-2">
+                                We are now stocking 6cl pouches alongside full size bottles of all the whiskies we send our members from Sep '21 onwards. Perfect if you want a little more or if you missed a past whisky.
+                            </p>
+                            <a href="#"><button class="btn-5 fw-bold">BUY NOW</button></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 order-1">
+                        <img src="assets/imgs/pouch.png " class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="bg-black border-radius p-5 ">
+                <div class="row">
+                    <div class="col-12 col-md-6 ">
+                        <div class="text-black fw-bold">
+                            <h2 class="text-white fw-bold mb-5">
+                                Our First World <br />
+                                Whisky Awaits...
+                            </h2>
+                            <p class="fw-bold mb-1 text-white">
+                                Bulleit 95 Rye
+                            </p>
+                            <a href="#"><button class="btn-1 fw-bold mt-3">BUY NOW</button></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 order-1 d-flex justify-content-center my-2">
+                        <img src="assets/imgs/bulleit.png " class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3">
+            <div class="product-wrapper p-2">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+
+{% endblock newMain %}

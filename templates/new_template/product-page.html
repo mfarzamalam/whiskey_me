@@ -1,0 +1,419 @@
+{% extends 'new_template/base.html' %}
+{% load static %}
+
+{% block newMain %}
+
+<div class="container-fluid">
+    <div class=" bg-orange text-black fw-bold py-1 my-3">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#product-navigation" aria-controls="mainnavigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <h3 class="text-white fw-bold"><b>More Whiskeys</b>   <span>  <i class="fas fa-wine-bottle"></i></span></h3>
+                </button>
+                <div class="collapse navbar-collapse" id="product-navigation">
+                    <ul class="navbar-nav d-flex justify-content-between fw-bold ">
+                        <li class="nav-item">
+                            <a class="nav-link text-black fw-bold" href="#ALL-WHISKIES" class="text-white"><ins>ALL WHISKIES</ins></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-black ms-2" href="Scottish-Single-Malt">Scottish Single Malt</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black fw-bold ms-2" href="#World-Whisky">World Whisky</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black fw-bold ms-2" href="#Whisky-Me-Exclusives">Whisky Me Exclusives</a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
+    </div>
+</div>
+
+<div id="product-page" class="container-fluid py-3 my-3">
+    <div class="row">
+        <div class="col-12 col-md-6 p-0 ps-md-4" >
+            <img src="assets/imgs/product.jpg" class="img-fluid border-radius">
+        </div>
+        <div class="col-12 col-md-6  ">
+            <div>
+                <div class="ps-1">
+                    <h1 class="fw-bold text-black my-1">
+                        Balblair
+                    </h1>
+                    <h4 class="fw-bold text-black my-1">
+                        15 YEAR OLD
+                    </h4>
+                </div>
+                <div class="bg-orange py-2 ps-md-0 d-flex justify-content-around fw-bold text-black my-3">
+                    <h4 class="fw-bold my-auto">
+                        £74.95 GBP
+                    </h4>
+                    <span>
+                        <div>
+                            <div>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i> <br />
+                                <p>6 reviews</p>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <div class="container-fluid">
+                    <div class="row p-0">
+                        <div class="col-12 col-md-5 text-black fw-bold p-0">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown d-flex justify-content-center">
+                                    <a class="nav-link dropdown-toggle   py-2 text-black" href="#" id="packing" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Packaging
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="#packing">
+                                        <li><a class="dropdown-item" href="#">70CL</a></li>
+                                        <li><a class="dropdown-item" href="#">60CL Pouch</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-3 p-0">
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="100" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 p-0 ps-md-4 my-2" >
+                            <button class="btn-4 fw-bold">
+                            Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="container-fluid p-0 ps-md-4  my-3 row">
+                        <div class="col-12 p-0">
+                            <div class="row my-1">
+                                <div class="col-12 col-md-6 text-black fw-bold">
+                                    <h6 class="text-black fw-bold ">LOCATION</h6>
+                                </div>
+                                <div class="col-12 col-md-6 text-black">
+                                    <p>Highlands, Scotland</p>
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-12 col-md-6 text-black fw-bold">
+                                    <h6 class="text-black fw-bold">AGE</h6>
+                                </div>
+                                <div class="col-12 col-md-6 text-black">
+                                    <p>15</p>
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-12 col-md-6 text-black fw-bold">
+                                    <h6 class="text-black fw-bold">CASK</h6>
+                                </div>
+                                <div class="col-12 col-md-6 text-black">
+                                    <p>Bourbon & Spanish</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wiskey-info ps-md-4 m-0 py-2 mx-3 my-3">
+                    <h4 class="fw-bold text-black mb-2">WHISKY INFO</h4>
+                    <p>
+                        Balblair 15 is a full-bodied single malt that has been <br /> matured in ex-bourbon casks and finished in first-fill <br /> Spanish oak butts. It’s a rich and fruity whisky with aromas<br /> of dried stone fruit and almond and a delightful tea-like<br /> finish. 
+                    </p>
+                </div>
+                <div class="row my-3 ps-md-4" >
+                    <div class="col-12 col-md-6">
+                        <h4 class="fw-bold text-black mb-2">TASTE LIKE</h4>
+                        <h6>
+                            <span><i class="fas fa-chevron-right mr-3"></i></span> Almond pastry
+                        </h6>
+                        <h6>
+                            <span><i class="fas fa-chevron-right mr-3"></i></span> Apricot
+                        </h6>
+                        <h6>
+                            <span><i class="fas fa-chevron-right mr-3"></i></span> Tea
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6 ">
+                        <h4 class="fw-bold text-black mb-2">GREAT WITH</h4>
+                        <h6>
+                            <button class="btn-4 fw-bold">
+                            BREAKFAST
+                            </button>
+                        </h6>
+                        <h6>
+                            <button class="btn-4 fw-bold">
+                            THE VICAR
+                            </button>
+                        </h6>
+                        <h6>
+                            <button class="btn-4 fw-bold">
+                            CARAMEL WAFER
+                            </button>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-3">
+    <h1 class="text-black text-center fw-bold mb-3"> 
+        You may also like...
+    </h1>
+    <div class="owl-carousel product-page-carusal">
+        <div class="item d-flex justify-content-center">
+            <div class="product-wrapper">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-page-btn">
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item d-flex justify-content-center">
+            <div class="product-wrapper">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-center">
+                        <div class="product-page-btn">
+                            <a href="#"><button class="btn-3 fw-bold">OUT OF STOCK</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item d-flex justify-content-center">
+            <div class="product-wrapper">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-page-btn">
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item d-flex justify-content-center">
+            <div class="product-wrapper">
+                <div class="d-flex justify-content-center">
+                    <div class="img-product-wrapper my-3">
+                        <img src="assets/imgs/jura.png">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
+                    <p class="my-2">
+                        70CL
+                    </p>
+                    <h5 class="fw-bold text-black">
+                        £42.95
+                    </h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="quantity-button">
+                                <div class="qty-input">
+                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-page-btn">
+                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="owl-nav fw-bold enabled">
+        </div>
+    </div>
+</div>
+
+<div class="container  product-review-box mb-2">
+    <div class="product-review my-2 py-2">
+        <div>
+            <h4 class="text-black fw-bold my-2"> 
+                Customer Reviews
+            </h4>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h4 class="text-black fw-bold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>  <span> Based on 6 reviews</span>
+                    </h4>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-end">
+                    <a href="#" class="text-black">Write a Review</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-review my-2 py-2">
+        <div class="text-black fw-bold">
+            <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="my-1 text-black">
+                The best so far maybe?
+            </p>
+            <p class="my-1 text-black">
+                <i>Richard Barnes on Oct 31, 2021</i>
+            </p>
+            <p class="text-muted">
+                Just my sort of whisky - smooth and fruity. Excellent choice, I might treat myself to a bottle of this for Christmas
+            </p>
+        </div>
+    </div>
+    <div class="product-review my-2 py-2">
+        <div class="text-black fw-bold">
+            <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="my-1 text-black">
+                The best so far maybe?
+            </p>
+            <p class="my-1 text-black">
+                <i>Richard Barnes on Oct 31, 2021</i>
+            </p>
+            <p class="text-muted">
+                Just my sort of whisky - smooth and fruity. Excellent choice, I might treat myself to a bottle of this for Christmas
+            </p>
+        </div>
+    </div>
+    <div class="product-review my-2 py-2">
+        <div class="text-black fw-bold">
+            <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="my-1 text-black">
+                A nice dram but nothing special
+            </p>
+            <p class="my-1 text-black">
+                <i>adrian on Oct 25, 2021</i>
+            </p>
+            <p class="text-muted">
+                This is a nice dram, rich, dark smooth whisky, a nice go to, easy to drink whisky on a winters evening. I am a little surprised at the price, although a nice whisky, I would not buy a bottle, as there are better whisky's on the market at the same or cheaper price.
+            </p>
+        </div>
+    </div>
+    <div class="product-review my-2 py-2">
+        <div class="text-black fw-bold">
+            <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <p class="my-1 text-black">
+                Ok but not really for me.
+            </p>
+            <p class="my-1 text-black">
+                <i>Mick Moloney on Oct 15, 2021</i>
+            </p>
+            <p class="text-muted">
+                I found this to be very rich flavour and seemed quite strong.
+                It was not my favourite, but overall I liked it.
+            </p>
+        </div>
+    </div>
+    <div class="product-review my-2 py-2">
+        <div class="text-black fw-bold">
+            <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <p class="my-1 text-black">
+                The best so far maybe?
+            </p>
+            <p class="my-1 text-black">
+                <i>Richard Barnes on Oct 31, 2021</i>
+            </p>
+            <p class="text-muted">
+                Just my sort of whisky - smooth and fruity. Excellent choice, I might treat myself to a bottle of this for Christmas
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock newMain %}

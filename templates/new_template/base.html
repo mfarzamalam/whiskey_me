@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>{% block NewTitle %}{% endblock NewTitle %}</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+        <meta name="author" content="" />
+        <!-- Meta information - for search engines -->
+        <!-- 3rd party css files -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+        <!-- Bootstrap icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+        <!-- Font Awesome 5.6 -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200&display=swap" rel="stylesheet">
+        <!-- Internal css files -->
+        <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/styles.css' %} " rel="stylesheet" />
+    </head>
+    <body>
+        <header id="header" class="bg-black">
+            <nav class="navbar navbar-expand-lg  px-2">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#home"><img src="{% static 'assets/imgs/wiskey-logo.png' %}" alt="wiskey-logo" class="img-fluid logo" /></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainnavigation" aria-controls="mainnavigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars text-secondary justify-content-end"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="mainnavigation">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-2 ms-lg-5 left fw-bold ">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#Subscribe" class="text-white">Subscribe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" href="Gift">Gift</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" href="{% url 'shop' %}">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" href="#About">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ms-2" href="#Learn">Learn</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0  ms-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">
+                                    <p>Already have an <br /> account? <ins>SIGN IN</ins></p>
+                                </a>
+                            </li>
+                            <li class="nav-item my-auto ms-2">
+                                <a href="{% url 'register' %}"><button class="btn-4">JOIN CLUB</button></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        {% block newMain %}{% endblock newMain %}
+
+        
+
+        <footer>
+            <div class="container-fluid bg-black py-5">
+                <div class="container">
+                    <div class="row d-flex justify-content-around">
+                        <div class="col-12 col-md-6 mt-3">
+                            <h1 class="fw-bold text-white my-2">Start your adventure</h1>
+                        </div>
+                        <div class="col-12 col-md-6 my-3">
+                            <div class="d-flex justify-content-around mt-3">
+                                <div>
+                                    <a href="{% url 'register' %}"><button class="btn-1 fw-bold">JOIN CLUB</button></a>
+                                </div>
+                                <div>
+                                    <a href="#"><button class="btn-1 fw-bold">GIVE A GIFT</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid bg-black">
+                <div class="container footer mb-3">
+                    <h1 class="fw-bold text-white mb-3">
+                        A WHISKY CLUB FOR THE CURIOUS
+                    </h1>
+                </div>
+                <div>
+                    <div id="footer-items" class="row">
+                        <div class="col-6 col-md-2">
+                            <ul>
+                                <li><a href="#" class="text-white fw-bold">ABOUT THE CLUB</a></li>
+                                <li><a href="#" class="text-white fw-bold">SUBSCRIBE</a></li>
+                                <li><a href="#" class="text-white fw-bold">RECYCLE</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <ul>
+                                <li><a href="#" class="text-white fw-bold">MY ACCOUNT</a></li>
+                                <li><a href="#" class="text-white fw-bold">FAQ / CONTACT</a></li>
+                                <li><a href="#" class="text-white fw-bold">REFER A FRIEND</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <ul>
+                                <li><a href="#" class="text-white fw-bold">TERMS</a></li>
+                                <li><a href="#" class="text-white fw-bold">COOKIES & PRIVACY</a></li>
+                                <li><a href="#" class="text-white fw-bold">SHIPPING & REFUNDS</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <ul>
+                                <li><a href="#" class="text-white fw-bold">INSTAGRAM</a></li>
+                                <li><a href="#" class="text-white fw-bold">FACEBOOK</a></li>
+                                <li><a href="#" class="text-white fw-bold">TWITTER</a></li>
+                                <li><a href="#" class="text-white fw-bold">YOUTUBE</a></li>
+                            </ul>
+                        </div>
+                        <div class="d-flex fw-bold text-white justify-content-end">
+                            © 2021 WHISKYME
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div>
+
+        <h1>    all pages href</h1> 
+        <a href="  index.html" target="_blank"> index</a> 
+        <a href="  login.html" target="_blank"> login</a> 
+        <a href="  sign-in.html" target="_blank"> sign-in</a> 
+        <a href="  terms.html" target="_blank"> terms</a> 
+        <a href="  product-page.html" target="_blank"> product-page</a> 
+        <a href="  shop.html" target="_blank"> Shop page</a> 
+        </div>
+        <!-- 3rd party JS files and scripts-->
+        <script src="{% static 'js/jquery.min.js' %} "></script>        
+        <script src="{% static 'js/bootstrap.min.js' %} "></script>
+        <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <!-- Internal JS scripts-->
+        <script src="{% static 'js/master.js' %}"></script>
+</body>
+</html>
