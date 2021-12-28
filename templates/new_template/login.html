@@ -5,7 +5,8 @@
 <div class="container d-flex justify-content-center">
     <div class="row ">
         <div id="login-form" >
-            <form class="col-12 p-2 ">
+            <form class="col-12 p-2 " action="" method="post" novalidate>
+                {% csrf_token %}
                 <h1 class=" fw-bold text-dark my-3 text-center">
                     Welcome back  <br />to curiosity 
                 </h1>
@@ -13,17 +14,28 @@
                     To make a purchase you need to sign into an account
                 </p>
                 <div class="row d-flex justify-content-center">
+                    {% for form in form %}
+                        <div class="col-12 d-flex justify-content-center">
+                            {{form}}
+                            <p style="color:red" class="pt-3 text-danger">{{form.errors|striptags}} <p>
+                        </div>
+                    {% endfor %}
+
                     <div class="col-12 d-flex justify-content-center">
-                        <input type="email" name="email" id="email" placeholder=" Email" class="form-input col-12 my-2 " required="">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p style="color:red" class="pt-3 text-danger">{{message|striptags}} <p>
+                                </br>
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                    <div class="col-12 d-flex justify-content-center">
-                        <input type="password" name="login-password" id="login-password" placeholder=" Password" class="form-input col-12 my-2 " required="">
-                    </div>
+                   
+
                     <a href="#" class="text-dark text-center my-2 fw-bold">Forgot?</a>
                     <a href="#" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Sign in</button></a>
                     <div class="text-center">
                         <p class="my-2">
-                            Not created an account before? <span><a href="sign-in.html" class="text-dark fw-bold"><ins>Join now</ins></a></span>
+                            Not created an account before? <span><a href="{% url 'register' %}" class="text-dark fw-bold"><ins>Join now</ins></a></span>
                         </p>
                     </div>
                 </div>
