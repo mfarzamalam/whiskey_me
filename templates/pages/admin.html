@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/market-place-4.css' %}">
+
+{% endblock head %}
+{% block content %}
+{% include 'components/_alerts.html' %}
+<div class="ps-vendor-dashboard">
+    <div class="container">
+
+        <div class="ps-section__content">
+            <ul class="ps-section__links">
+                <li class="active"><a href="#">Dashboard</a></li>
+                <li><a href="#">Product</a></li>
+
+
+            </ul>
+            <div class="ps-block--vendor-dashboard">
+                <div class="ps-block__header">
+                    <h3>Sale Report</h3>
+                </div>
+                <div class="ps-block__content">
+                    <form class="ps-form--vendor-datetimepicker" action="index.html" method="get">
+
+                    </form>
+                    <div class="table-responsive">
+
+                        <table class="table ps-table ps-table--vendor">
+                            <thead>
+                                <tr>
+                                    <th>date</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            {% for r in get_review %}
+
+
+                            <tbody>
+                                <tr>
+                                    <td>{{r.review_date}}</td>
+                                    <td>{{r.name}}</td>
+                                    <td>{{r.email}}</td>
+                                    <td>{{r.subject}}</td>
+                                    <td><a href="{% url 'pages:review_panel' r.id %}">{{r.message}}</a></td>
+                                </tr>
+
+
+
+
+
+                            </tbody>
+                            {% endfor %}
+
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="ps-block--vendor-dashboard">
+                <div class="ps-block__header">
+                    <h3>Recent Orders</h3>
+                </div>
+                <div class="ps-block__content">
+                    <div class="table-responsive">
+                        <table class="table ps-table ps-table--vendor">
+                            <thead>
+                                <tr>
+                                    <th>date</th>
+                                    <th>Order ID</th>
+                                    <th>Shipping</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th>Information</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nov 4, 2019</td>
+                                    <td><a href="#">MS46891357</a></td>
+                                    <td>$00.00</td>
+                                    <td>$295.47</td>
+                                    <td><a href="#">Open</a></td>
+                                    <td><a href="#">View Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Nov 2, 2017</td>
+                                    <td><a href="#">AP47305441</a></td>
+                                    <td>$00.00</td>
+                                    <td>$25.47</td>
+                                    <td>Close</td>
+                                    <td><a href="#">View Detail</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

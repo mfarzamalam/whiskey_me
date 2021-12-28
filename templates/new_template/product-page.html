@@ -33,13 +33,13 @@
 <div id="product-page" class="container-fluid py-3 my-3">
     <div class="row">
         <div class="col-12 col-md-6 p-0 ps-md-4" >
-            <img src="assets/imgs/product.jpg" class="img-fluid border-radius">
+            <img src="{% static 'new_static/assets/imgs/product.jpg' %}" class="img-fluid border-radius">
         </div>
         <div class="col-12 col-md-6  ">
             <div>
                 <div class="ps-1">
                     <h1 class="fw-bold text-black my-1">
-                        Balblair
+                        {{product.product_name}}
                     </h1>
                     <h4 class="fw-bold text-black my-1">
                         15 YEAR OLD
@@ -47,7 +47,7 @@
                 </div>
                 <div class="bg-orange py-2 ps-md-0 d-flex justify-content-around fw-bold text-black my-3">
                     <h4 class="fw-bold my-auto">
-                        £74.95 GBP
+                        ${{product.price}} GBP
                     </h4>
                     <span>
                         <div>
@@ -76,21 +76,56 @@
                                 </li>
                             </ul>
                         </div>
+
                         <div class="col-12 col-md-3 p-0">
                             <div class="quantity-button">
                                 <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="100" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                    <button onclick="decrement()" class="qty-count qty-count--minus" type="button">-</button>
+                                    <input class="product-qty" id="quantity" type="text" placeholder="1" value="1">
+
+                                    <button onclick="increment()" class="qty-count qty-count--add" type="button">+</button>
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="col-12 col-md-6 p-0 ps-md-4 my-2" >
-                            <button class="btn-4 fw-bold">
-                            Add to Cart
-                            </button>
+                            <div class="col-lg-6 col-md-6 mt-2">
+                                <form action="{% url 'product:buy-now' %}" method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn-4 fw-bold">Buy Now</button>
+                                    <input type="hidden" name="product_id" value="{{product.pk}}">
+                                    <input type="hidden" name="buy-now" id="buy-now" value="1">
+                                </form>
+                            </div>
                         </div>
+                        
                     </div>
+
+
+                    <script>
+
+                        function increment(){
+                            quantity = document.getElementById('quantity').value;
+                            quantity++;
+                            document.getElementById('quantity').value = quantity;
+                            document.getElementById('buy-now').value = quantity;
+                            document.getElementById('monthly').value = quantity;
+                            $('#quantity').attr('placeholder',quantity);
+                        }
+
+                        function decrement(){
+                            quantity = document.getElementById('quantity').value;
+                            if (quantity > 1) {
+                                quantity--;
+                            }
+                            document.getElementById('buy-now').value = quantity;
+                            document.getElementById('quantity').value = quantity;
+                            document.getElementById('monthly').value = quantity;
+                            $('#quantity').attr('placeholder',quantity);
+                        }
+
+                    </script>
                     <div class="container-fluid p-0 ps-md-4  my-3 row">
                         <div class="col-12 p-0">
                             <div class="row my-1">
@@ -106,7 +141,7 @@
                                     <h6 class="text-black fw-bold">AGE</h6>
                                 </div>
                                 <div class="col-12 col-md-6 text-black">
-                                    <p>15</p>
+                                    <p>{{product.age}}</p>
                                 </div>
                             </div>
                             <div class="row my-1">
@@ -168,125 +203,40 @@
         You may also like...
     </h1>
     <div class="owl-carousel product-page-carusal">
-        <div class="item d-flex justify-content-center">
-            <div class="product-wrapper">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-page-btn">
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item d-flex justify-content-center">
-            <div class="product-wrapper">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
+        {% for related in related %}
+            <div class="item d-flex justify-content-center">
+                <div class="product-wrapper">
                     <div class="d-flex justify-content-center">
-                        <div class="product-page-btn">
-                            <a href="#"><button class="btn-3 fw-bold">OUT OF STOCK</button></a> 
+                        <div class="img-product-wrapper my-3">
+                            <img src="{{related.picture.url}}">
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="item d-flex justify-content-center">
-            <div class="product-wrapper">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                    <div>
+                        <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
+                        <p class="my-2">
+                            {{related.category}}
+                        </p>
+                        <h5 class="fw-bold text-black">
+                            £{{related.price}}
+                        </h5>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="quantity-button">
+                                    <div class="qty-input">
+                                        <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                        <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                        <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="product-page-btn">
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item d-flex justify-content-center">
-            <div class="product-wrapper">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
+                            <div class="product-page-btn">
+                                <a href="{% url 'product:single_product' product.pk %}"><button class="btn-3 fw-bold">{{"view detail"|upper}}</button></a> 
                             </div>
                         </div>
-                        <div class="product-page-btn">
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
         <div class="owl-nav fw-bold enabled">
         </div>
     </div>

@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-6 bg-black">
-            <img src="assets/imgs/shop.jpg" class="img-fluid">
+            <img src="{% static 'new_static/assets/imgs/shop.jpg' %}" class="img-fluid">
         </div>
         <div class="col-12 col-md-6 bg-black fw-bold text-white d-flex justify-content-center align-items-center">
             <div class="fw-bold text-white text-center">
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 order-1">
-                        <img src="assets/imgs/pouch.png " class="img-fluid">
+                        <img src="{% static 'new_static/assets/imgs/pouch.png' %} " class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -258,403 +258,50 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 order-1 d-flex justify-content-center my-2">
-                        <img src="assets/imgs/bulleit.png " class="img-fluid">
+                        <img src="{% static 'new_static/assets/imgs/bulleit.png' %} " class="img-fluid">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
+
+        {% for product in product %}
+            <div class="col-12  col-md-6 col-lg-3">
+                <div class="product-wrapper p-2">
+                    <div class="d-flex justify-content-center">
+                        <div class="img-product-wrapper my-3">
+                            <img src="{{product.picture.url}}" class="img-product-wrapper">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                    <div>
+                        <h5 class="text-black fw-bold text-center">{{product.product_name}}</h5>
+                        <p class="my-2">
+                            {{product.category}}
+                        </p>
+                        <h5 class="fw-bold text-black">
+                            £42.95
+                        </h5>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="quantity-button">
+                                    <div class="qty-input">
+                                        <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
+                                        <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
+                                        <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
+                            <div>
+                                <a href="{% url 'product:single_product' product.pk %}"><button class="btn-3 fw-bold">View Details</button></a> 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
-    <div class="row">
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12  col-md-6 col-lg-3">
-            <div class="product-wrapper p-2">
-                <div class="d-flex justify-content-center">
-                    <div class="img-product-wrapper my-3">
-                        <img src="assets/imgs/jura.png " class="img-product-wrapper">
-                    </div>
-                </div>
-                <div>
-                    <h5 class="text-black fw-bold text-center">Sailor's Home The Haven</h5>
-                    <p class="my-2">
-                        70CL
-                    </p>
-                    <h5 class="fw-bold text-black">
-                        £42.95
-                    </h5>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <div class="quantity-button">
-                                <div class="qty-input">
-                                    <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                    <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                    <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="#"><button class="btn-3 fw-bold">ADD TO CART</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  
+   
 </div>
 
 

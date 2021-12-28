@@ -3,6 +3,7 @@ from django.views.generic import View, TemplateView
 from .forms import UserRegisterForm, UserLoginForm
 from django.contrib import messages, auth
 from django.utils.translation import gettext_lazy as _
+from product.models import Category, Product
 
 
 # Create your views here.
@@ -16,13 +17,25 @@ class HomeView(TemplateView):
 
 
 
-class ShopView(TemplateView):
-    template_name = "new_template/shop.html"
+class ShopView(View):
+    def get(self, request,  *args, **kwargs):
+        product = Product.objects.all()
+        # get_5cl = Category.objects.get(name='5cl')
+        # get_70cl = Category.objects.get(name='70cl')
 
+        # prd_5cl = Product.objects.filter(category=get_5cl)
+        # prd_70cl = Product.objects.filter(category=get_70cl)
+        # for i in prd_70cl:
+        #     print(i.product_name)
 
-
-class ProductPageView(TemplateView):
-    template_name = "new_template/product-page.html"
+        context = {
+            'product': product,
+            # 'product_1': prd_5cl,
+            # 'product_2': prd_70cl,
+        }
+        # if request.user.is_staff:
+        #     return redirect('pages:admin_panel')
+        return render(request,'new_template/shop.html',context)
 
 
 

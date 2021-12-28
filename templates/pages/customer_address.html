@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/market-place-4.css' %}">
+
+{% endblock head %}
+{% block content %}
+{% include 'components/_alerts.html' %}
+
+
+    <div class="ps-page--my-account">
+    <div class="ps-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                <li>My account</li>
+            </ul>
+        </div>
+    </div>
+    <div class="ps-my-account">
+        <div class="container">
+            <div class="ps-form--account ps-tab-root  pt-0">
+                <div class="ps-tabs">
+                    <div  class="ps-tab active " 
+                        id="sign-in">
+                        <div class="ps-form__content ">
+                            <h5>Please mention address to deliver the product</h5>
+
+                        {% if subs == "true" %}
+                            <form action="{% url 'pages:sub_address' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="ps-form--account ps-tab-root pt-0">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="name" placeholder="Name" required>  <br>
+                                        <input class="form-control" type="text" name="country" placeholder="Country" required>  <br>
+                                        <input class="form-control" type="text" name="address_1" placeholder="Address Line 1" required>  <br>
+                                        <input class="form-control" type="text" name="address_2" placeholder="Address Line 2" >  <br>
+                                        <input class="form-control" type="text" name="city" placeholder="City" required> <br>
+                                        <input class="form-control" type="text" name="state" placeholder="State" required> <br>
+                                        <input class="form-control" type="number" name="contact" placeholder="Phone Number" required> <br>
+                                        <input type="submit" value="Submit" name="submit" class="ps-btn ps-btn--fullwidth mt-0">
+
+                                        <input type="hidden" name="sub_id" value="{{id}}"> <br>
+                                        <input type="hidden" name="prod_id" value="{{pk}}"> <br>
+                                        <input type="hidden" name="prod_quan" value="{{quan}}"> <br>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        
+                        {% elif subs == "false" %}
+
+                            <form action="{% url 'pages:single_address' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="ps-form--account ps-tab-root pt-0">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="name" placeholder="Name" required>  <br>
+                                        <input class="form-control" type="text" name="country" placeholder="Country" required>  <br>
+                                        <input class="form-control" type="text" name="address_1" placeholder="Address Line 1" required>  <br>
+                                        <input class="form-control" type="text" name="address_2" placeholder="Address Line 2" >  <br>
+                                        <input class="form-control" type="text" name="city" placeholder="City" required> <br>
+                                        <input class="form-control" type="text" name="state" placeholder="State" required> <br>
+                                        <input class="form-control" type="number" name="contact" placeholder="Phone Number" required> <br>
+                                        <input type="submit" value="Submit" name="submit" class="ps-btn ps-btn--fullwidth mt-0">
+
+                                        <input type="hidden" name="single_id" value="{{id}}"> <br>
+                                        <input type="hidden" name="prod_id" value="{{pk}}"> <br>
+                                        <input type="hidden" name="prod_quan" value="{{quan}}"> <br>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        
+                        {% endif %}
+
+
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
