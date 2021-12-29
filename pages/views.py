@@ -44,8 +44,8 @@ class ShopView(View):
             # 'product_1': prd_5cl,
             # 'product_2': prd_70cl,
         }
-        # if request.user.is_staff:
-        #     return redirect('pages:admin_panel')
+        if request.user.is_staff:
+            return redirect('pages:admin_panel')
         return render(request,'new_template/shop.html',context)
 
 

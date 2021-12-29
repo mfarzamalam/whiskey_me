@@ -48,28 +48,7 @@
       </div>
     </div>
   </div>
-  {%if not request.user.is_staff %}
-
-   <nav class="navigation">
-    <div class="ps-container">
-      <div class="navigation__right">
-        <ul class="menu">
-          <li>
-            <a href="{% url 'pages:home' %}">Home</a>
-          </li>
-          <li>
-            <a href="{% url 'pages:about' %}">About</a>
-          </li>
-          <li>
-            <a href="{% url 'pages:contact' %}">Contact</a>
-          </li>
-
-        </ul>
-
-      </div>
-    </div>
-  </nav> 
-  {% endif %}
+  
 
 </header>
 <header class="header header--mobile" data-sticky="true">

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import HomeView, LoginView, ShopView, RegisterView
+from .views import LoginView, RegisterView
 from django.contrib.auth.views import LogoutView
 
 
