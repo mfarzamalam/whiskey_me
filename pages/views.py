@@ -14,8 +14,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 import stripe
 
-stripe.api_key = "sk_test_51Jskh7Gtfs7EubneC9OddOQ5WtcIo234EaVlllfnLVtJt1dWHJeQykF5OOMkj5RUz5HMFjkas1egGTB1DQWHpbEW00iWBT2Frr"
-
+from whiskey_me.stripe_key import SECRET_KEY
+stripe.api_key = SECRET_KEY
 
 
 # Create your views here.
@@ -23,9 +23,12 @@ stripe.api_key = "sk_test_51Jskh7Gtfs7EubneC9OddOQ5WtcIo234EaVlllfnLVtJt1dWHJeQy
 #     return render(request, "pages/home.html")
 
 
-class HomeView(TemplateView):
-    template_name = "new_template/index.html"
-
+class HomeView(View):
+    def get(self, request,  *args, **kwargs):
+        if request.user.is_superuser:
+            return redirect('pages:admin_panel')
+        else:
+            return render(request,'new_template/index.html')
 
 
 class ShopView(View):
@@ -44,9 +47,10 @@ class ShopView(View):
             # 'product_1': prd_5cl,
             # 'product_2': prd_70cl,
         }
-        if request.user.is_staff:
+        if request.user.is_superuser:
             return redirect('pages:admin_panel')
-        return render(request,'new_template/shop.html',context)
+        else:
+            return render(request,'new_template/shop.html',context)
 
 
 class SingleCategoryView(View):
@@ -98,12 +102,13 @@ class AdminPanelView(LoginRequiredMixin, View):
             print(status)
             if status == "single":
                 singlePayment = stripe.PaymentIntent.list()
+                print(len(singlePayment))
                 required_single_data = []
                 for s in singlePayment:
                     if s.description != "Subscription creation":
                         single_item = {
                             'id': s.id,
-                            'product': Product.objects.filter(product_stripe_id=s.metadata.product_id),
+                            'product': Product.objects.filter(product_stripe_id=s.metadata.product_id).first(),
                             'current_period_start': datetime.datetime.fromtimestamp(float(s.created)),
                             'amount': s.metadata.product_price,
                             'quantity': s.metadata.quantity,
@@ -128,9 +133,9 @@ class AdminPanelView(LoginRequiredMixin, View):
             required_subscription_data = []
             for s in subscription:
                 single_subscription_item = {
-                    'user':CustomUser.objects.filter(stripe_id=s.customer),
+                    'user':CustomUser.objects.filter(stripe_id=s.customer).first(),
                     'interval': s.plan.interval,
-                    'product': Product.objects.filter(product_stripe_id=s.plan.product),
+                    'product': Product.objects.filter(product_stripe_id=s.plan.product).first(),
                     'current_period_start': datetime.datetime.fromtimestamp(float(s.current_period_start)),
                     'current_period_end': datetime.datetime.fromtimestamp(float(s.current_period_end)),
                     'amount': s.plan.amount/100,
@@ -179,7 +184,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                     'id': s.id,
                     'collection_method': s.collection_method, 
                     'interval': s.plan.interval,
-                    # 'product': Product.objects.get(product_stripe_id=s.plan.product),
+                    # 'product': Product.objects.filter(product_stripe_id=s.plan.product),
                     'current_period_start': datetime.datetime.fromtimestamp(float(s.current_period_start)),
                     'current_period_end': datetime.datetime.fromtimestamp(float(s.current_period_end)),
                     'amount': s.plan.amount/100,
@@ -203,7 +208,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                 if s.description != "Subscription creation":
                     single_item = {
                         'id': s.id,
-                        'product': Product.objects.get(product_stripe_id=s.metadata.product_id),
+                        'product': Product.objects.filter(product_stripe_id=s.metadata.product_id).first(),
                         'current_period_start': datetime.datetime.fromtimestamp(float(s.created)),
                         'amount': s.metadata.product_price,
                         'quantity': s.metadata.quantity,

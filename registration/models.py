@@ -6,7 +6,8 @@ from django.db.models.signals import post_save
 import stripe
 # from partners.models import Category
 
-stripe.api_key = "sk_test_51Jskh7Gtfs7EubneC9OddOQ5WtcIo234EaVlllfnLVtJt1dWHJeQykF5OOMkj5RUz5HMFjkas1egGTB1DQWHpbEW00iWBT2Frr"
+from whiskey_me.stripe_key import SECRET_KEY
+stripe.api_key = SECRET_KEY
 
 
 class CustomUserManager(BaseUserManager):

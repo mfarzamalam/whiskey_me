@@ -6,9 +6,3 @@ class Review(models.Model):
     subject = models.CharField(max_length=60 ,null=False,blank=False)
     message = models.TextField(max_length=300 ,null=False,blank=False)
     review_date=models.DateField(auto_now=True)
-
-
-
-
-
- 

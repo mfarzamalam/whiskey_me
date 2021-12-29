@@ -5,7 +5,9 @@ from registration.models import CustomUser
 from django.contrib.auth.mixins import LoginRequiredMixin
 import stripe
 
-stripe.api_key = "sk_test_51Jskh7Gtfs7EubneC9OddOQ5WtcIo234EaVlllfnLVtJt1dWHJeQykF5OOMkj5RUz5HMFjkas1egGTB1DQWHpbEW00iWBT2Frr"
+
+from whiskey_me.stripe_key import SECRET_KEY
+stripe.api_key = SECRET_KEY
 
 
 # Create your views here.

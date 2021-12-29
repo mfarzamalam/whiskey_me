@@ -63,7 +63,7 @@ class LoginView(View):
                 return render(request, 'new_template/login.html', context)
             auth.login(request, user)
             messages.success(request, _("You are currently logged in"))
-            return redirect('home')
+            return redirect('pages:home')
         else:
             # messages.error(request, _("Something went wrong. Please try again."))
             return render(request, 'new_template/login.html', context)
