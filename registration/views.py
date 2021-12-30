@@ -43,6 +43,7 @@ class RegisterView(View):
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
+        print("login")
         form = UserLoginForm()
         context = {
             'form': form,

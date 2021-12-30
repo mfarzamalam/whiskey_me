@@ -81,7 +81,7 @@
                             <div class="quantity-button">
                                 <div class="qty-input">
                                     <button onclick="decrement()" class="qty-count qty-count--minus" type="button">-</button>
-                                    <input class="product-qty" id="quantity" type="text" placeholder="1" value="1">
+                                    <input class="product-qty" id="quantity" type="text" value="1">
 
                                     <button onclick="increment()" class="qty-count qty-count--add" type="button">+</button>
                                 </div>
@@ -106,12 +106,15 @@
                     <script>
 
                         function increment(){
+                            quantity = document.getElementById('quantity');
+                            console.log(quantity);
                             quantity = document.getElementById('quantity').value;
+
                             quantity++;
                             document.getElementById('quantity').value = quantity;
-                            document.getElementById('buy-now').value = quantity;
-                            document.getElementById('monthly').value = quantity;
-                            $('#quantity').attr('placeholder',quantity);
+                            //document.getElementById('buy-now').value = quantity;
+                            //document.getElementById('monthly').value = quantity;
+                            //$('#quantity').attr('placeholder',quantity);
                         }
 
                         function decrement(){

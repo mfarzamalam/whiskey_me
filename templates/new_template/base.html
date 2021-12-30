@@ -27,6 +27,7 @@
         <link href="{% static 'new_static/css/owl.carousel.min.css' %}" rel="stylesheet" />
         <link href="{% static 'new_static/css/owl.theme.default.min.css' %}" rel="stylesheet" />
         <link href="{% static 'new_static/css/styles.css' %} " rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     </head>
     <body>
         <header id="header" class="bg-black">
@@ -159,9 +160,9 @@
         <a href="  shop.html" target="_blank"> Shop page</a> 
         </div>
         <!-- 3rd party JS files and scripts-->
-        <script src="{% static 'new_static/js/jquery.min.js' %} "></script>        
+        {% comment %} <script src="{% static 'new_static/js/jquery.min.js' %} "></script>         {% endcomment %}
         <script src="{% static 'new_static/js/bootstrap.min.js' %} "></script>
-        <script src="{% static 'new_static/js/jquery.validate.min.js' %}"></script>
+        {% comment %} <script src="{% static 'new_static/js/jquery.validate.min.js' %}"></script> {% endcomment %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="{% static 'new_static/js/owl.carousel.min.js' %}"></script>
         <!-- Internal JS scripts-->
