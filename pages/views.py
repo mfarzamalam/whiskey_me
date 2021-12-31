@@ -140,7 +140,7 @@ class AdminPanelView(LoginRequiredMixin, View):
                     'class_active': status,
                 }      
 
-                return render(request,'pages/admin_dashboard.html', context)
+                return render(request,'new_template/dashboard/admin_dashboard.html', context)
 
 
             elif status == "" or status == None:
@@ -169,7 +169,7 @@ class AdminPanelView(LoginRequiredMixin, View):
                 'class_active': status,
             }      
 
-            return render(request,'pages/admin_dashboard.html', context)
+            return render(request,'new_template/dashboard/admin_dashboard.html', context)
         
         else:
             return HttpResponseRedirect(reverse('/'))

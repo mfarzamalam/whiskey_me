@@ -1,0 +1,130 @@
+{% extends 'new_template/base.html' %}
+{% block newMain %}
+
+    {% if class_active == "single" %}
+
+        <div class="container d-flex justify-content-center">
+            <div class="row ">
+                <br>
+                <h1 class=" fw-bold text-dark my-3 text-center">
+                    Single Item Report Admin 
+                </h1>
+                        
+                <div class="row d-flex justify-content-center">
+                    <table class="table ps-table ps-table--vendor">
+                        <thead>
+                            <tr>
+                                <th>Created</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qunatity</th>
+                                <th>Total</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+
+                        {% for r in subscription %}
+
+                            <tbody>
+
+                                <tr>
+                                    <td>{{r.current_period_start}}</td>
+                                    <td>{{r.product.product_name}}</td>
+                                    <td>${{r.amount}}</td>
+                                    <td>{{r.quantity}}</td>
+                                    <td>${{r.total}}</td>
+                                    
+                                    {% if r.address == "-" and r.product.id.is_exists %}
+                                        <td> <a href="{% url 'pages:single_address' r.id r.product.id r.quantity %}"> Add Address </a></td>
+                                    {% else %}
+                                        <td style="color:green"> Added </td>
+                                    {% endif %}
+
+                                </tr>
+
+                            </tbody>
+
+                        {% endfor %}
+
+
+                    </table>
+                    
+
+                    <a href="" class="text-dark text-center my-2 fw-bold"></a>
+                    <a href="" class="text-center col-12"></a>
+                    <div class="text-center">
+                        <p class="my-2">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="container d-flex justify-content-center">
+            <div class="row ">
+                <br>
+                <h1 class=" fw-bold text-dark my-3 text-center">
+                    Subscription Report For Admin 
+                </h1>
+                        
+                <div class="row d-flex justify-content-center">
+                    <table class="table ps-table ps-table--vendor">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Subscription Date</th>
+                                <th>Interval</th>
+                                <th>Product</th>
+                                <th>Price x Qunatity</th>
+                                <th>Total</th>
+                                <th>Next Invoice</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        {% for r in single %}
+
+                            <tbody>
+                                {% if user.is_exists %}
+                                    <tr>
+                                        <td>{{r.user}}</td>
+                                        <td>{{r.current_period_start}}</td>
+                                        <td>{{r.interval}}</td>
+                                        <td>{{r.product}}</td>
+                                        <td>${{r.amount}} x {{r.quantity}}</td>
+                                        <td>${{r.total}}</td>
+                                        <td>{{r.current_period_end}}</td>
+                                        <td>{{r.status}}</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+
+                        {% endfor %}
+
+
+                    </table>
+                    
+
+                    <a href="" class="text-dark text-center my-2 fw-bold"></a>
+                    <a href="" class="text-center col-12"></a>
+                    <div class="text-center">
+                        <p class="my-2">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+
+    <script>
+        function checkdel(){
+            return confirm('Are you sure you want to cancel the subscription? \n\nNote:- Once you canceled it cannot be reversed');
+        }
+    </script>
+
+
+{% endblock newMain %}

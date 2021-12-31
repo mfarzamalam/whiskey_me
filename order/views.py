@@ -26,7 +26,7 @@ class CustomerDeliver(View):
         
         
         context = {'items': items, 'class_active':class_active, 'action':action}
-        return render(request, 'order/delivery.html', context)
+        return render(request, 'new_template/dashboard/delivery.html', context)
 
 
 class CustomerAddressDetials(View):
