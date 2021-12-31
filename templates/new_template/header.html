@@ -1,0 +1,54 @@
+{% load static %}
+<header id="header" class="bg-black">
+    <nav class="navbar navbar-expand-lg  px-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'pages:home' %}"><img src="{% static 'new_static/assets/imgs/wiskey-logo.png' %}" alt="wiskey-logo" class="img-fluid logo" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainnavigation" aria-controls="mainnavigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars text-secondary justify-content-end"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainnavigation">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-2 ms-lg-5 left fw-bold ">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'pages:customer_dashboard' "subscription" %}" class="text-white">Subscribe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'pages:customer_dashboard' "single" %}" class="text-white">Single</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link ms-2" href="{% url 'pages:new_db' %}">New Db</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ms-2" href="{% url 'pages:shop' %}">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ms-2" href="#About">About</a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0  ms-lg-0">
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                                <li><a href="{% url 'pages:admin_panel'%}"><button class="btn-4"> Admin</button></a></li>
+                            {% else %}
+                                <li><a href="{% url 'pages:customer_dashboard' "subscription" %}"><button class="btn-4"> Dashboard </button></a></li>
+                            {% endif %}
+                            <a href="{% url 'logout' %}"><button class="btn-4">Logout</button></a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <p>Already have an <br /> account? <ins>SIGN IN</ins></p>
+                            </a>
+                        {% endif %}
+                    </li>
+                        {% if not user.is_authenticated %}
+                            <li class="nav-item my-auto ms-2">
+                                <a href="{% url 'register' %}"><button class="btn-4">JOIN CLUB</button></a>
+                            </li>
+                        {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

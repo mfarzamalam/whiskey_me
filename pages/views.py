@@ -25,11 +25,29 @@ stripe.api_key = SECRET_KEY
 
 class HomeView(View):
     def get(self, request,  *args, **kwargs):
-        if request.user.is_superuser:
-            return redirect('pages:admin_panel')
-        else:
-            return render(request,'new_template/index.html')
+        # if request.user.is_superuser:
+            # return redirect('pages:admin_panel')
+        # else:
+        return render(request,'new_template/index.html')
 
+
+class NewDashboard(View):
+    def get(self, request,  *args, **kwargs):
+        product = Product.objects.all()
+        # get_5cl = Category.objects.get(name='5cl')
+        # get_70cl = Category.objects.get(name='70cl')
+
+        # prd_5cl = Product.objects.filter(category=get_5cl)
+        # prd_70cl = Product.objects.filter(category=get_70cl)
+        # for i in prd_70cl:
+        #     print(i.product_name)
+
+        context = {
+            'product': product,
+            # 'product_1': prd_5cl,
+            # 'product_2': prd_70cl,
+        }
+        return render(request,'new_template/dashboard/admin_dashboard.html',context)
 
 class ShopView(View):
     def get(self, request,  *args, **kwargs):
@@ -222,7 +240,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                 'single_item': "true",
             }
 
-        return render(request,'pages/customer_dashboard.html', context)
+        return render(request,'new_template/dashboard/customer_dashboard.html', context)
 
 
 
@@ -313,7 +331,7 @@ class AddSingleAddress(View):
             'quan': quan,
             'subs': "false",
         }
-        return render(request,'pages/customer_address.html', context)
+        return render(request,'new_template/dashboard/address.html', context)
 
 
     def post(self, request, *args, **kwargs):

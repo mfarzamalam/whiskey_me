@@ -1,7 +1,7 @@
 from django.urls import path
 from pages.views import (
     AdminPanelView, HomeView,AboutView,ContactView,ReviewPanelView, CustomerDashboard, CustomerCanceledSubscription, 
-    AddSubscriptionAddress, AddSingleAddress, SingleCategoryView, CancelView, ShopView
+    AddSubscriptionAddress, AddSingleAddress, SingleCategoryView, CancelView, ShopView, NewDashboard
 )
 
 app_name = "pages"
@@ -12,6 +12,7 @@ urlpatterns = [
     path('shop/', ShopView.as_view(), name='shop'),
     # path('', HomePageView.as_view(), name='home'),
     path('about/', AboutView.as_view(), name='about'),
+    path('new/', NewDashboard.as_view(), name='new_db'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('admin_panel/', AdminPanelView.as_view(), name='admin_panel'),
     path('admin_panel/<status>/', AdminPanelView.as_view(), name='admin_panel'),
