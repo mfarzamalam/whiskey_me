@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import View, TemplateView
-from .forms import UserRegisterForm, UserLoginForm
+from .forms import UserRegisterForm, UserLoginForm, PasswordResetForm, NewPasswordForm
 from django.contrib import messages, auth
+from django.contrib.auth import views
+
 from django.utils.translation import gettext_lazy as _
 
 
@@ -68,3 +71,24 @@ class LoginView(View):
         else:
             # messages.error(request, _("Something went wrong. Please try again."))
             return render(request, 'new_template/login.html', context)
+
+
+
+class PasswordReset(views.PasswordResetView):
+    template_name   = 'new_template/password_reset.html' 
+    form_class      = PasswordResetForm
+    success_url     = reverse_lazy('password_reset_done')
+
+
+
+class PasswordResetDone(views.PasswordResetDoneView):
+    template_name   = 'new_template/password_reset_done.html'
+
+
+class PasswordResetConfirm(views.PasswordResetConfirmView):
+    template_name   = 'new_template/password_reset_confirm.html'
+    form_class      = NewPasswordForm
+
+
+class PasswordResetComplete(views.PasswordResetCompleteView):
+    template_name   = 'new_template/password_reset_complete.html'
