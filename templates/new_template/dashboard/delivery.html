@@ -2,56 +2,48 @@
 {% block newMain %}
 
 
-    <div class="container d-flex justify-content-center">
-        <div class="row ">
+    <div class="container" style="overflow-x:auto; font-size:80%">
+        <div class="row">
             <br>
             <h1 class=" fw-bold text-dark my-3 text-center">
                 Delivery Report 
             </h1>
-                    
-            <div class="row d-flex justify-content-center">
-                <table class="table ps-table ps-table--vendor">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    {% for r in items %}
-
-                        <tbody>
-                            <tr>
-                                <td> {{r.date}}</td>
-                                <td> {{r.name}}</td>
-                                <td> <a href="{% url 'order:address_details' r.pk %}"> view </a> </td>
-                                <td>
-                                    <form action="{% url 'order:deliver_done' r.pk %}" method="POST">
-                                        {% csrf_token %}
-                                        <select name="status" onchange=' this.form.submit(); '>
-                                            <option value='undelivered' {% if r.delivery == "undelivered" %} {{"selected"}} {% endif %} >undelivered</option>
-                                            <option value='delivered' {% if r.delivery == "delivered" %} {{"selected"}} {% endif %} >delivered</option>
-                                        </select>
-                                    </form> 
-                                </td>
-
-                            </tr>
-                        </tbody>
-
-                    {% endfor %}
-
-
-                </table>
                 
+            <table class="table ps-table ps-table--vendor">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Details</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-                <a href="" class="text-dark text-center my-2 fw-bold"></a>
-                <a href="" class="text-center col-12"></a>
-                <div class="text-center">
-                    <p class="my-2">
-                    </p>
-                </div>
+                {% for r in items %}
+
+                    <tbody>
+                        <tr>
+                            <td> {{r.date}}</td>
+                            <td> {{r.name}}</td>
+                            <td> <a href="{% url 'order:address_details' r.pk %}"> view </a> </td>
+                            <td>
+                                <form action="{% url 'order:deliver_done' r.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    <select name="status" onchange=' this.form.submit(); '>
+                                        <option value='undelivered' {% if r.delivery == "undelivered" %} {{"selected"}} {% endif %} >undelivered</option>
+                                        <option value='delivered' {% if r.delivery == "delivered" %} {{"selected"}} {% endif %} >delivered</option>
+                                    </select>
+                                </form> 
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                {% endfor %}
+
+
+            </table>
+                
             </div>
         </div>
     </div>
