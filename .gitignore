@@ -126,3 +126,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+whiskey_me/settings.py
+order/migrations
+pages/migrations
+product/migrations
+registration/migrations
+db.sqlite3
