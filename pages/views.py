@@ -201,7 +201,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                     'id': s.id,
                     'collection_method': s.collection_method, 
                     'interval': s.plan.interval,
-                    # 'product': Product.objects.filter(product_stripe_id=s.plan.product),
+                    'product': Product.objects.filter(product_stripe_id=s.plan.product).first(),
                     'current_period_start': datetime.datetime.fromtimestamp(float(s.current_period_start)),
                     'current_period_end': datetime.datetime.fromtimestamp(float(s.current_period_end)),
                     'amount': s.plan.amount/100,
@@ -253,7 +253,7 @@ class CustomerCanceledSubscription(LoginRequiredMixin, View):
 
         stripe.Subscription.delete(sub)
 
-        return HttpResponseRedirect('/dashboard')
+        return HttpResponseRedirect('/dashboard/subscription/')
 
 
 

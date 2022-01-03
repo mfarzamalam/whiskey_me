@@ -69,7 +69,39 @@ class BuyNow(LoginRequiredMixin, View):
             },
 
             success_url=YOUR_DOMAIN + f"address/single/{{CHECKOUT_SESSION_ID}}/{product}/{quantity}",
-            cancel_url=YOUR_DOMAIN + 'cancel/',
+            cancel_url=YOUR_DOMAIN + '/',
+        )
+
+        return redirect(checkout_session.url, code=303)
+
+
+
+class MonthlySubscription(LoginRequiredMixin, View):
+    login_url = "/registration/"
+    def post(self, request, *args, **kwargs):
+        quantity = request.POST.get('monthly')
+        product  = request.POST.get('product_id')
+
+        get_product = Product.objects.filter(pk=product).first()
+        stripe_is_subscribe_price_id = get_product.product_price_is_subscribe_id
+
+        user = CustomUser.objects.filter(email=request.user).first()
+        stripe_user_id = user.stripe_id
+
+        # 4242 4242 4242 4242 -- Fake card to test the checkout session
+        YOUR_DOMAIN = 'http://127.0.0.1:8000/'
+        checkout_session = stripe.checkout.Session.create(
+            customer = stripe_user_id,
+            line_items=[
+                {
+                    'price': stripe_is_subscribe_price_id,
+                    'quantity': quantity,
+                },
+            ],
+            payment_method_types=['card',],
+            mode='subscription',
+            success_url=YOUR_DOMAIN + f"address/subscribe/{{CHECKOUT_SESSION_ID}}/{product}/{quantity}",
+            cancel_url=YOUR_DOMAIN + '/',
         )
 
         return redirect(checkout_session.url, code=303)
