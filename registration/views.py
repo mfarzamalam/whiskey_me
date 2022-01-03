@@ -16,7 +16,7 @@ class RegisterView(View):
         context = {
             'form': form,
         }
-        return render(request, 'new_template/register.html', context)
+        return render(request, 'new_template/registration/register.html', context)
 
 
     def post(self, request, *args, **kwargs):
@@ -39,7 +39,7 @@ class RegisterView(View):
             for i in errorDict:
                 errorStr += errorDict[i]
             messages.error(request, errorStr)
-            return render(request, 'new_template/register.html', context)
+            return render(request, 'new_template/registration/register.html', context)
 
 
 
@@ -51,7 +51,7 @@ class LoginView(View):
         context = {
             'form': form,
         }
-        return render(request, 'new_template/login.html', context)
+        return render(request, 'new_template/registration/login.html', context)
 
     def post(self, request, *args, **kwargs):
         print("login post")
@@ -68,25 +68,25 @@ class LoginView(View):
             context = {
                 'form': login_form,
             }
-            return render(request, 'new_template/login.html', context)
+            return render(request, 'new_template/registration/login.html', context)
 
 
 
 class PasswordReset(views.PasswordResetView):
-    template_name   = 'new_template/password_reset.html' 
+    template_name   = 'new_template/registration/password_reset.html' 
     form_class      = PasswordResetForm
     success_url     = reverse_lazy('password_reset_done')
 
 
 
 class PasswordResetDone(views.PasswordResetDoneView):
-    template_name   = 'new_template/password_reset_done.html'
+    template_name   = 'new_template/registration/password_reset_done.html'
 
 
 class PasswordResetConfirm(views.PasswordResetConfirmView):
-    template_name   = 'new_template/password_reset_confirm.html'
+    template_name   = 'new_template/registration/password_reset_confirm.html'
     form_class      = NewPasswordForm
 
 
 class PasswordResetComplete(views.PasswordResetCompleteView):
-    template_name   = 'new_template/password_reset_complete.html'
+    template_name   = 'new_template/registration/password_reset_complete.html'

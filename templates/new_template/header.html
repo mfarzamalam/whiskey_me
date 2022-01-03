@@ -36,9 +36,11 @@
 
                     {% endif %}
                     
-                    <li class="nav-item">
-                        <a class="nav-link ms-2" href="{% url 'pages:shop' %}">Shop</a>
-                    </li>
+                    {% if not user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link ms-2" href="{% url 'pages:shop' %}">Shop</a>
+                        </li>
+                    {% endif %}
 
                     <li class="nav-item">
                         <a class="nav-link ms-2" href="#">About</a>
