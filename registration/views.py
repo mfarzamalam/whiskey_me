@@ -46,7 +46,7 @@ class RegisterView(View):
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
-        print("login")
+        print("login get")
         form = UserLoginForm()
         context = {
             'form': form,
@@ -54,22 +54,20 @@ class LoginView(View):
         return render(request, 'new_template/login.html', context)
 
     def post(self, request, *args, **kwargs):
+        print("login post")
         login_form = UserLoginForm(request.POST)
-        context = {
-            'form': login_form,
-        }
         if login_form.is_valid():
-            user = auth.authenticate(
-                request, email=request.POST['email'], password=request.POST['password'])
-            if not user:
-                messages.error(
-                    request, _("Please enter a correct email address and password. Note that both fields may be case-sensitive."))
-                return render(request, 'new_template/login.html', context)
-            auth.login(request, user)
-            messages.success(request, _("You are currently logged in"))
-            return redirect('pages:home')
+            user = auth.authenticate(request, email=request.POST['email'], password=request.POST['password'])
+            if user:
+                auth.login(request, user)
+                return redirect('pages:home')
+            else:
+                return redirect('login')
+
         else:
-            # messages.error(request, _("Something went wrong. Please try again."))
+            context = {
+                'form': login_form,
+            }
             return render(request, 'new_template/login.html', context)
 
 

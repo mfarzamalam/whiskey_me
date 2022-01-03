@@ -52,15 +52,18 @@
                 <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0  ms-lg-0">
                     <li class="nav-item">
                         {% if user.is_authenticated %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dashboard
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item {% if single_item == "false" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "subscription" %}" class="text-white">Subscribe</a>
-                                    <a class="dropdown-item {% if single_item == "true" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "single" %}" class="text-white">Single</a>
-                                </div>
-                            </li>
+                            {% if not user.is_superuser %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dashboard
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item {% if single_item == "false" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "subscription" %}" class="text-white">Subscribe</a>
+                                        <a class="dropdown-item {% if single_item == "true" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "single" %}" class="text-white">Single</a>
+                                    </div>
+                                </li>
+                            {% endif %}
+                            
                             <a href="{% url 'logout' %}"><button class="btn-4">Logout</button></a>
                         {% else %}
                             <a class="nav-link" href="{% url 'login' %}">

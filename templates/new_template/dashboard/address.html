@@ -7,65 +7,128 @@
                 <br>
                 <div class="row d-flex justify-content-center">
                    
-                    <div id="login-form" >
-                        <form class="col-12 p-2 " action="" method="POST">
-                            {% csrf_token %}
-                            <p class="text-center text-muted my-2">
-                                Please mention address to deliver the product 
-                            </p>
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-input col-12 my-1" type="text" name="name" placeholder="Name" required>  <br>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-input col-12 my-1" type="text" name="country" placeholder="Country" required>  <br>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-input col-12 my-1" type="text" name="address_1" placeholder="Address Line 1" required>  <br>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-input col-12 my-1" type="text" name="address_2" placeholder="Address Line 2" >  <br>
-                                    </div>
-                                </div>
+                    {% if subs == "true" %}
 
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-input col-12 my-1" type="text" name="city" placeholder="City" required> <br>
+                        <div id="login-form" >
+                            <form class="col-12 p-2 " action="{% url 'pages:sub_address' %}" method="POST">
+                                {% csrf_token %}
+                                <p class="text-center text-muted my-2">
+                                    Please mention address to deliver the product 
+                                </p>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="name" placeholder="Name" required>  <br>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-input col-12 my-1" type="text" name="state" placeholder="State" required> <br>
+                                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="country" placeholder="Country" required>  <br>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-input col-12 my-1" type="number" name="contact" placeholder="Phone Number" required> <br>
+                                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="address_1" placeholder="Address Line 1" required>  <br>
+                                        </div>
                                     </div>
+                                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="address_2" placeholder="Address Line 2" >  <br>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="city" placeholder="City" required> <br>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="state" placeholder="State" required> <br>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="number" name="contact" placeholder="Phone Number" required> <br>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="sub_id" value="{{id}}"> <br>
+                                    <input type="hidden" name="prod_id" value="{{pk}}"> <br>
+                                    <input type="hidden" name="prod_quan" value="{{quan}}"> <br>
+                                    <a href="" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Submit</button></a>
+                                    
                                 </div>
+                            </form>
+                        </div>
 
-                                <input type="hidden" name="sub_id" value="{{id}}"> <br>
-                                <input type="hidden" name="prod_id" value="{{pk}}"> <br>
-                                <input type="hidden" name="prod_quan" value="{{quan}}"> <br>
-                                <a href="" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Submit</button></a>
-                                
-                            </div>
-                        </form>
-                    </div>
+                    {% elif subs == "false" %}
+                        
+                        <div id="login-form" >
+                            <form class="col-12 p-2 " action="{% url 'pages:single_address' %}" method="POST">
+                                {% csrf_token %}
+                                <p class="text-center text-muted my-2">
+                                    Please mention address to deliver the product 
+                                </p>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="name" placeholder="Name" required>  <br>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="country" placeholder="Country" required>  <br>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="address_1" placeholder="Address Line 1" required>  <br>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="address_2" placeholder="Address Line 2" >  <br>
+                                        </div>
+                                    </div>
 
-                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="city" placeholder="City" required> <br>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="text" name="state" placeholder="State" required> <br>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <input class="form-input col-12 my-1" type="number" name="contact" placeholder="Phone Number" required> <br>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="single_id" value="{{id}}"> <br>
+                                    <input type="hidden" name="prod_id" value="{{pk}}"> <br>
+                                    <input type="hidden" name="prod_quan" value="{{quan}}"> <br>
+                                    <a href="" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Submit</button></a>
+                                    
+                                </div>
+                            </form>
+                        </div>
+
+                    {% endif %}
+
                 </div>
             </div>
         </div>

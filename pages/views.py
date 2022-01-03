@@ -120,7 +120,6 @@ class AdminPanelView(LoginRequiredMixin, View):
             print(status)
             if status == "single":
                 singlePayment = stripe.PaymentIntent.list()
-                print(len(singlePayment))
                 required_single_data = []
                 for s in singlePayment:
                     if s.description != "Subscription creation":
@@ -266,7 +265,7 @@ class AddSubscriptionAddress(View):
             'quan': quan,
             'subs': "true",
         }
-        return render(request,'pages/customer_address.html', context)
+        return render(request,'new_template/dashboard/address.html', context)
 
 
     def post(self, request, *args, **kwargs):
@@ -348,6 +347,7 @@ class AddSingleAddress(View):
         prod_id   = request.POST.get('prod_id')
         prod_quan = request.POST.get('prod_quan')
 
+        print(single_id)
         try:
             checkout = stripe.checkout.Session.retrieve(single_id)
             checkout_exists = True
@@ -359,7 +359,7 @@ class AddSingleAddress(View):
             print("Checkout exists? ", checkout_exists)
         
 
-        stripe.PaymentIntent.modify(single_id, 
+        val = stripe.PaymentIntent.modify(single_id, 
             metadata=
                 {
                     "name": name, 
@@ -371,6 +371,7 @@ class AddSingleAddress(View):
                     "city":city,
                 },
         )
+        print(val)
         Delivery.objects.create(
             user      = request.user,
             name      = name,

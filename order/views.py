@@ -36,7 +36,7 @@ class CustomerAddressDetials(View):
             'item':items
         }
 
-        return render(request, 'order/address_details.html', context)
+        return render(request, 'new_template/dashboard/order_details.html', context)
 
 
 class changeStatus(View):
