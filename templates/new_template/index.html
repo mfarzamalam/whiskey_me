@@ -20,10 +20,10 @@
             <div class= "my-3 text-center">
                 <div class="row">
                     <div class="col-12 col-md-6 my-2">
-                        <a href="#"><button class="btn-1 fw-bold">JOIN CLUB</button></a>
+                        <a href="{% url 'register' %}"><button class="btn-1 fw-bold">JOIN CLUB</button></a>
                     </div>
                     <div class="col-12 col-md-6 my-2">
-                        <a href="#"><button class="btn-1 fw-bold">GIVE A GIFT</button></a>
+                        <a href="{% url 'pages:shop' %}"><button class="btn-1 fw-bold">SHOP</button></a>
                     </div>
                 </div>
             </div>
@@ -216,10 +216,10 @@
                     <img src="{% static 'new_static/assets/imgs/categories.png' %}" class="carousal-imgs-2">
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="#">
-                    <button class="btn-4 my-2">
-                    SHOP
-                    </button>
+                    <a href="{% url 'pages:shop' %}">
+                        <button class="btn-4 my-2">
+                            SHOP
+                        </button>
                     </a>
                 </div>
                 <div class="text-center ">
@@ -278,12 +278,6 @@
     </div>
 </section>
 
-<section>
-    <h1>
-        portfolio is missing cz it is working by ajax maybe (line 341)
-    </h1>
-</section>
-
 <section id="drammers">
     <div class="container-fluid bg-orange">
         <div class="container py-5">
@@ -314,80 +308,35 @@
                     <div class="owl-carousel drammers-carousel">
                         <div class="item drammer-cards bg-white p-2">
                             <div>
-                                <div class="my-3">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                </div>
-                                <h5 class="fw-bold my-3"> 
-                                    Love my monthly pouch of whisky
-                                </h5>
-                                <p class="my-2">
-                                    it’s a little treat that also widens my love and appreciation of Whiskey. Simple pleasures are sometimes the best and come in small packages 🙂 Happy days.
-                                </p>
-                                <p class="my-2 d-flex justify-content-baseline">11.10.20 by Karl Wozny</p>
+                                <img src="{% static 'new_static/assets/imgs/drammers.png' %}" class="" height="400px">
                             </div>
                         </div>
-                        <div class="item drammer-cards  bg-white p-2">
+
+                        <div class="item drammer-cards bg-white p-2">
                             <div>
-                                <div class="my-3">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                </div>
-                                <h5 class="fw-bold my-3"> 
-                                    The best customer service I’ve ever had, no question
-                                </h5>
-                                <p class="my-2">
-                                    I left it too late to order in time for my Grandads birthday, but the effort from Tom  to make it happen was incredible. Thanks again Tom, so impressed.
-                                </p>
-                                <p class="my-2 align-self-baselin">11.10.20 by Dom Wozny</p>
+                                <img src="{% static 'new_static/assets/imgs/drammers.png' %}" class="" height="400px">
                             </div>
                         </div>
-                        <div class="item drammer-cards  bg-white p-2">
+
+                        <div class="item drammer-cards bg-white p-2">
                             <div>
-                                <div class="my-3">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                </div>
-                                <h5 class="fw-bold my-3"> 
-                                    The best customer service I’ve ever had, no question
-                                </h5>
-                                <p class="my-2">
-                                    I left it too late to order in time for my Grandads birthday, but the effort from Tom  to make it happen was incredible. Thanks again Tom, so impressed.
-                                </p>
-                                <p class="my-2 align-self-baselin">11.10.20 by Dom Wozny</p>
+                                <img src="{% static 'new_static/assets/imgs/drammers.png' %}" class="" height="400px">
                             </div>
                         </div>
-                        <div class="item drammer-cards  bg-white p-2">
+
+                        <div class="item drammer-cards bg-white p-2">
                             <div>
-                                <div class="my-3">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span><i class="fas fa-star"></i></span>
-                                </div>
-                                <h5 class="fw-bold my-3"> 
-                                    The best customer service I’ve ever had, no question
-                                </h5>
-                                <p class="my-2">
-                                    I left it too late to order in time for my Grandads birthday, but the effort from Tom  to make it happen was incredible. Thanks again Tom, so impressed.
-                                </p>
-                                <p class="my-2 align-self-baselin">11.10.20 by Dom Wozny</p>
+                                <img src="{% static 'new_static/assets/imgs/drammers.png' %}" class="" height="400px">
                             </div>
                         </div>
+
+                        <div class="item drammer-cards bg-white p-2">
+                            <div>
+                                <img src="{% static 'new_static/assets/imgs/drammers.png' %}" class="" height="400px">
+                            </div>
+                        </div>
+                      
+                      
                         <div class="owl-nav fw-bold enabled">
                         </div>
                     </div>

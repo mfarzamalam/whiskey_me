@@ -34,83 +34,11 @@
 
         {% block newMain %}{% endblock newMain %}
 
-        <footer>
-            <div class="container-fluid bg-black py-5">
-                <div class="container">
-                    <div class="row d-flex justify-content-around">
-                        <div class="col-12 col-md-6 mt-3">
-                            <h1 class="fw-bold text-white my-2">Start your adventure</h1>
-                        </div>
-                        <div class="col-12 col-md-6 my-3">
-                            <div class="d-flex justify-content-around mt-3">
-                                <div>
-                                    <a href="{% url 'register' %}"><button class="btn-1 fw-bold">JOIN CLUB</button></a>
-                                </div>
-                                <div>
-                                    <a href="#"><button class="btn-1 fw-bold">GIVE A GIFT</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid bg-black">
-                <div class="container footer mb-3">
-                    <h1 class="fw-bold text-white mb-3">
-                        A WHISKY CLUB FOR THE CURIOUS
-                    </h1>
-                </div>
-                <div>
-                    <div id="footer-items" class="row">
-                        <div class="col-6 col-md-2">
-                            <ul>
-                                <li><a href="#" class="text-white fw-bold">ABOUT THE CLUB</a></li>
-                                <li><a href="#" class="text-white fw-bold">SUBSCRIBE</a></li>
-                                <li><a href="#" class="text-white fw-bold">RECYCLE</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-2">
-                            <ul>
-                                <li><a href="#" class="text-white fw-bold">MY ACCOUNT</a></li>
-                                <li><a href="#" class="text-white fw-bold">FAQ / CONTACT</a></li>
-                                <li><a href="#" class="text-white fw-bold">REFER A FRIEND</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-2">
-                            <ul>
-                                <li><a href="#" class="text-white fw-bold">TERMS</a></li>
-                                <li><a href="#" class="text-white fw-bold">COOKIES & PRIVACY</a></li>
-                                <li><a href="#" class="text-white fw-bold">SHIPPING & REFUNDS</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-2">
-                            <ul>
-                                <li><a href="#" class="text-white fw-bold">INSTAGRAM</a></li>
-                                <li><a href="#" class="text-white fw-bold">FACEBOOK</a></li>
-                                <li><a href="#" class="text-white fw-bold">TWITTER</a></li>
-                                <li><a href="#" class="text-white fw-bold">YOUTUBE</a></li>
-                            </ul>
-                        </div>
-                        <div class="d-flex fw-bold text-white justify-content-end">
-                            © 2021 WHISKYME
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <div>
-
-        <h1>    all pages href</h1> 
-        <a href="  index.html" target="_blank"> index</a> 
-        <a href="  login.html" target="_blank"> login</a> 
-        <a href="  sign-in.html" target="_blank"> sign-in</a> 
-        <a href="  terms.html" target="_blank"> terms</a> 
-        <a href="  product-page.html" target="_blank"> product-page</a> 
-        <a href="  shop.html" target="_blank"> Shop page</a> 
-        </div>
+        {% include 'new_template/footer.html' %}
+       
         <!-- 3rd party JS files and scripts-->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="{% static 'new_static/js/bootstrap.min.js' %}"></script>
+        
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="{% static 'new_static/js/owl.carousel.min.js' %}"></script>

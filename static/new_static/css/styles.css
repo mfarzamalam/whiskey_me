@@ -212,8 +212,7 @@ border-radius:25px;
 border-radius: 25px;
 border: 2px solid #000000;
 width: 300px;
-height: : 40px !important;
-}
+height: 40px !important;}
 #signin-form .form-input{
 border-radius: 25px;
 border: 2px solid #000000;
@@ -451,6 +450,9 @@ color:#000000;
 .flavor-button-2:hover{
 background: #c3bfe9;
 color:#ffffff;
+}
+form input{
+	padding: 0 15px !important;
 }
 .flavor-button-3{
 background: #fadc50;
