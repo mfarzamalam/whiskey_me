@@ -24,6 +24,11 @@ stripe.api_key = SECRET_KEY
 
 
 class HomeView(View):
+    # b = "012345678910"       
+    # a = "abracadabra"
+    # print(a)
+    # print(a[:5] + 'k' + a[6:])
+
     def get(self, request,  *args, **kwargs):
         # if request.user.is_superuser:
             # return redirect('pages:admin_panel')

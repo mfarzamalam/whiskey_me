@@ -21,8 +21,10 @@ IS_SUBSCRIPTION = (
 
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=60 ,null=False, blank=False)
-    age = models.CharField(max_length=30 ,null=True, blank=True)
+    product_name = models.CharField(max_length=100 ,null=False, blank=False)
+    age = models.CharField(max_length=100 ,null=True, blank=True)
+    type = models.CharField(max_length=100 ,null=True, blank=True)
+    abv = models.FloatField(null=True, blank=True)
     price = models.FloatField(null=True, blank=True) 
     picture = models.ImageField(null=True, 
                                       validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])], blank=True)     
@@ -54,14 +56,14 @@ def post_save_product(sender, instance, created, *args, **kwargs):
 
         new_product_price_is_subscribe_id = stripe.Price.create(
                                 unit_amount=product_price,
-                                currency="usd",
+                                currency="GBP",
                                 recurring={"interval": "month"},
                                 product=new_product_stripe_id.id,
                             )
 
         new_product_price_not_subscribe_id = stripe.Price.create(
                                 unit_amount=product_price,
-                                currency="usd",
+                                currency="GBP",
                                 # recurring={"interval": "month"},
                                 product=new_product_stripe_id.id,
                             )
@@ -86,14 +88,14 @@ def post_save_product(sender, instance, created, *args, **kwargs):
             print("else / if -> amount")
             new_price_is_subscribe_id = stripe.Price.create(
                                 unit_amount=product_price,
-                                currency="usd",
+                                currency="GBP",
                                 recurring={"interval": "month"},
                                 product=product_id,
                             )
 
             new_price_not_subscribe_id = stripe.Price.create(
                                 unit_amount=product_price,
-                                currency="usd",
+                                currency="GBP",
                                 product=product_id,
                             )
 
