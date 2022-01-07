@@ -132,4 +132,4 @@ pages/migrations
 product/migrations
 registration/migrations
 db.sqlite3
-static/
+static/admin
