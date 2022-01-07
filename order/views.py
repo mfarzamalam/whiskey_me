@@ -17,13 +17,12 @@ class CustomerDeliver(View):
     def get(self, request, status="", *args, **kwargs):
         if status == "" or status == None:
             items = Delivery.objects.all()
-            class_active = None
+            class_active = "all"
             action = None
         else:
             items  = Delivery.objects.filter(delivery=status)
             action = status
             class_active = status
-        
         
         context = {'items': items, 'class_active':class_active, 'action':action}
         return render(request, 'new_template/dashboard/delivery.html', context)

@@ -29,6 +29,7 @@
                                 Delivery
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {% if class_active == "all" %} active {% endif %}" href="{% url 'order:deliver' %}">All</a>
                                 <a class="dropdown-item {% if class_active == "delivered" %} active {% endif %}" href="{% url 'order:deliver' "delivered" %}">Delivered</a>
                                 <a class="dropdown-item {% if class_active == "undelivered" %} active {% endif %}" href="{% url 'order:deliver' "undelivered" %}">Not Delivered</a>
                             </div>

@@ -25,7 +25,7 @@
                         <tr>
                             <td> {{r.date}}</td>
                             <td> {{r.name}}</td>
-                            <td> <a href="{% url 'order:address_details' r.pk %}"> view </a> </td>
+                            <td> <a href="{% url 'order:address_details' r.pk %}"> View Details </a> </td>
                             <td>
                                 <form action="{% url 'order:deliver_done' r.pk %}" method="POST">
                                     {% csrf_token %}

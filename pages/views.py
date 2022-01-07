@@ -127,7 +127,8 @@ class AdminPanelView(LoginRequiredMixin, View):
                 singlePayment = stripe.PaymentIntent.list()
                 required_single_data = []
                 for s in singlePayment:
-                    if s.description != "Subscription creation":
+                    print(s.status)
+                    if s.description != "Subscription creation" and s.status == "succeeded":
                         single_item = {
                             'id': s.id,
                             'product': Product.objects.filter(product_stripe_id=s.metadata.product_id).first(),
@@ -135,7 +136,7 @@ class AdminPanelView(LoginRequiredMixin, View):
                             'amount': s.metadata.product_price,
                             'quantity': s.metadata.quantity,
                             'total': float(s.metadata.total),
-                            'address': s.metadata.address_1,
+                            'status': s.status,
                         }
                         required_single_data.append(single_item)
 
@@ -227,7 +228,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
             singlePayment = stripe.PaymentIntent.list(customer=stripe_user_id)
             required_single_data = []
             for s in singlePayment:
-                if s.description != "Subscription creation":
+                if s.description != "Subscription creation" and s.status == "succeeded":
                     single_item = {
                         'id': s.id,
                         'product': Product.objects.filter(product_stripe_id=s.metadata.product_id).first(),

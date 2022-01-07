@@ -18,7 +18,7 @@
                             <th>Price</th>
                             <th>Qunatity</th>
                             <th>Total</th>
-                            <th>Address</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
 
@@ -32,12 +32,7 @@
                                 <td>${{r.amount}}</td>
                                 <td>{{r.quantity}}</td>
                                 <td>${{r.total}}</td>
-                                
-                                {% if r.address == "-" and r.product.id.is_exists %}
-                                    <td> <a href="{% url 'pages:single_address' r.id r.product.id r.quantity %}"> Add Address </a></td>
-                                {% else %}
-                                    <td style="color:green"> Added </td>
-                                {% endif %}
+                                <td style="color:green"> {{r.status}} </td>
 
                             </tr>
 
