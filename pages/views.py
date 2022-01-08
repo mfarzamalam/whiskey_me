@@ -76,6 +76,39 @@ class ShopView(View):
             return render(request,'new_template/shop.html',context)
 
 
+class ProductPriceRange(View):
+    def get(self, request, fromm, to, *args, **kwargs):
+        product = Product.objects.filter(price__range=[fromm, to])
+
+        context = {
+            'product': product,
+        }
+
+        return render(request,'new_template/shop.html',context)
+
+
+class ProductAgeRange(View):
+    def get(self, request, fromm, to, *args, **kwargs):
+        product = Product.objects.filter(age__range=[fromm, to])
+        context = {
+            'product': product,
+        }
+
+        return render(request,'new_template/shop.html',context)
+
+
+class ProductBottleSize(View):
+    def get(self, request, size, *args, **kwargs):
+        category = Category.objects.get(name=size)
+        product  = Product.objects.filter(category=category)
+        context = {
+            'product': product,
+        }
+
+        return render(request,'new_template/shop.html',context)
+
+
+
 class SingleCategoryView(View):
     def get(self, request, category, *args, **kwargs):
         selected_cat = Category.objects.get(name=category)

@@ -22,7 +22,7 @@ IS_SUBSCRIPTION = (
 
 class Product(models.Model):
     product_name = models.CharField(max_length=100 ,null=False, blank=False)
-    age = models.CharField(max_length=100 ,null=True, blank=True)
+    age = models.IntegerField(null=True, blank=True)
     type = models.CharField(max_length=100 ,null=True, blank=True)
     abv = models.FloatField(null=True, blank=True)
     price = models.FloatField(null=True, blank=True) 

@@ -32,22 +32,17 @@
                 <div class="col-6 col-md-2">
                     <ul>
                         <li><a href="#" class="text-white fw-bold">ABOUT THE CLUB</a></li>
-                        <li><a href="#" class="text-white fw-bold">SUBSCRIBE</a></li>
-                        <li><a href="#" class="text-white fw-bold">RECYCLE</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md-2">
-                    <ul>
-                        <li><a href="#" class="text-white fw-bold">MY ACCOUNT</a></li>
-                        <li><a href="#" class="text-white fw-bold">FAQ / CONTACT</a></li>
-                        <li><a href="#" class="text-white fw-bold">REFER A FRIEND</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md-2">
-                    <ul>
                         <li><a href="#" class="text-white fw-bold">TERMS</a></li>
-                        <li><a href="#" class="text-white fw-bold">COOKIES & PRIVACY</a></li>
-                        <li><a href="#" class="text-white fw-bold">SHIPPING & REFUNDS</a></li>
+                        <li><a href="#" class="text-white fw-bold">FAQ / CONTACT</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-6 col-md-2">
+                    <ul>
+                        {% if user.is_authenticated and not user.is_superuser %}
+                            <li><a href="#" class="text-white fw-bold">Subscription</a></li>
+                            <li><a href="#" class="text-white fw-bold">Single</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="col-6 col-md-2">
