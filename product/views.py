@@ -44,7 +44,7 @@ class BuyNow(LoginRequiredMixin, View):
         user = CustomUser.objects.filter(email=request.user).first()
         stripe_user_id = user.stripe_id
 
-        YOUR_DOMAIN = 'http://127.0.0.1:8000/'
+        YOUR_DOMAIN = 'http://whiskeymeee.pythonanywhere.com/'
         checkout_session = stripe.checkout.Session.create(
             
             customer = stripe_user_id,
@@ -89,7 +89,7 @@ class MonthlySubscription(LoginRequiredMixin, View):
         stripe_user_id = user.stripe_id
 
         # 4242 4242 4242 4242 -- Fake card to test the checkout session
-        YOUR_DOMAIN = 'http://127.0.0.1:8000/'
+        YOUR_DOMAIN = 'http://whiskeymeee.pythonanywhere.com/'
         checkout_session = stripe.checkout.Session.create(
             customer = stripe_user_id,
             line_items=[

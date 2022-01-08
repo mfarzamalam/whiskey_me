@@ -17,12 +17,19 @@
                 <div class="row d-flex justify-content-center">
                     {% for form in form %}
                         <div class="col-12 d-flex justify-content-center">
-                            <p style="color:red; margin-bottom:0px; margin-top:20px;" class="text-danger">{{form.errors|striptags}} <p>
-                        </div>
-                        <div class="col-12 d-flex justify-content-center">
                             {{form}}
                         </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <p style="color:red; margin-bottom:0px; margin-bottom:20px;" class="text-danger">{{form.errors|striptags}} <p>
+                        </div>
                     {% endfor %}
+
+                    <div class="col-12 d-flex justify-content-center">
+                        {% if form.non_field_errors  %}
+                            <p style="color:red" class="pt-3 text-danger">{{form.non_field_errors|striptags}} <p>
+                            </br>
+                        {% endif %}
+                    </div>
 
                     <a href="" class="text-dark text-center my-3 fw-bold">Forgot?</a>
                     <a href="" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Sign Up</button></a>

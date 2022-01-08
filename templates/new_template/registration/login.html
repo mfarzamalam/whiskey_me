@@ -16,10 +16,10 @@
                 <div class="row d-flex justify-content-center">
                     {% for form in form %}
                         <div class="col-12 d-flex justify-content-center">
-                            <p style="color:red; margin-bottom:0px; margin-top:20px;" class="text-danger">{{form.errors|striptags}} <p>
+                            {{form}}
                         </div>
                         <div class="col-12 d-flex justify-content-center">
-                            {{form}}
+                            <p style="color:red; margin-bottom:0px; margin-bottom:20px;" class="text-danger">{{form.errors|striptags}} <p>
                         </div>
                     {% endfor %}
 

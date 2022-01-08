@@ -233,7 +233,6 @@
                             <p class="fw-bold mb-2">
                                 We are now stocking 6cl pouches alongside full size bottles of all the whiskies we send our members from Sep '21 onwards. Perfect if you want a little more or if you missed a past whisky.
                             </p>
-                            <a href="#"><button class="btn-5 fw-bold">BUY NOW</button></a>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 order-1">
@@ -254,7 +253,7 @@
                             <p class="fw-bold mb-1 text-white">
                                 Bulleit 95 Rye
                             </p>
-                            <a href="#"><button class="btn-1 fw-bold mt-3">BUY NOW</button></a>
+                            <a href="{% url 'pages:shop' %}"><button class="btn-1 fw-bold mt-3">SHOP</button></a>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 order-1 d-flex justify-content-center my-2">
@@ -282,19 +281,8 @@
                         <h5 class="fw-bold text-black">
                             £{{product.price}}
                         </h5>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <div class="quantity-button">
-                                    <div class="qty-input">
-                                        <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                        <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                        <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="{% url 'product:single_product' product.pk %}"><button class="btn-3 fw-bold">View Details</button></a> 
-                            </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'product:single_product' product.pk %}"><button class="btn-3 fw-bold">View Details</button></a> 
                         </div>
                     </div>
                 </div>

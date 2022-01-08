@@ -62,7 +62,10 @@ class LoginView(View):
                 auth.login(request, user)
                 return redirect('pages:home')
             else:
-                return redirect('login')
+                context = {
+                    'form': login_form,
+                }
+                return render(request, 'new_template/registration/login.html', context)
 
         else:
             context = {

@@ -18,10 +18,12 @@
                 <b>Last Order <br /> Date for Gift <br /> Boxes 20th <br /> December!</b>
             </h1>
             <div class= "my-3 text-center">
-                <div class="row">
-                    <div class="col-12 col-md-6 my-2">
-                        <a href="{% url 'register' %}"><button class="btn-1 fw-bold">JOIN CLUB</button></a>
-                    </div>
+                <div class="row {% if user.is_authenticated %} d-flex justify-content-center {% endif %}">
+                    {% if not user.is_authenticated %}
+                        <div class="col-12 col-md-6 my-2">
+                            <a href="{% url 'register' %}"><button class="btn-1 fw-bold">JOIN CLUB</button></a>
+                        </div>
+                    {% endif %}
                     <div class="col-12 col-md-6 my-2">
                         <a href="{% url 'pages:shop' %}"><button class="btn-1 fw-bold">SHOP</button></a>
                     </div>

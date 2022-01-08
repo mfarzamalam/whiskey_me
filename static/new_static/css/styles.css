@@ -580,3 +580,33 @@ height: 40px !important;
 width: 100px !important;
 }
 }
+
+
+@media (min-device-width: 2559px){
+	.oban {
+    border-radius: 25px;
+    position: absolute;
+    top: -70px;
+    height: auto;
+    width: 24%;
+}
+.btn-login {
+    width: 300px;
+    background-color: #ff5730;
+    color: #ffffff;
+    border-radius: 25px;
+    border: 2px solid #ff5730;
+    height: 57px;
+}
+
+
+
+.btn-1,.btn-2,.btn-3,.btn-4{
+width: 200px !important;
+height: 60px !important;
+}
+
+#shop-product .btn-3{
+width: 100px !important;
+}
+}
