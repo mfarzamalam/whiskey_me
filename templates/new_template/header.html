@@ -50,6 +50,10 @@
                     <li class="nav-item">
                         <a class="nav-link ms-2" href="#">Contact</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link ms-2" href="{% url 'product:faq' %}">FAQ</a>
+                    </li>
                     
                 </ul>
                 <ul class="navbar-nav ms-lg-auto mb-2 mb-lg-0  ms-lg-0">
@@ -61,6 +65,7 @@
                                         Dashboard
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item {% if class_account == "true" %} active {% endif %}" href="" class="text-white">My Account</a>
                                         <a class="dropdown-item {% if single_item == "false" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "subscription" %}" class="text-white">Subscription</a>
                                         <a class="dropdown-item {% if single_item == "true" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "single" %}" class="text-white">Single</a>
                                     </div>

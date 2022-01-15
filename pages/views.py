@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import View
 from django.views.generic.base import TemplateView
 from stripe.api_resources import customer, subscription
@@ -295,6 +295,38 @@ class CustomerCanceledSubscription(LoginRequiredMixin, View):
         return HttpResponseRedirect('/dashboard/subscription/')
 
 
+class CustomerChangeAddress(LoginRequiredMixin, View):
+    def get(self, request, id, *args, **kwargs):
+
+        customer = stripe.PaymentIntent.retrieve(id)
+        print(customer.metadata.address_1)
+        name      = request.POST.get('name')
+        country   = request.POST.get('country')
+        address_1 = request.POST.get('address_1')
+        address_2 = request.POST.get('address_2')
+        city      = request.POST.get('city')
+        state     = request.POST.get('state')
+        contact   = request.POST.get('contact')
+        single_id = request.POST.get('single_id')
+        prod_id   = request.POST.get('prod_id')
+        prod_quan = request.POST.get('prod_quan')
+
+        val = stripe.PaymentIntent.modify(id, 
+            metadata=
+                {
+                    "name": name, 
+                    "country":country,
+                    "address_1":address_1,
+                    "address_2":address_2,
+                    "city":city,
+                    "state":state,
+                    "city":city,
+                },
+        )
+        print(val)
+        return HttpResponseRedirect()
+
+
 
 class AddSubscriptionAddress(View):
     def get(self, request, id, pk, quan, *args, **kwargs):
@@ -426,3 +458,8 @@ class AddSingleAddress(View):
             quantity  = prod_quan,
         )
         return HttpResponseRedirect('/dashboard/single')
+
+
+
+class TermsView(TemplateView):
+    template_name = "new_template/terms.html"

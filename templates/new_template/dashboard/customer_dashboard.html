@@ -39,7 +39,7 @@
                                 {% if r.address.address_1 == "" or r.address.address_1 == None and status == "active" %}
                                     <td> <a href="{% url 'pages:sub_address' r.id r.product.id r.quantity %}"> Add Address </a></td>
                                 {% else %}
-                                    <td style="color:green"> Added </td>
+                                    <td style="color:green"> <a href="{% url 'pages:change_address' r.id %}"> Change Address </a></td>
                                 {% endif %}
 
 
@@ -99,7 +99,7 @@
                                 {% if r.address == "-" %}
                                     <td> <a href="{% url 'pages:single_address' r.id r.product.id r.quantity %}"> Add Address </a></td>
                                 {% else %}
-                                    <td style="color:green"> Added </td>
+                                    <td style="color:green"> <a href="{% url 'pages:change_address' r.id %}"> Change Address </a></td>
                                 {% endif %}
 
                             </tr>

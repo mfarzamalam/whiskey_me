@@ -1,3 +1,4 @@
+from pipes import Template
 from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView
 from .models import Product, Category
@@ -77,7 +78,7 @@ class BuyNow(LoginRequiredMixin, View):
 
 
 class MonthlySubscription(LoginRequiredMixin, View):
-    login_url = "/registration/"
+    login_url = "/login/"
     def post(self, request, *args, **kwargs):
         quantity = request.POST.get('monthly')
         product  = request.POST.get('product_id')
@@ -105,3 +106,8 @@ class MonthlySubscription(LoginRequiredMixin, View):
         )
 
         return redirect(checkout_session.url, code=303)
+
+
+
+class FaqPageView(TemplateView):
+    template_name = 'new_template/faq-contact.html'
