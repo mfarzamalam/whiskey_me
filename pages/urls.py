@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     AdminPanelView, HomeView,AboutView,ContactView,ReviewPanelView, CustomerDashboard, CustomerCanceledSubscription, 
     SingleCategoryView, CancelView, ShopView, NewDashboard, ProductPriceRange, ProductAgeRange, ProductBottleSize, 
-    TermsView, CustomerAddressView, AuthenticateAddressView
+    TermsView, CustomerAddressView, CheckoutSingleAddressView, CheckoutMonthlyAddressView
 )
 
 app_name = "pages"
@@ -27,7 +27,8 @@ urlpatterns = [
     path('cancel/', CancelView.as_view(), name='cancel'),
     path('terms', TermsView.as_view(), name='terms'),
 
-    path('address/<int:pk>/', CustomerAddressView.as_view(), name='address'),
-    path('address/', AuthenticateAddressView.as_view(), name='authenticate_address'),
+    path('account/address/', CustomerAddressView.as_view(), name='address'),
+    path('checkout/single/address/', CheckoutSingleAddressView.as_view(), name='single_address'),
+    path('checkout/monthly/address/', CheckoutMonthlyAddressView.as_view(), name='monthly_address'),
 
 ]

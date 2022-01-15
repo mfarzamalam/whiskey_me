@@ -8,11 +8,7 @@
                 <div class="row d-flex justify-content-center">
                    
                         <div id="login-form" >
-                            {% if product and quantity %}
-                                <form class="col-12 p-2 " action="{% url 'pages:authenticate_address' %}" method="POST">
-                            {% else %}
-                                <form class="col-12 p-2 " action="{% url 'pages:address' user.pk %}" method="POST">
-                            {% endif %}
+                            <form class="col-12 p-2 " action="" method="POST">
 
                                 {% csrf_token %}
                                 <p class="text-center text-muted my-2">
@@ -20,54 +16,17 @@
                                     Please mention address to deliver the product 
                                 </p>
                                 <div class="row d-flex justify-content-center">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="text" name="firstname" placeholder="First Name" required>  <br>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="text" name="lastname" placeholder="Last Name" required>  <br>
-                                        </div>
-                                    </div>
                                     
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="text" name="country" placeholder="Country" required>  <br>
+                                    {% for form in form %}
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <div class="col-3 d-flex justify-content-center">
+                                                {{form}}
+                                            </div>
                                         </div>
-                                    </div>
+                                        <p class="col-3 d-flex justify-content-center" style="color:red"> {{form.errors|striptags}} </p>
+                                    {% endfor %}
                                     
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="text" name="address_1" placeholder="Address Line 1" required>  <br>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="text" name="address_2" placeholder="Address Line 2" >  <br>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="text" name="city" placeholder="City" required> <br>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="text" name="state" placeholder="State" required> <br>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <div class="col-3 d-flex justify-content-center">
-                                            <input class="form-input col-12 my-1" type="number" name="contact" placeholder="Phone Number" required> <br>
-                                        </div>
-                                    </div>
-
+                                          
                                     {% if product and quantity %}
                                         <input type="hidden" name="product" value="{{product}}"> <br>
                                         <input type="hidden" name="quantity" value="{{quantity}}"> <br>

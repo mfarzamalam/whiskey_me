@@ -5,12 +5,12 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View
 from django.views.generic.base import TemplateView
 from stripe.api_resources import customer, subscription
-from pages.models import Review
+from .models import Review
 from product.models import Category, Product
 from registration.models import CustomUser
 from order.models import Delivery, Address
 from django.utils import timezone
-from pages.forms import ReviewForm
+from .forms import ReviewForm, CustomerAddressForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 import stripe
@@ -301,54 +301,39 @@ class TermsView(TemplateView):
 
 
 class CustomerAddressView(View):
-    def get(self, request, pk, *args, **kwargs):
-        address = Address.objects.filter(user=request.user).exists()
+    def get(self, request, *args, **kwargs):
+        address = Address.objects.filter(user=request.user).first()
         if address:
+            form = CustomerAddressForm(instance=address)
             context = {
-                'message': 'address is available',
                 'myaccount': "true",
+                'form':form,
             }
         else:
+            form = CustomerAddressForm()
             context = {
-                'message': 'address is empty',
                 'myaccount': "true",
+                'form':form,
             }
 
         return render(request,'new_template/dashboard/customer_account.html', context)
 
     def post(self, request, *args, **kwargs):
-        firstname = request.POST.get('firstname')
-        lastname  = request.POST.get('lastname')
-        country   = request.POST.get('country')
-        address_1 = request.POST.get('address_1')
-        address_2 = request.POST.get('address_2')
-        city      = request.POST.get('city')
-        state     = request.POST.get('state')
-        contact   = request.POST.get('contact')
-
-        if firstname == '' or lastname == '' or country == '' or address_1 == '' or city == '' or state == '' or contact == '':
+        address = Address.objects.filter(user=request.user).first()
+        form = CustomerAddressForm(request.POST, instance=address)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f'/account/address/')
+        else:
             context = {
-                'message': 'Please fill all the fields',
                 'myaccount': "true",
+                'form':form,
             }
             return render(request,'new_template/dashboard/customer_account.html', context)
-        else:
-            Address.objects.create(
-                user      = request.user,
-                fname     = firstname,
-                lname     = lastname,
-                country   = country,
-                address_1 = address_1,
-                address_2 = address_2,
-                city      = city,
-                state     = state,
-                contact   = contact,
-            )
-
-            return HttpResponseRedirect(f'/address/{request.user.pk}')
 
 
-class AuthenticateAddressView(View):
+
+class CheckoutSingleAddressView(View):
     def get(self, request, *args, **kwargs):
         product  = request.GET.get('product_id')
         quantity = request.GET.get('buy-now')
@@ -357,41 +342,61 @@ class AuthenticateAddressView(View):
         if address:
             return HttpResponseRedirect(f'/Buy-Now/{product}/{quantity}')
         else:
+            form = CustomerAddressForm()
             context = {
+                'form': form,
                 'product': product,
                 'quantity': quantity,
             }
             return render(request,'new_template/dashboard/customer_account.html', context)
 
     def post(self, request, *args, **kwargs):
-        firstname = request.POST.get('firstname')
-        lastname  = request.POST.get('lastname')
-        country   = request.POST.get('country')
-        address_1 = request.POST.get('address_1')
-        address_2 = request.POST.get('address_2')
-        city      = request.POST.get('city')
-        state     = request.POST.get('state')
-        contact   = request.POST.get('contact')
         product   = request.POST.get('product')
         quantity  = request.POST.get('quantity')
 
-        if firstname == '' or lastname == '' or country == '' or address_1 == '' or city == '' or state == '' or contact == '':
+        address = Address.objects.filter(user=request.user).first()
+        form = CustomerAddressForm(request.POST, instance=address)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f'/Buy-Now/{product}/{quantity}')
+        else:
             context = {
-                'message': 'Please fill all the fields',
                 'myaccount': "true",
+                'form':form,
             }
             return render(request,'new_template/dashboard/customer_account.html', context)
-        else:
-            Address.objects.create(
-                user      = request.user,
-                fname     = firstname,
-                lname     = lastname,
-                country   = country,
-                address_1 = address_1,
-                address_2 = address_2,
-                city      = city,
-                state     = state,
-                contact   = contact,
-            )
 
-            return HttpResponseRedirect(f'/Buy-Now/{product}/{quantity}')
+
+
+class CheckoutMonthlyAddressView(View):
+    def get(self, request, *args, **kwargs):
+        product  = request.GET.get('product_id')
+        quantity = request.GET.get('monthly')
+
+        address = Address.objects.filter(user=request.user).exists()
+        if address:
+            return HttpResponseRedirect(f'/Monthly/{product}/{quantity}')
+        else:
+            form = CustomerAddressForm()
+            context = {
+                'form': form,
+                'product': product,
+                'quantity': quantity,
+            }
+            return render(request,'new_template/dashboard/customer_account.html', context)
+
+    def post(self, request, *args, **kwargs):
+        product  = request.POST.get('product')
+        quantity = request.POST.get('quantity')
+
+        address = Address.objects.filter(user=request.user).first()
+        form = CustomerAddressForm(request.POST, instance=address)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f'/Monthly/{product}/{quantity}')
+        else:
+            context = {
+                'myaccount': "true",
+                'form':form,
+            }
+            return render(request,'new_template/dashboard/customer_account.html', context)

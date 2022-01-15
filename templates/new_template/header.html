@@ -65,7 +65,7 @@
                                         Dashboard
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item {% if myaccount == "true" %} active {% endif %}" href="{% url 'pages:address' user.pk %}" class="text-white">My Account</a>
+                                        <a class="dropdown-item {% if myaccount == "true" %} active {% endif %}" href="{% url 'pages:address' %}" class="text-white">My Account</a>
                                         <a class="dropdown-item {% if single_item == "false" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "subscription" %}" class="text-white">Subscription</a>
                                         <a class="dropdown-item {% if single_item == "true" %} active {% endif %}" href="{% url 'pages:customer_dashboard' "single" %}" class="text-white">Single</a>
                                     </div>
