@@ -1,3 +1,4 @@
+from os import stat
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -7,7 +8,7 @@ from stripe.api_resources import customer, subscription
 from pages.models import Review
 from product.models import Category, Product
 from registration.models import CustomUser
-from order.models import Delivery
+from order.models import Delivery, Address
 from django.utils import timezone
 from pages.forms import ReviewForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -53,6 +54,7 @@ class NewDashboard(View):
             # 'product_2': prd_70cl,
         }
         return render(request,'new_template/dashboard/admin_dashboard.html',context)
+
 
 class ShopView(View):
     def get(self, request,  *args, **kwargs):
@@ -247,7 +249,8 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                     'quantity': s.quantity,
                     'total': (s.plan.amount/100) * (s.quantity),
                     'status': s.status,
-                    'address': s.metadata,
+                    'delivery':Delivery.objects.filter(address=Address.objects.filter(user=request.user).first()).first(),
+
                 }
                 
                 required_subscription_data.append(single_subscription_item)
@@ -269,7 +272,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                         'amount': s.metadata.product_price,
                         'quantity': s.metadata.quantity,
                         'total': float(s.metadata.total),
-                        'address': s.metadata.address_1,
+                        'delivery':Delivery.objects.filter(address=Address.objects.filter(user=request.user).first()).first(),
                     }
                     required_single_data.append(single_item)
 
@@ -289,177 +292,106 @@ class CancelView(TemplateView):
 
 class CustomerCanceledSubscription(LoginRequiredMixin, View):
     def get(self, request, sub, *args, **kwargs):
-
         stripe.Subscription.delete(sub)
-
         return HttpResponseRedirect('/dashboard/subscription/')
-
-
-class CustomerChangeAddress(LoginRequiredMixin, View):
-    def get(self, request, id, *args, **kwargs):
-
-        customer = stripe.PaymentIntent.retrieve(id)
-        print(customer.metadata.address_1)
-        name      = request.POST.get('name')
-        country   = request.POST.get('country')
-        address_1 = request.POST.get('address_1')
-        address_2 = request.POST.get('address_2')
-        city      = request.POST.get('city')
-        state     = request.POST.get('state')
-        contact   = request.POST.get('contact')
-        single_id = request.POST.get('single_id')
-        prod_id   = request.POST.get('prod_id')
-        prod_quan = request.POST.get('prod_quan')
-
-        val = stripe.PaymentIntent.modify(id, 
-            metadata=
-                {
-                    "name": name, 
-                    "country":country,
-                    "address_1":address_1,
-                    "address_2":address_2,
-                    "city":city,
-                    "state":state,
-                    "city":city,
-                },
-        )
-        print(val)
-        return HttpResponseRedirect()
-
-
-
-class AddSubscriptionAddress(View):
-    def get(self, request, id, pk, quan, *args, **kwargs):
-        context = {
-            'id': id,
-            'pk': pk,
-            'quan': quan,
-            'subs': "true",
-        }
-        return render(request,'new_template/dashboard/address.html', context)
-
-
-    def post(self, request, *args, **kwargs):
-        checkout_exists  = False
-
-        name      = request.POST.get('name')
-        country   = request.POST.get('country')
-        address_1 = request.POST.get('address_1')
-        address_2 = request.POST.get('address_2')
-        city      = request.POST.get('city')
-        state     = request.POST.get('state')
-        contact   = request.POST.get('contact')
-        sub_id    = request.POST.get('sub_id')
-        prod_id   = request.POST.get('prod_id')
-        prod_quan = request.POST.get('prod_quan')
-
-        try:
-            checkout = stripe.checkout.Session.retrieve(sub_id)
-            checkout_exists = True
-            print("Checkout exists? ", checkout_exists)
-
-            if checkout_exists == True:
-                sub_id = checkout.subscription
-        except:
-            print("Checkout exists? ", checkout_exists)
-
-        stripe.Subscription.modify(sub_id, 
-            metadata=
-                {
-                    "name": name, 
-                    "country":country,
-                    "address_1":address_1,
-                    "address_2":address_2,
-                    "city":city,
-                    "state":state,
-                    "city":city,
-                },
-        )
-        Delivery.objects.create(
-            user      = request.user,
-            name      = name,
-            country   = country,
-            address_1 = address_1,
-            address_2 = address_2,
-            city      = city,
-            state     = state,
-            contact   = contact,
-            sub_id    = sub_id,
-            date      = timezone.now(),
-            product   = Product.objects.get(pk=prod_id),
-            quantity  = prod_quan,
-        )
-        return HttpResponseRedirect('/dashboard/subscription')
-
-
-
-class AddSingleAddress(View):
-    def get(self, request, id, pk, quan, *args, **kwargs):
-        context = {
-            'id': id,
-            'pk': pk,
-            'quan': quan,
-            'subs': "false",
-        }
-        return render(request,'new_template/dashboard/address.html', context)
-
-
-    def post(self, request, *args, **kwargs):
-        checkout_exists  = False
-
-        name      = request.POST.get('name')
-        country   = request.POST.get('country')
-        address_1 = request.POST.get('address_1')
-        address_2 = request.POST.get('address_2')
-        city      = request.POST.get('city')
-        state     = request.POST.get('state')
-        contact   = request.POST.get('contact')
-        single_id = request.POST.get('single_id')
-        prod_id   = request.POST.get('prod_id')
-        prod_quan = request.POST.get('prod_quan')
-
-        print(single_id)
-        try:
-            checkout = stripe.checkout.Session.retrieve(single_id)
-            checkout_exists = True
-            print("Checkout exists? ", checkout_exists)
-
-            if checkout_exists == True:
-                single_id = checkout.payment_intent
-        except:
-            print("Checkout exists? ", checkout_exists)
-        
-
-        val = stripe.PaymentIntent.modify(single_id, 
-            metadata=
-                {
-                    "name": name, 
-                    "country":country,
-                    "address_1":address_1,
-                    "address_2":address_2,
-                    "city":city,
-                    "state":state,
-                    "city":city,
-                },
-        )
-        print(val)
-        Delivery.objects.create(
-            user      = request.user,
-            name      = name,
-            country   = country,
-            address_1 = address_1,
-            address_2 = address_2,
-            city      = city,
-            state     = state,
-            contact   = contact,
-            sub_id    = single_id,
-            date      = timezone.now(),
-            product   = Product.objects.get(pk=prod_id),
-            quantity  = prod_quan,
-        )
-        return HttpResponseRedirect('/dashboard/single')
-
 
 
 class TermsView(TemplateView):
     template_name = "new_template/terms.html"
+
+
+class CustomerAddressView(View):
+    def get(self, request, pk, *args, **kwargs):
+        address = Address.objects.filter(user=request.user).exists()
+        if address:
+            context = {
+                'message': 'address is available',
+                'myaccount': "true",
+            }
+        else:
+            context = {
+                'message': 'address is empty',
+                'myaccount': "true",
+            }
+
+        return render(request,'new_template/dashboard/customer_account.html', context)
+
+    def post(self, request, *args, **kwargs):
+        firstname = request.POST.get('firstname')
+        lastname  = request.POST.get('lastname')
+        country   = request.POST.get('country')
+        address_1 = request.POST.get('address_1')
+        address_2 = request.POST.get('address_2')
+        city      = request.POST.get('city')
+        state     = request.POST.get('state')
+        contact   = request.POST.get('contact')
+
+        if firstname == '' or lastname == '' or country == '' or address_1 == '' or city == '' or state == '' or contact == '':
+            context = {
+                'message': 'Please fill all the fields',
+                'myaccount': "true",
+            }
+            return render(request,'new_template/dashboard/customer_account.html', context)
+        else:
+            Address.objects.create(
+                user      = request.user,
+                fname     = firstname,
+                lname     = lastname,
+                country   = country,
+                address_1 = address_1,
+                address_2 = address_2,
+                city      = city,
+                state     = state,
+                contact   = contact,
+            )
+
+            return HttpResponseRedirect(f'/address/{request.user.pk}')
+
+
+class AuthenticateAddressView(View):
+    def get(self, request, *args, **kwargs):
+        product  = request.GET.get('product_id')
+        quantity = request.GET.get('buy-now')
+
+        address = Address.objects.filter(user=request.user).exists()
+        if address:
+            return HttpResponseRedirect(f'/Buy-Now/{product}/{quantity}')
+        else:
+            context = {
+                'product': product,
+                'quantity': quantity,
+            }
+            return render(request,'new_template/dashboard/customer_account.html', context)
+
+    def post(self, request, *args, **kwargs):
+        firstname = request.POST.get('firstname')
+        lastname  = request.POST.get('lastname')
+        country   = request.POST.get('country')
+        address_1 = request.POST.get('address_1')
+        address_2 = request.POST.get('address_2')
+        city      = request.POST.get('city')
+        state     = request.POST.get('state')
+        contact   = request.POST.get('contact')
+        product   = request.POST.get('product')
+        quantity  = request.POST.get('quantity')
+
+        if firstname == '' or lastname == '' or country == '' or address_1 == '' or city == '' or state == '' or contact == '':
+            context = {
+                'message': 'Please fill all the fields',
+                'myaccount': "true",
+            }
+            return render(request,'new_template/dashboard/customer_account.html', context)
+        else:
+            Address.objects.create(
+                user      = request.user,
+                fname     = firstname,
+                lname     = lastname,
+                country   = country,
+                address_1 = address_1,
+                address_2 = address_2,
+                city      = city,
+                state     = state,
+                contact   = contact,
+            )
+
+            return HttpResponseRedirect(f'/Buy-Now/{product}/{quantity}')

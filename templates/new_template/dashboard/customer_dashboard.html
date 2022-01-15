@@ -19,8 +19,8 @@
                             <th>Qunatity</th>
                             <th>Total</th>
                             <th>Next Invoice</th>
-                            <th>Address</th>
                             <th>Status</th>
+                            <th>Delivery </th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -36,18 +36,14 @@
                                 <td>${{r.total}}</td>
                                 <td>{{r.current_period_end}}</td>
                             
-                                {% if r.address.address_1 == "" or r.address.address_1 == None and status == "active" %}
-                                    <td> <a href="{% url 'pages:sub_address' r.id r.product.id r.quantity %}"> Add Address </a></td>
-                                {% else %}
-                                    <td style="color:green"> <a href="{% url 'pages:change_address' r.id %}"> Change Address </a></td>
-                                {% endif %}
-
-
+                               
                                 {% if r.status == "active" %}
                                     <td style="color:green">{{r.status|upper}}</td>
                                 {% else %}
                                     <td style="color:red">{{r.status|upper}}</td>
                                 {% endif %}
+
+                                <td>{{r.delivery.delivery}} </td>
                             
                                 {% if r.status == "active" %}
                                     <td> <a href="{% url 'pages:cancel_subscription' r.id %}" onclick='return checkdel()'> Change </a></td>
@@ -82,7 +78,7 @@
                             <th>Price</th>
                             <th>Qunatity</th>
                             <th>Total</th>
-                            <th>Address</th>
+                            <th>Delivery </th>
                         </tr>
                     </thead>
 
@@ -95,13 +91,7 @@
                                 <td>${{r.amount}}</td>
                                 <td>{{r.quantity}}</td>
                                 <td>${{r.total}}</td>
-                                
-                                {% if r.address == "-" %}
-                                    <td> <a href="{% url 'pages:single_address' r.id r.product.id r.quantity %}"> Add Address </a></td>
-                                {% else %}
-                                    <td style="color:green"> <a href="{% url 'pages:change_address' r.id %}"> Change Address </a></td>
-                                {% endif %}
-
+                                <td>{{r.delivery.delivery}} </td>
                             </tr>
                         </tbody>
 

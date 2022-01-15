@@ -1,8 +1,11 @@
+from ast import Add, Del
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
-from .models import Delivery
+from .models import Delivery, Address
+from product.models import Product
+from django.utils import timezone
 import stripe
 
 
@@ -17,6 +20,7 @@ class CustomerDeliver(View):
     def get(self, request, status="", *args, **kwargs):
         if status == "" or status == None:
             items = Delivery.objects.all()
+            print(items)
             class_active = "all"
             action = None
         else:
@@ -46,3 +50,19 @@ class changeStatus(View):
         item.save()
 
         return redirect('order:deliver')
+
+
+def test(request):
+    print(Delivery.objects.all().count())
+
+
+def CreateDelivery(request, id, pk, quan, order_type):
+    if request.user.is_authenticated:
+        Delivery.objects.create(
+            address   = Address.objects.filter(user=request.user).first(),
+            sub_id    = id,
+            date      = timezone.now(),
+            product   = Product.objects.filter(pk=pk).first(),
+            quantity  = quan,
+        )
+        return HttpResponseRedirect(f'/dashboard/{order_type}')

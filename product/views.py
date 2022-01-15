@@ -35,9 +35,9 @@ class SingleProductView(View):
 
 class BuyNow(LoginRequiredMixin, View):
     login_url = "/login/"
-    def post(self, request, *args, **kwargs):
-        quantity = request.POST.get('buy-now')
-        product  = request.POST.get('product_id')
+    def get(self, request, p, q, *args, **kwargs):
+        product  = p
+        quantity = q
 
         get_product = Product.objects.filter(pk=product).first()
         stripe_not_subscribe_price_id = get_product.product_price_not_subscribe_id
@@ -45,7 +45,10 @@ class BuyNow(LoginRequiredMixin, View):
         user = CustomUser.objects.filter(email=request.user).first()
         stripe_user_id = user.stripe_id
 
-        YOUR_DOMAIN = 'http://whiskeymeee.pythonanywhere.com/'
+        
+        LOCAL_DOMAIN = 'http://127.0.0.1:8000/'
+        PYTHONANYWHERE_DOMAIN = 'http://whiskeymeee.pythonanywhere.com/'
+        
         checkout_session = stripe.checkout.Session.create(
             
             customer = stripe_user_id,
@@ -61,7 +64,6 @@ class BuyNow(LoginRequiredMixin, View):
             
             payment_intent_data={
                 'metadata':{
-                        'address_1': '-',
                         'product_id': get_product.product_stripe_id,
                         'product_price':get_product.price,
                         'quantity':quantity,
@@ -69,8 +71,8 @@ class BuyNow(LoginRequiredMixin, View):
                     },
             },
 
-            success_url=YOUR_DOMAIN + f"address/single/{{CHECKOUT_SESSION_ID}}/{product}/{quantity}",
-            cancel_url=YOUR_DOMAIN + '/',
+            success_url=LOCAL_DOMAIN + f"orders/create/delivery/{{CHECKOUT_SESSION_ID}}/{product}/{quantity}/single/",
+            cancel_url=LOCAL_DOMAIN + f'single_product/{product}',
         )
 
         return redirect(checkout_session.url, code=303)
@@ -79,10 +81,10 @@ class BuyNow(LoginRequiredMixin, View):
 
 class MonthlySubscription(LoginRequiredMixin, View):
     login_url = "/login/"
-    def post(self, request, *args, **kwargs):
-        quantity = request.POST.get('monthly')
-        product  = request.POST.get('product_id')
-
+    def get(self, request, p, q, *args, **kwargs):
+        product  = p
+        quantity = q
+        
         get_product = Product.objects.filter(pk=product).first()
         stripe_is_subscribe_price_id = get_product.product_price_is_subscribe_id
 
@@ -90,7 +92,9 @@ class MonthlySubscription(LoginRequiredMixin, View):
         stripe_user_id = user.stripe_id
 
         # 4242 4242 4242 4242 -- Fake card to test the checkout session
-        YOUR_DOMAIN = 'http://whiskeymeee.pythonanywhere.com/'
+        LOCAL_DOMAIN = 'http://127.0.0.1:8000/'
+        PYTHONANYWHERE_DOMAIN = 'http://whiskeymeee.pythonanywhere.com/'
+
         checkout_session = stripe.checkout.Session.create(
             customer = stripe_user_id,
             line_items=[
@@ -101,8 +105,8 @@ class MonthlySubscription(LoginRequiredMixin, View):
             ],
             payment_method_types=['card',],
             mode='subscription',
-            success_url=YOUR_DOMAIN + f"address/subscribe/{{CHECKOUT_SESSION_ID}}/{product}/{quantity}",
-            cancel_url=YOUR_DOMAIN + '/',
+            success_url=LOCAL_DOMAIN + f"address/subscribe/{{CHECKOUT_SESSION_ID}}/{product}/{quantity}",
+            cancel_url=LOCAL_DOMAIN + '/',
         )
 
         return redirect(checkout_session.url, code=303)
