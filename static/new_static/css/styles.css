@@ -244,6 +244,30 @@ footer{
 .border-radius{
 border-radius: 30px;
 }
+
+
+/*account-info*/
+
+#account-info{
+    background: url("../images/account-bg.jpg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    }
+    #account-info .form-input {
+        border-radius: 25px;
+        border: 2px solid #ffffff;
+        width: 300px;
+        height: 40px !important;
+    }
+    #account-info .qty-input{
+        border: none;
+    }
+/*account-info ends*/
+
+
 @media (min-device-width: 320px) and (max-device-width: 593px) { 
 .logo{
 height: auto;

@@ -1,44 +1,63 @@
 {% extends 'new_template/base.html' %}
 {% block newMain %}
-
+{% load static %}
 
         <div class="container d-flex justify-content-center">
             <div class="row ">
                 <br>
                 <div class="row d-flex justify-content-center">
                    
-                        <div id="login-form" >
-                            <form class="col-12 p-2 " action="" method="POST">
+                    <div id="login-form" >
+                        <div class="row d-flex justify-content-center">
+                            <div id="account-info" class="container d-flex justify-content-center my-3 min-h-100">
+                                <div class="my-auto">
+                                    <form class="py-2 mx-auto " action="" method="POST" novalidate>
+                                        {% csrf_token %}
+                                        <div>
+                                            <h1 class=" fw-bold text-white my-3 text-center">
+                                                Your Account <br />info
+                                            </h1>
+                                            <p class="text-center text-white my-2">
+                                                Set up your account to complete your purchase.
+                                            </p>
 
-                                {% csrf_token %}
-                                <p class="text-center text-muted my-2">
-                                    {{message}} <br>
-                                    Please mention address to deliver the product 
-                                </p>
-                                <div class="row d-flex justify-content-center">
-                                    
-                                    {% for form in form %}
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <div class="col-3 d-flex justify-content-center">
-                                                {{form}}
+                                            {% if messages %}
+                                                {% for message in messages %}
+                                                    <p class="text-center my-2" style="color:yellow">
+                                                        {{message}}.
+                                                    </p>
+                                                {% endfor %}
+                                            {% endif %}
+
+                                            <div class="row d-flex justify-content-center">
+
+                                                <div class="row my-1">
+                                                    {% for form in form %}
+                                                        <div class="col-12 col-md-6 ">
+                                                            <p class="fw-bold text-center" style="color:red;">{{form.errors|striptags}}</p>
+                                                            <h3 class="text-white fw-bold text-center">{{form.label}}</h3>
+                                                            <div class="d-flex justify-content-center">
+                                                                {{form}}
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                    
+                                                </div>
+                    
+                                                {% if product and quantity %}
+                                                    <input type="hidden" name="product" value="{{product}}"> <br>
+                                                    <input type="hidden" name="quantity" value="{{quantity}}"> <br>
+                                                {% endif %}
+
+                                                <a href="#" class="text-center my-3 col-12"><button type="submit" class="btn-2 text-center fw-bold ">Save Info <span><i class=" ms-2 fas fa-save"></i></span></button></a>
+                                                
                                             </div>
                                         </div>
-                                        <p class="col-3 d-flex justify-content-center" style="color:red"> {{form.errors|striptags}} </p>
-                                    {% endfor %}
-                                    
-                                          
-                                    {% if product and quantity %}
-                                        <input type="hidden" name="product" value="{{product}}"> <br>
-                                        <input type="hidden" name="quantity" value="{{quantity}}"> <br>
-                                    {% endif %}
-
-                                    <a href="" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Submit</button></a>
-                                    
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        
-
+                    </div>
                 </div>
             </div>
         </div>

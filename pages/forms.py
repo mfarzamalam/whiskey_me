@@ -27,33 +27,36 @@ class ReviewForm(forms.ModelForm):
 
 
 class CustomerAddressForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['fname'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['fname'].widget.attrs['placeholder'] = 'Enter Your First Name'
 
-        self.fields['lname'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['lname'].widget.attrs['placeholder'] = 'Enter Last Name'
+        self.fields['fname'].label = "Enter Your First Name"
+        self.fields['fname'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
 
-        self.fields['country'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['country'].widget.attrs['placeholder'] = 'Enter Your Country'
+        self.fields['lname'].label = "Enter Last Name"
+        self.fields['lname'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
 
-        self.fields['address_1'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['address_1'].widget.attrs['placeholder'] = 'Enter First Address'
+        self.fields['country'].label = "Enter Your Country"
+        self.fields['country'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
 
-        self.fields['address_2'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['address_2'].widget.attrs['placeholder'] = 'Enter Second Address'
+        self.fields['address_1'].label = "Enter First Address"
+        self.fields['address_1'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
 
-        self.fields['city'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['city'].widget.attrs['placeholder'] = 'Enter Your City'
+        self.fields['address_2'].label = "Enter Second Address"
+        self.fields['address_2'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
 
-        self.fields['state'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['state'].widget.attrs['placeholder'] = 'Enter Your State'
+        self.fields['city'].label = "Enter Your City"
+        self.fields['city'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
 
-        self.fields['contact'].widget.attrs['class'] = 'form-input col-12 my-1'
-        self.fields['contact'].widget.attrs['placeholder'] = 'Enter Your Contact'
+        self.fields['state'].label = "Enter Your State"
+        self.fields['state'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
+
+        self.fields['contact'].label = "Enter Your Contact"
+        self.fields['contact'].widget.attrs['class'] = 'form-input fw-bold col-12 my-1'
 
 
     class Meta:
         model = Address
+        exclude=('user',)
         fields = '__all__'

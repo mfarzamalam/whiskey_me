@@ -12,6 +12,7 @@ from order.models import Delivery, Address
 from django.utils import timezone
 from .forms import ReviewForm, CustomerAddressForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 import datetime
 import stripe
 
@@ -324,7 +325,12 @@ class CustomerAddressView(LoginRequiredMixin,View):
         address = Address.objects.filter(user=request.user).first()
         form = CustomerAddressForm(request.POST, instance=address)
         if form.is_valid():
-            form.save()
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+
+            # form.save()
+            messages.success(request, 'Successfully updated your info')
             return HttpResponseRedirect(f'/account/address/')
         else:
             context = {
@@ -340,6 +346,8 @@ class CheckoutSingleAddressView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         product  = request.GET.get('product_id')
         quantity = request.GET.get('buy-now')
+        print("get")
+        print(product, quantity)
 
         address = Address.objects.filter(user=request.user).exists()
         if address:
@@ -356,16 +364,23 @@ class CheckoutSingleAddressView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         product   = request.POST.get('product')
         quantity  = request.POST.get('quantity')
+        print("post")
+        print(product, quantity)
 
         address = Address.objects.filter(user=request.user).first()
         form = CustomerAddressForm(request.POST, instance=address)
         if form.is_valid():
-            form.save()
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+
             return HttpResponseRedirect(f'/Buy-Now/{product}/{quantity}')
         else:
             context = {
                 'myaccount': "true",
                 'form':form,
+                'product': product,
+                'quantity': quantity,
             }
             return render(request,'new_template/dashboard/customer_account.html', context)
 
@@ -396,11 +411,16 @@ class CheckoutMonthlyAddressView(LoginRequiredMixin, View):
         address = Address.objects.filter(user=request.user).first()
         form = CustomerAddressForm(request.POST, instance=address)
         if form.is_valid():
-            form.save()
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+
             return HttpResponseRedirect(f'/Monthly/{product}/{quantity}')
         else:
             context = {
                 'myaccount': "true",
                 'form':form,
+                'product': product,
+                'quantity': quantity,
             }
             return render(request,'new_template/dashboard/customer_account.html', context)

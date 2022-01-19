@@ -8,7 +8,6 @@ from product.models import Product
 from django.utils import timezone
 import stripe
 
-
 from whiskey_me.stripe_key import SECRET_KEY
 stripe.api_key = SECRET_KEY
 
@@ -16,7 +15,8 @@ stripe.api_key = SECRET_KEY
 # Create your views here.
 
 
-class CustomerDeliver(View):
+class CustomerDeliver(LoginRequiredMixin,View):
+    login_url = "/login/"
     def get(self, request, status="", *args, **kwargs):
         if status == "" or status == None:
             items = Delivery.objects.all()
@@ -32,7 +32,8 @@ class CustomerDeliver(View):
         return render(request, 'new_template/dashboard/delivery.html', context)
 
 
-class CustomerAddressDetials(View):
+class CustomerAddressDetials(LoginRequiredMixin, View):
+    login_url = "/login/"
     def get(self, request, pk, *args, **kwargs):
         items  = Delivery.objects.get(pk=pk)
         context = {
@@ -42,7 +43,8 @@ class CustomerAddressDetials(View):
         return render(request, 'new_template/dashboard/order_details.html', context)
 
 
-class changeStatus(View):
+class changeStatus(LoginRequiredMixin, View):
+    login_url = "/login/"
     def post(self, request, pk, *args, **kwargs):
         status = request.POST.get('status')
         item = Delivery.objects.get(pk=pk)
