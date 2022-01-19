@@ -80,10 +80,10 @@
                         <div class="col-lg-6 col-md-3 p-0">
                             <div class="quantity-button">
                                 <div class="qty-input">
-                                    <button onclick="decrement()" class="qty-count qty-count--minus" type="button">-</button>
+                                    <button onclick="decrement()" class="qty-count--minus">-</button>
                                     <input class="product-qty" id="quantity" type="text" value="1">
 
-                                    <button onclick="increment()" class="qty-count qty-count--add" type="button">+</button>
+                                    <button onclick="increment()" class="qty-count--add">+</button>
                                 </div>
                             </div>
                         </div>
@@ -118,16 +118,13 @@
                     <script>
 
                         function increment(){
-                            quantity = document.getElementById('quantity');
-                            console.log(quantity);
                             quantity = document.getElementById('quantity').value;
-
                             quantity++;
+                            document.getElementById('buy-now').value = quantity;
                             document.getElementById('quantity').value = quantity;
-                            //document.getElementById('buy-now').value = quantity;
-                            //document.getElementById('monthly').value = quantity;
-                            //$('#quantity').attr('placeholder',quantity);
-                        }
+                            document.getElementById('monthly').value = quantity;
+                            $('#quantity').attr('value',quantity);
+                        };
 
                         function decrement(){
                             quantity = document.getElementById('quantity').value;
@@ -137,7 +134,7 @@
                             document.getElementById('buy-now').value = quantity;
                             document.getElementById('quantity').value = quantity;
                             document.getElementById('monthly').value = quantity;
-                            $('#quantity').attr('placeholder',quantity);
+                            $('#quantity').attr('value',quantity);
                         }
 
                     </script>
