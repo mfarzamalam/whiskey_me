@@ -37,7 +37,8 @@ class HomeView(View):
         return render(request,'new_template/index.html')
 
 
-class NewDashboard(View):
+class NewDashboard(LoginRequiredMixin, View):
+    login_url = "/login/"
     def get(self, request,  *args, **kwargs):
         product = Product.objects.all()
         # get_5cl = Category.objects.get(name='5cl')
@@ -300,7 +301,8 @@ class TermsView(TemplateView):
     template_name = "new_template/terms.html"
 
 
-class CustomerAddressView(View):
+class CustomerAddressView(LoginRequiredMixin,View):
+    login_url = "/login/"
     def get(self, request, *args, **kwargs):
         address = Address.objects.filter(user=request.user).first()
         if address:
@@ -333,7 +335,8 @@ class CustomerAddressView(View):
 
 
 
-class CheckoutSingleAddressView(View):
+class CheckoutSingleAddressView(LoginRequiredMixin, View):
+    login_url = "/login/"
     def get(self, request, *args, **kwargs):
         product  = request.GET.get('product_id')
         quantity = request.GET.get('buy-now')
@@ -368,7 +371,8 @@ class CheckoutSingleAddressView(View):
 
 
 
-class CheckoutMonthlyAddressView(View):
+class CheckoutMonthlyAddressView(LoginRequiredMixin, View):
+    login_url = "/login/"
     def get(self, request, *args, **kwargs):
         product  = request.GET.get('product_id')
         quantity = request.GET.get('monthly')
