@@ -113,7 +113,8 @@ var QtyInput = (function () {
 	}
 
 	var $inputs = $qtyInputs.find(".product-qty");
-	var $countBtn = $qtyInputs.find(".qty-count");
+	//var $countBtn = $qtyInputs.find(".qty-count");
+	var $countBtn = "";
 	var qtyMin = parseInt($inputs.attr("min"));
 	var qtyMax = parseInt($inputs.attr("max"));
 
