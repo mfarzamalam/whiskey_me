@@ -30,7 +30,7 @@
                         <tbody>
                             <tr>
                                 <td>{{r.current_period_start}}</td>
-                                <td>{{r.product}}</td>
+                                <td> <a href="{% url 'product:single_product' r.product.pk %}"> {{r.product}} </a> </td>
                                 <td>${{r.amount}}</td>
                                 <td>{{r.quantity}}</td>
                                 <td>${{r.total}}</td>
@@ -86,7 +86,7 @@
                         <tbody>
                             <tr>
                                 <td>{{r.current_period_start}}</td>
-                                <td>{{r.product}}</td>
+                                <td> <a href="{% url 'product:single_product' r.product.pk %}"> {{r.product}} </a> </td>
                                 <td>${{r.amount}}</td>
                                 <td>{{r.quantity}}</td>
                                 <td>${{r.total}}</td>

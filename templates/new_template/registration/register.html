@@ -6,6 +6,7 @@
 <div class="container d-flex justify-content-center">
     <div class="row ">
         <div id="signin-form" >
+            
             <form action=""  method="post" class="col-12 p-2 " novalidate>
                 {% csrf_token %}
                 <h1 class=" fw-bold text-dark my-3 text-center">
@@ -25,11 +26,13 @@
                     {% endfor %}
 
                     <div class="col-12 d-flex justify-content-center">
-                        {% if form.non_field_errors  %}
-                            <p style="color:red" class="pt-3 text-danger">{{form.non_field_errors|striptags}} <p>
-                            </br>
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                <p style="padding-left:20px;">{{form.non_field_errors|striptags}}</p>
+                            </div>
                         {% endif %}
                     </div>
+
 
                     <a href="" class="text-dark text-center my-3 fw-bold">Forgot?</a>
                     <a href="" class="text-center col-12"><button type="submit" class="btn-login text-center fw-bold ">Sign Up</button></a>
