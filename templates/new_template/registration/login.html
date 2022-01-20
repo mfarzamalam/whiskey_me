@@ -7,7 +7,7 @@
         <div id="login-form" class="px-0">
             <form class="col-12 p-2 " action="" method="post" novalidate>
                 {% csrf_token %}
-                <h1 class=" fw-bold text-dark my-3 text-center">
+                <h1 class="fw-bold text-dark my-3 text-center">
                     Welcome back  <br />to curiosity 
                 </h1>
                 <p class="text-center text-muted my-2">
@@ -24,9 +24,10 @@
                     {% endfor %}
 
                     <div class="col-12 d-flex justify-content-center">
-                        {% if form.non_field_errors  %}
-                            <p style="color:red" class="pt-3 text-danger">{{form.non_field_errors|striptags}} <p>
-                            </br>
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                <p style="padding-left:20px;">{{form.non_field_errors|striptags}}</p>
+                            </div>
                         {% endif %}
                     </div>
                    

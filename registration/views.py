@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import View, TemplateView
 from .forms import UserRegisterForm, UserLoginForm, PasswordResetForm, NewPasswordForm
 from django.contrib import messages, auth
@@ -44,34 +44,43 @@ class RegisterView(View):
 
 
 
-class LoginView(View):
-    def get(self, request, *args, **kwargs):
-        print("login get")
-        form = UserLoginForm()
-        context = {
-            'form': form,
-        }
-        return render(request, 'new_template/registration/login.html', context)
-
-    def post(self, request, *args, **kwargs):
-        print("login post")
-        login_form = UserLoginForm(request.POST)
-        if login_form.is_valid():
-            user = auth.authenticate(request, email=request.POST['email'], password=request.POST['password'])
-            if user:
-                auth.login(request, user)
-                return redirect('pages:home')
-            else:
-                context = {
-                    'form': login_form,
-                }
-                return render(request, 'new_template/registration/login.html', context)
-
+class LoginView(views.LoginView):
+    template_name           = 'new_template/registration/login.html'
+    authentication_form     = UserLoginForm
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        if url:
+            return url
         else:
-            context = {
-                'form': login_form,
-            }
-            return render(request, 'new_template/registration/login.html', context)
+            return reverse('pages:home')
+
+
+# class LoginView(View):
+#     def get(self, request, *args, **kwargs):
+#         print("login get")
+#         form = UserLoginForm()
+#         context = {
+#             'form': form,
+#         }
+#         return render(request, 'new_template/registration/login.html', context)
+
+#     def post(self, request, *args, **kwargs):
+#         print("login post")
+#         login_form = UserLoginForm(request.POST)
+#         context = {
+#             'form': login_form,
+#         }
+#         if login_form.is_valid():
+#             user = auth.authenticate(request, email=request.POST['email'], password=request.POST['password'])
+#             if user:
+#                 auth.login(request, user)
+#                 return redirect('pages:home')
+#             else:
+#                 return render(request, 'new_template/registration/login.html', context)
+#         else:
+#             return render(request, 'new_template/registration/login.html', context)
 
 
 
