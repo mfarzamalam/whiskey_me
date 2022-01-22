@@ -172,49 +172,6 @@
     </div>
 </div>
 
-<div class="container-fluid my-3">
-    <h1 class="text-black text-center fw-bold mb-3"> 
-        You may also like...
-    </h1>
-    <div class="owl-carousel product-page-carusal">
-        {% for related in related %}
-            <div class="item d-flex justify-content-center">
-                <div class="product-wrapper">
-                    <div class="d-flex justify-content-center">
-                        <div class="img-product-wrapper my-3">
-                            <img src="{{related.picture.url}}">
-                        </div>
-                    </div>
-                    <div>
-                        <h5 class="text-black fw-bold">Sailor's Home | The Haven</h5>
-                        <p class="my-2">
-                            {{related.category}}
-                        </p>
-                        <h5 class="fw-bold text-black">
-                            £{{related.price}}
-                        </h5>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <div class="quantity-button">
-                                    <div class="qty-input">
-                                        <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                                        <input class="product-qty" type="number" name="product-qty" min="0" max="10" value="1">
-                                        <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-page-btn">
-                                <a href="{% url 'product:single_product' product.pk %}"><button class="btn-3 fw-bold">{{"view detail"|upper}}</button></a> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        <div class="owl-nav fw-bold enabled">
-        </div>
-    </div>
-</div>
 
 <div class="container  product-review-box mb-2">
     <div class="product-review my-2 py-2">
