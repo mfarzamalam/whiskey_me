@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView
 from .models import Product, Category, Rating
@@ -74,9 +74,11 @@ class AddComment(LoginRequiredMixin, View):
         num     = int(ratings.aggregate(Avg('stars'))['stars__avg'])
         product.rating_number = num
         product.save()
-        print(product.rating_number)
+        data = {}
+        data['comment'] = comment
+        return JsonResponse(data, status=200)
 
-        return HttpResponseRedirect(f'/single_product/{id}')
+        # return HttpResponseRedirect(f'/single_product/{id}')
 
 
 class BuyNow(LoginRequiredMixin, View):
