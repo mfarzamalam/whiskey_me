@@ -210,7 +210,7 @@
 
     {% if buy == True %}
 
-        <div class="product-review my-2 py-2" style="display:none" id="formDiv">
+        <div class="product-review my-2 py-2" style="display:none;" id="formDiv">
             <div class="text-black fw-bold text-center">
                 <div class="col-lg-12 col-md-6 d-flex justify-content-center">
                     <form action="{% url 'product:add_comment' %}" method="POST" id="CommentSubmit">
@@ -229,10 +229,10 @@
                         </div>
                         <input type="hidden" name="id" id="p_id" value="{{product.id}}">
                         <div class="col-12 d-flex justify-content-center pb-2">
-                            <textarea rows="2" cols="50" name="comment" required></textarea>
+                            <textarea rows="2" cols="50" name="comment" id="comment" required></textarea>
                         </div>
                         <div class="col-12">
-                            <a href="" class="btn-sm "><button type="submit" onclick="hideForm()" class="btn-login text-center fw-bold " style="width:160px;">Cancel</button></a>
+                            <a onclick="hideForm();" class="btn-md btn btn-dark btn-login text-center fw-bold" style="width:160px;"> Cancel </a>
                             <a href="" class="btn-sm "><button type="submit" class="btn-login text-center fw-bold " style="width:160px;">Comment</button></a>
                         </div>
                     </form>
@@ -301,14 +301,14 @@
         id = "{{product.id}}"
         $('#p_id').attr('value',id);
         document.getElementById("formDiv").style.display = "block";
-
+        
         console.log('{{product.id}}')
-    }
-
+    };
+    
     function hideForm(){
         document.getElementById("formDiv").style.display = "none";
         console.log('{{product.id}}')
-    }
+    };
 
     $("#CommentSubmit").on('submit',function(e) {
         console.log("CommentSubmit");
