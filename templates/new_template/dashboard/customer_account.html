@@ -11,7 +11,7 @@
                         <div class="row d-flex justify-content-center">
                             <div id="account-info" class="container d-flex justify-content-center my-3 min-h-100">
                                 <div class="my-auto">
-                                    <form class="py-2 mx-auto " action="" method="POST" novalidate>
+                                    <form class="py-2 mx-auto" action="" method="POST">
                                         {% csrf_token %}
                                         <div>
                                             <h1 class=" fw-bold text-white my-3 text-center">
@@ -34,11 +34,11 @@
                                                 <div class="row my-1">
                                                     {% for form in form %}
                                                         <div class="col-12 col-md-6 ">
-                                                            <p class="fw-bold text-center" style="color:red;">{{form.errors|striptags}}</p>
                                                             <h3 class="text-white fw-bold text-center">{{form.label}}</h3>
                                                             <div class="d-flex justify-content-center">
                                                                 {{form}}
                                                             </div>
+                                                            <p class="fw-bold text-center" style="color:red;">{{form.errors|striptags}}</p>
                                                         </div>
                                                     {% endfor %}
                                                     

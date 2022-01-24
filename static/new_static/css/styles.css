@@ -189,7 +189,8 @@ body {
     width: 150px !important;
     }
     .carusal-img3 {
-    background-image: url(../assets/imgs/table.jpg);
+    /* background-image: url(../assets/imgs/table.jpg); */
+    background-image: url("../assets/imgs/table.jpg");
     height: 400px;
     width: 100%;
     background-size: cover;
@@ -200,7 +201,7 @@ body {
     border-radius: 30px;
     }
     .bar-img {
-    background-image: url(../assets/imgs/bar.jpg);
+    background-image: url("../assets/imgs/bar.jpg");
     height: 400px;
     width: 100%;
     background-size: cover;
@@ -587,7 +588,7 @@ body {
     /*shop page ends*/
     /*account-info*/
     #account-info{
-    background-image: url(../assets/imgs/account-bg.jpg);
+    background-image: url("/static/new_static/images/account-bg.jpg");
     height: 100%;
     width: 100%;
     background-size: cover;

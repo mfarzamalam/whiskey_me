@@ -43,38 +43,44 @@
                     </h4>
                     <span>
                         <div>
-                            <div>
-                                {% if product.total_ratings == 5 %}
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                {% endif %}
+                            {% if product.total_ratings > 0 %}
+                                {{product.total_ratings}}
 
-                                {% if product.total_ratings == 4 %}
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                {% endif %}
+                                <div>
+                                    {% if product.rating_number == 5 %}
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                                {% if product.total_ratings == 3 %}
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                {% endif %}
+                                    {% if product.rating_number == 4 %}
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                                {% if product.total_ratings == 2 %}
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                {% endif %}
+                                    {% if product.rating_number == 3 %}
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                                {% if product.total_ratings == 1 %}
-                                    <i class="fas fa-star"></i>
-                                {% endif %}
-                                <p>{{total_comment}}</p>
-                            </div>
+                                    {% if product.rating_number == 2 %}
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    {% endif %}
+
+                                    {% if product.rating_number == 1 %}
+                                        <i class="fas fa-star"></i>
+                                    {% endif %}
+                                    
+                                    <p>{{total_comment}}</p>
+                                </div>
+
+                            {% endif %}
                         </div>
                     </span>
                 </div>
