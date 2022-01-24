@@ -103,7 +103,7 @@ class ProductAgeRange(View):
 
 class ProductBottleSize(View):
     def get(self, request, size, *args, **kwargs):
-        category = Category.objects.get(name=size)
+        category = Category.objects.filter(name=size).first()
         product  = Product.objects.filter(category=category)
         context = {
             'product': product,

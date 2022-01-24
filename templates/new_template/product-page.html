@@ -44,11 +44,36 @@
                     <span>
                         <div>
                             <div>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i> <br />
-                                <p>6 reviews</p>
+                                {% if product.total_ratings == 5 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                {% endif %}
+
+                                {% if product.total_ratings == 4 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                {% endif %}
+
+                                {% if product.total_ratings == 3 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                {% endif %}
+
+                                {% if product.total_ratings == 2 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                {% endif %}
+
+                                {% if product.total_ratings == 1 %}
+                                    <i class="fas fa-star"></i>
+                                {% endif %}
+                                <p>{{total_comment}}</p>
                             </div>
                         </div>
                     </span>
