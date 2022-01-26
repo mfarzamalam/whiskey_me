@@ -81,6 +81,36 @@ class AddComment(LoginRequiredMixin, View):
         # return HttpResponseRedirect(f'/single_product/{id}')
 
 
+class EditComment(LoginRequiredMixin, View):
+    login_url = "/login/"
+    def post(self, request):
+        cid      = request.POST.get('cid')
+        if Rating.objects.filter(user=request.user, id=cid).exists():
+            pid      = request.POST.get('pid')
+            rate     = request.POST.get('rate')
+            if not rate:
+                rate = 0
+            comment = request.POST.get('comment')
+            print(rate, pid, cid, comment)
+            product = Product.objects.get(pk=pid)
+
+            Rating.objects.filter(id=cid).update(
+                comment = comment,
+                stars   = rate,
+            )
+
+            product.total_ratings = Rating.objects.filter(product=product).count()
+            ratings = Rating.objects.filter(product=product)
+            num     = int(ratings.aggregate(Avg('stars'))['stars__avg'])
+            product.rating_number = num
+            product.save()
+            data = {}
+            data['comment'] = comment
+            return JsonResponse(data, status=200)
+        else:
+            return HttpResponseRedirect('/')
+
+
 class BuyNow(LoginRequiredMixin, View):
     login_url = "/login/"
     def get(self, request, p, q, *args, **kwargs):

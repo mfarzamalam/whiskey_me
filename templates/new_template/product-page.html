@@ -243,36 +243,75 @@
     </div>
 
     {% if buy == True %}
+        <div class="product-review my-2 py-2" style="display:none;" id="formDiv">
+            <div class="text-black fw-bold text-center">
+                <form action="{% url 'product:add_comment' %}" method="POST" id="CommentSubmit">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12  d-flex justify-content-center">
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5">
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4">
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3">
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2">
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1">
+                                <label for="star1" title="text">1 star</label>
+                            </div>
+                            <input type="hidden" name="id" id="p_id" value="{{product.id}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center pb-2">
+                            <textarea rows="2" cols="100" name="comment" id="comment" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a onclick="hideForm('formDiv');" class="btn-md btn btn-dark btn-login text-center fw-bold"
+                                style="width:160px;"> Cancel </a>
+                            <a href="" class="btn-sm "><button type="submit" class="btn-login text-center fw-bold"
+                                    style="width:160px;">Comment</button></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
 
-    <div class="product-review my-2 py-2" style="display:none;" id="formDiv">
+    <div class="product-review my-2 py-2" style="display:none;" id="ReplyformDiv">
         <div class="text-black fw-bold text-center">
-            <form action="{% url 'product:add_comment' %}" method="POST" id="CommentSubmit">
+            <form action="{% url 'product:edit_comment' %}" method="POST" id="EditCommentSubmit">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-12  d-flex justify-content-center">
                         <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" checked>
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4">
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3">
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2">
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1">
-                            <label for="star1" title="text">1 star</label>
+                            <input type="radio" id="star55" class="star5" name="rate" value="5">
+                            <label for="star55" title="text">5 stars</label>
+                            <input type="radio" id="star44" name="rate" value="4">
+                            <label for="star44" title="text">4 stars</label>
+                            <input type="radio" id="star33" name="rate" value="3">
+                            <label for="star33" title="text">3 stars</label>
+                            <input type="radio" id="star22" name="rate" value="2">
+                            <label for="star22" title="text">2 stars</label>
+                            <input type="radio" id="star11" name="rate" value="1">
+                            <label for="star11" title="text">1 star</label>
                         </div>
-                        <input type="hidden" name="id" id="p_id" value="{{product.id}}">
+                        <input type="hidden" name="cid" id="c_id" value="">
+                        <input type="hidden" name="pid" id="p_id" value="{{product.id}}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center pb-2">
-                        <textarea rows="2" cols="100" name="comment" id="comment" required></textarea>
+                        <textarea rows="2" cols="100" name="comment" id="editComment" required></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <a onclick="hideForm();" class="btn-md btn btn-dark btn-login text-center fw-bold"
+                        <a onclick="hideForm('ReplyformDiv');" class="btn-md btn btn-dark btn-login text-center fw-bold"
                             style="width:160px;"> Cancel </a>
                         <a href="" class="btn-sm "><button type="submit" class="btn-login text-center fw-bold"
                                 style="width:160px;">Comment</button></a>
@@ -282,51 +321,50 @@
         </div>
     </div>
 
-    {% endif %}
-
     {% for comment in comments %}
-    <div class="product-review my-2 py-2">
-        <div class="text-black fw-bold">
-            <div>
-                {% if comment.stars == 5 %}
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                {% endif %}
+        <div class="product-review my-2 py-2">
+            <div class="text-black fw-bold">
+                <div>
+                    {% if comment.stars == 5 %}
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    {% endif %}
 
-                {% if comment.stars == 4 %}
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                {% endif %}
+                    {% if comment.stars == 4 %}
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    {% endif %}
 
-                {% if comment.stars == 3 %}
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                {% endif %}
+                    {% if comment.stars == 3 %}
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    {% endif %}
 
-                {% if comment.stars == 2 %}
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                {% endif %}
+                    {% if comment.stars == 2 %}
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    {% endif %}
 
-                {% if comment.stars == 1 %}
-                <i class="fas fa-star"></i>
-                {% endif %}
+                    {% if comment.stars == 1 %}
+                        <i class="fas fa-star"></i>
+                    {% endif %}
+                </div>
+                
+                <p class="text-muted">
+                    {{comment.comment}} <span> <button class="btn-sm btn btn-primary fw-bold" onclick="displayReplyForm({{comment.id}}, {{comment.stars}})">Edit</button> </span>
+                    <p style="display:none;" id="edit_comment_{{comment.id}}">{{comment.comment}}</p>
+                </p>
+                <p class="my-1 text-black">
+                    <i>{{comment.created_at}}</i>
+                </p>
             </div>
-            
-            <p class="text-muted">
-                {{comment.comment}} <span> <button> Edit </button> </span>
-            </p>
-            <p class="my-1 text-black">
-                <i>{{comment.created_at}}</i>
-            </p>
         </div>
-    </div>
     {% endfor %}
 
 </div>
@@ -335,20 +373,92 @@
 
 <script>
     function displayForm() {
-        id = "{{product.id}}"
+        id = "{{product.id}}";
         $('#p_id').attr('value', id);
+        $('#star1').attr('checked', false);
+        $('#star2').attr('checked', false);
+        $('#star3').attr('checked', false);
+        $('#star4').attr('checked', false);
+        $('#star5').attr('checked', false);
+
         document.getElementById("formDiv").style.display = "block";
+        document.getElementById("ReplyformDiv").style.display = "none";
 
         console.log('{{product.id}}')
     };
 
-    function hideForm() {
+    function displayReplyForm(id, stars) {
+        comment_id = id;
+        if (stars == 1 ){
+            console.log('stars', stars);
+            $('#star11').attr('checked', true);
+        }
+        if (stars == 2 ){
+            console.log('stars', stars);
+            $('#star22').attr('checked', true);
+        }
+        if (stars == 3 ){
+            console.log('stars', stars);
+            $('#star33').attr('checked', true);
+        }
+        if (stars == 4 ){
+            console.log('stars', stars);
+            $('#star44').attr('checked', true);
+        }
+        if (stars == 5 ){
+            console.log('stars', stars);
+            $('#star55').attr('checked', true);
+        }
+        $('#c_id').attr('value', comment_id);
+        let comment = document.getElementById(`edit_comment_${id}`).textContent;
+        document.getElementById("editComment").innerHTML = comment;
+        
+        document.getElementById("ReplyformDiv").style.display = "block";
         document.getElementById("formDiv").style.display = "none";
-        console.log('{{product.id}}')
+        console.log(comment_id, stars, comment);
+    };
+
+    function hideForm(div_name) {
+        $('#star1').attr('checked', false);
+        $('#star2').attr('checked', false);
+        $('#star3').attr('checked', false);
+        $('#star4').attr('checked', false);
+        $('#star5').attr('checked', false);
+        $('#star11').attr('checked', false);
+        $('#star22').attr('checked', false);
+        $('#star33').attr('checked', false);
+        $('#star44').attr('checked', false);
+        $('#star55').attr('checked', false);
+        document.getElementById(div_name).style.display = "none";
+        console.log('{{product.id}}');
     };
 
     $("#CommentSubmit").on('submit', function (e) {
         console.log("CommentSubmit");
+        e.preventDefault();
+        var form = $(this);
+        var formData = new FormData(this)
+        var url = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: formData,
+            success: function (data) {
+                window.location.reload();
+                console.log(data)
+            },
+            error: (err) => {
+                console.log(err)
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
+
+    $("#EditCommentSubmit").on('submit', function (e) {
+        console.log("EditCommentSubmit");
         e.preventDefault();
         var form = $(this);
         var formData = new FormData(this)
