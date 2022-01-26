@@ -106,7 +106,9 @@ class EditComment(LoginRequiredMixin, View):
             product.save()
             data = {}
             data['comment'] = comment
-            return JsonResponse(data, status=200)
+            return HttpResponseRedirect(f'/single_product/{pid}')
+
+            # return JsonResponse(data, status=200)
         else:
             return HttpResponseRedirect('/')
 

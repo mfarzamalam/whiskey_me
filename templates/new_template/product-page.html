@@ -48,41 +48,39 @@
                     <span>
                         <div>
                             {% if product.total_ratings > 0 %}
-                            {{product.total_ratings}}
+                            <span>Based On {{total_comment}} reviews</span>
+                                <div class="text-center">
+                                    {% if product.rating_number == 5 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                            <div>
-                                {% if product.rating_number == 5 %}
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                {% endif %}
+                                    {% if product.rating_number == 4 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                                {% if product.rating_number == 4 %}
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                {% endif %}
+                                    {% if product.rating_number == 3 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                                {% if product.rating_number == 3 %}
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                {% endif %}
+                                    {% if product.rating_number == 2 %}
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                                {% if product.rating_number == 2 %}
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                {% endif %}
+                                    {% if product.rating_number == 1 %}
+                                    <i class="fas fa-star"></i>
+                                    {% endif %}
 
-                                {% if product.rating_number == 1 %}
-                                <i class="fas fa-star"></i>
-                                {% endif %}
-
-                                <p>{{total_comment}}</p>
-                            </div>
+                                </div>
 
                             {% endif %}
                         </div>
@@ -282,44 +280,9 @@
         </div>
     {% endif %}
 
-    <div class="product-review my-2 py-2" style="display:none;" id="ReplyformDiv">
-        <div class="text-black fw-bold text-center">
-            <form action="{% url 'product:edit_comment' %}" method="POST" id="EditCommentSubmit">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-12  d-flex justify-content-center">
-                        <div class="rate">
-                            <input type="radio" id="star55" class="star5" name="rate" value="5">
-                            <label for="star55" title="text">5 stars</label>
-                            <input type="radio" id="star44" name="rate" value="4">
-                            <label for="star44" title="text">4 stars</label>
-                            <input type="radio" id="star33" name="rate" value="3">
-                            <label for="star33" title="text">3 stars</label>
-                            <input type="radio" id="star22" name="rate" value="2">
-                            <label for="star22" title="text">2 stars</label>
-                            <input type="radio" id="star11" name="rate" value="1">
-                            <label for="star11" title="text">1 star</label>
-                        </div>
-                        <input type="hidden" name="cid" id="c_id" value="">
-                        <input type="hidden" name="pid" id="p_id" value="{{product.id}}">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center pb-2">
-                        <textarea rows="2" cols="100" name="comment" id="editComment" required></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <a onclick="hideForm('ReplyformDiv');" class="btn-md btn btn-dark btn-login text-center fw-bold"
-                            style="width:160px;"> Cancel </a>
-                        <a href="" class="btn-sm "><button type="submit" class="btn-login text-center fw-bold"
-                                style="width:160px;">Comment</button></a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    
+            
+        
 
     {% for comment in comments %}
         <div class="product-review my-2 py-2">
@@ -357,12 +320,22 @@
                 </div>
                 
                 <p class="text-muted">
-                    {{comment.comment}} <span> <button class="btn-sm btn btn-primary fw-bold" onclick="displayReplyForm({{comment.id}}, {{comment.stars}})">Edit</button> </span>
-                    <p style="display:none;" id="edit_comment_{{comment.id}}">{{comment.comment}}</p>
+                    {{comment.comment}} 
+                    
+                    {% if comment.user == request.user %}
+                        <span> <button class="btn-sm btn btn-primary fw-bold" onclick="displayReplyForm({{comment.id}}, {{comment.stars}})"> <i class="fas fa-edit"></i> </button> </span>
+                        <p style="display:none;" id="edit_comment_{{comment.id}}">{{comment.comment}}</p>
+                    {% endif %}
                 </p>
                 <p class="my-1 text-black">
+
                     <i>{{comment.created_at}}</i>
                 </p>
+
+                <div class="edit" id="edit{{comment.id}}">
+
+
+                </div>
             </div>
         </div>
     {% endfor %}
@@ -388,6 +361,54 @@
     };
 
     function displayReplyForm(id, stars) {
+        //document.getElementByClassName("edit").innerHTML = "";
+        let comment = document.getElementById(`edit_comment_${id}`).textContent;
+        document.getElementById("formDiv").style.display = "none";
+        checkedToFalse();
+        $(`.edit`).html('');
+
+        $(`#edit${id}`).html(`
+        <div class="product-review my-2 py-2" id="ReplyformDiv">
+            <div class="text-black fw-bold text-center">
+            <form action="{% url 'product:edit_comment' %}" method="POST" id="EditCommentSubmit">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12  d-flex justify-content-center">
+                        <div class="rate">
+                            <input type="radio" id="star55" name="rate" value="5">
+                            <label for="star55" title="text">5 stars</label>
+                            <input type="radio" id="star44" name="rate" value="4">
+                            <label for="star44" title="text">4 stars</label>
+                            <input type="radio" id="star33" name="rate" value="3">
+                            <label for="star33" title="text">3 stars</label>
+                            <input type="radio" id="star22" name="rate" value="2">
+                            <label for="star22" title="text">2 stars</label>
+                            <input type="radio" id="star11" name="rate" value="1">
+                            <label for="star11" title="text">1 star</label>
+                        </div>
+                        <input type="hidden" name="cid" id="c_id" value="${id}">
+                        <input type="hidden" name="pid" id="p_id" value="{{product.id}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center pb-2">
+                        <textarea rows="2" cols="100" name="comment" id="editComment" required>${comment}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a onclick="hideForm(${id});" class="btn-md btn btn-dark btn-login text-center fw-bold"
+                            style="width:160px;"> Cancel </a>
+                        <a href="" class="btn-sm "><button type="submit" class="btn-login text-center fw-bold"
+                                style="width:160px;">Comment</button></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        `);
+
         comment_id = id;
         if (stars == 1 ){
             console.log('stars', stars);
@@ -410,15 +431,28 @@
             $('#star55').attr('checked', true);
         }
         $('#c_id').attr('value', comment_id);
-        let comment = document.getElementById(`edit_comment_${id}`).textContent;
-        document.getElementById("editComment").innerHTML = comment;
+        //document.getElementById("editComment").innerHTML = comment;
         
-        document.getElementById("ReplyformDiv").style.display = "block";
-        document.getElementById("formDiv").style.display = "none";
-        console.log(comment_id, stars, comment);
+        //document.getElementById("ReplyformDiv").style.display = "block";
+        //console.log(comment_id, stars, comment);
     };
 
-    function hideForm(div_name) {
+
+    //window.addEventListener('click', function(e){   
+      //  if (document.getElementById('clickbox').contains(e.target)){
+          // Clicked in box
+        //} else{
+          // Clicked outside the box
+        //}
+      //});
+      
+
+    function hideForm(id) {
+        checkedToFalse();
+        document.getElementById(`edit${id}`).innerHTML = "";
+    };
+
+    function checkedToFalse(){
         $('#star1').attr('checked', false);
         $('#star2').attr('checked', false);
         $('#star3').attr('checked', false);
@@ -429,8 +463,6 @@
         $('#star33').attr('checked', false);
         $('#star44').attr('checked', false);
         $('#star55').attr('checked', false);
-        document.getElementById(div_name).style.display = "none";
-        console.log('{{product.id}}');
     };
 
     $("#CommentSubmit").on('submit', function (e) {
