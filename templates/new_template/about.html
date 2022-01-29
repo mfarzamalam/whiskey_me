@@ -1,0 +1,537 @@
+{% extends 'new_template/base.html' %}
+{% block newMain %}
+{% load static %}
+
+<div class="min-h-100">
+    <div class="container-fluid p-2 d-flex justify-content-center align-items-center " id="about-home">
+        <div>
+            <h1 class="text-white text-center fw-bold">
+                Goodbye,<br /> snobbery.Hello,<br />  whisky.
+            </h1>
+        </div>
+    </div>
+    <section class="container-fluid" id="marquee">
+        <marquee>
+            <div class="marquee-inner d-flex py-2">
+                <span class="m5-2">
+                    <p class="text-white">Current Active Members:   </p>
+                </span>
+                <span class="mx-2 me-5">
+                    <h4><b class="text-white">9186</b></h4>
+                </span>
+                <span class="ms-5">
+                    <p class="text-white">Current Active Members:   </p>
+                </span>
+                <span class="ms-2 me-5">
+                    <h4><b class="text-white">9186</b></h4>
+                </span>
+                <span class="ms-5">
+                    <p class="text-white">Current Active Members:   </p>
+                </span>
+                <span class="ms-2 me-5">
+                    <h4><b class="text-white">9186</b></h4>
+                </span>
+                <span class="ms-5">
+                    <p class="text-white">Current Active Members:   </p>
+                </span>
+                <span class="ms-2 me-5">
+                    <h4><b class="text-white">9186</b></h4>
+                </span>
+            </div>
+        </marquee>
+    </section>
+</div>
+<div class="container my-5 text-center">
+    <b class="text-orange mb-5">
+    OUR MISSION TO YOU                </b>
+    <h1 class="fw-bold my-5">
+        WHISKY ME exists to fill more<br /> mouths with the <ins class="text-orange"><span class="text-black">Greatest</span></ins><br /><ins class="text-orange"><span class="text-black">whiskies</span></ins> in the world.
+    </h1>
+</div>
+<div class="container" id="founder-history">
+    <div class="row my-3">
+        <div class=" col-12 col-md-6">
+            <b class="my-2">
+                <p>
+                    We’re founded by Thomas Aske and Tristan<br /> Stephenson of Black Rock – the east<br /> London bar that’s bucked convention and<br /> made whisky accessible to all since<br /> 2016
+                </p>
+            </b>
+            <b class="my-2">
+                <p>
+                    We're not interested in being snobby or<br /> elitist about whisky. We know there's no<br /> such thing as a typical whisky drinker<br /> and we're here to prove it, by dropping<br /> drams of the world's greatest whiskies<br /> through as many letterboxes as possible.
+                </p>
+            </b>
+            <div>
+                <img class="img-fluid border-radius d-none d-md-block" src="{% static 'new_static/assets/imgs/triscup.jpg' %}">
+            </div>
+        </div>
+        <div class=" col-12 col-md-6">
+            <div class="floating-bottle">
+                <img class="img-fluid" src="{% static 'new_static/assets/imgs/bottle-1.png' %}">
+            </div>
+            <div class="order-2">
+                <img class="img-fluid border-radius" src="{% static 'new_static/assets/imgs/TrisTom.jpg' %}">
+            </div>
+            <div class="order-1">
+                <b>
+                    <p  class="mt-5 ">
+                        <br>
+                        <br>
+                        There’s no gatekeeping here, no tweed<br /> jackets or old school ties or any of<br /> that nonsense – just amazing whiskies<br /> heading straight to your door.
+                        <br>
+                        Welcome to a better world of whisky.
+                    </p>
+                </b>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-violet min-h-100 py-5 d-flex align-items-center">
+    <div class="container">
+        <h1 class="fw-bold text-black my-5">
+            <b> How we get<br />
+            things done.</b>
+        </h1>
+        <div class="owl-carousel how-we-get">
+            <div class="item">
+                <div class="row p-2">
+                    <div class="col-1">
+                        <h1 class="fw-bold text-black">1</h1>
+                    </div>
+                    <div class="col-11">
+                        <div>
+                            <h4 class="my-3 fw-bold text-black">The world’s best whiskies.</h4>
+                            <p>
+                                We curate our monthly selections with some of the<br /> greatest distilleries in the world, so that every new<br /> dram is incredible. And we never send the same dram<br /> twice. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="row p-2">
+                    <div class="col-1">
+                        <h1 class="fw-bold text-black">2</h1>
+                    </div>
+                    <div class="col-11">
+                        <div>
+                            <h4 class="my-3 fw-bold text-black">A simpler experience.</h4>
+                            <p>
+                                We’re here to demystify whisky and simplify the experience – so each delivery comes with simple-to-understand tasting notes, pairings, live online tastings and general whisky know-how. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="row p-2">
+                    <div class="col-1">
+                        <h1 class="fw-bold text-black">3</h1>
+                    </div>
+                    <div class="col-11">
+                        <div>
+                            <h4 class="my-3 fw-bold text-black">Affordable and accessible</h4>
+                            <p>We work with suppliers directly to keep WHISKY ME affordable to all – the 6cl dram we send would cost you £16 in a bar, but we deliver it to your door for half that. The Pouch also helps us keep the cost down...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="row p-2">
+                    <div class="col-1">
+                        <h1 class="fw-bold text-black">4</h1>
+                    </div>
+                    <div class="col-11">
+                        <div>
+                            <h4 class="my-3 fw-bold text-black">Don’t be scared of the pouch</h4>
+                            <p>Why don’t we ship our whisky in bottles? Because our pouches are strong, durable, cheaper to ship, easier to deliver, and don’t affect the taste of the whisky. They look cool too, but that’s just a bonus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="row p-2">
+                    <div class="col-1">
+                        <h1 class="fw-bold text-black">5</h1>
+                    </div>
+                    <div class="col-11">
+                        <div>
+                            <h4 class="my-3 fw-bold text-black">Join the club</h4>
+                            <p>You’re not just signing up for whisky through your letterbox – you’ll also join our community of curious drinkers to rate your drams, share recommendations and build your own digital whisky cellar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container min-h-100 d-flex justify-content-center align-items-center">
+    <div>
+        <h1 class="fw-bold text-black text-center my-5">
+            HURRAY FOR<br /> COMMUNITY <ins class="text-orange"><span>SPIRITS</span></ins>
+        </h1>
+        <div class="row my-5">
+            <div class="col-12 col-md-4 text-center">
+                <h1 class="fw-bold text-black"><span class="count">9186</span></h1>
+                <p class="fw-bold text-orange"><b>CURRENT MEMBERS</b></p>
+            </div>
+            <div class="col-12 col-md-4 text-center community-count-2">
+                <h1 class="fw-bold text-black"><span class="count">109894</span></h1>
+                <p class="fw-bold text-orange">WHISKIES<br /> SENT</p>
+            </div>
+            <div class="col-12 col-md-4 text-center">
+                <h1 class="fw-bold text-black"><span class="count">6545</span></h1>
+                <p class="fw-bold text-orange">LITRES CONSUMED</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-orange min-h-100 py-5 ">
+      
+    <div class="row mb-5">
+        <div class="col-12 col-md-6 text-center d-flex justify-content-center">
+            <h1 class="fw-bold text-black">
+                Rewards for <br />
+                the long haul
+            </h1>
+        </div>
+        <div class="col-12 col-md-6 ">
+            <h6 class="fw-bold mb-2">
+                Every time we hit a milestone number of <br /> subscribers, we reward all our current members with <br /> something special – like WHISKY ME merch and super-<br />rare whiskies
+            </h6>
+            <br>  
+            <h6 class="fw-bold mb-2">
+                So as we hit more and more letterboxes each month<br /> and WHISKY ME grows, you’ll reap the rewards with<br /> some exclusive stuff dropping through yours.
+            </h6>
+        </div>
+    </div>
+    <div>
+        <div class="owl-carousel Rewards-haul">
+            <div class="item ms-md-3 d-flex align-items-center">
+                <div class="row haul-wrapper">
+                    <div class="col-12 col-md-3 bg-black d-flex justify-content-center align-items-center py-2">
+                        <div class="text-center">
+                            <h3 class="text-center align-items-center text-white">
+                                <i class="mb-2 fas fa-lock"></i>
+                            </h3>
+                            <h5 class="text-white fw-bold">
+                                15000
+                            </h5>
+                            <h6 class="text-white fw-bold">
+                                Members
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 bg-white py-2">
+                        <div class="justify-content-center my-auto">
+                            <div>
+                                <h4 class="fw-bold text-black mb-3"> 
+                                    WHISKY ART
+                                </h4>
+                                <p class="text-black ">
+                                    Your very own whisky inspired artwork. We're here to make an impact on your walls as well as in your glass, and will send out a unique Whisky Me print to each member at 15,000!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item ms-md-3 d-flex align-items-center">
+                <div class="row haul-wrapper">
+                    <div class="col-12 col-md-3 bg-black d-flex justify-content-center align-items-center py-2">
+                        <div class="text-center">
+                            <h3 class="text-center align-items-center text-white">
+                                <i class="mb-2 fas fa-lock"></i>
+                            </h3>
+                            <h5 class="text-white fw-bold">
+                                10000
+                            </h5>
+                            <h6 class="text-white fw-bold">
+                                Members
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 bg-white py-2">
+                        <div class="justify-content-center my-auto">
+                            <div>
+                                <h4 class="fw-bold text-black mb-3"> 
+                                    A FREE DRAM
+                                </h4>
+                                <p>We asked, you answered! A free pouch of whisky delivered alongside your regular monthly drop, as soon as we hit 10,000 members.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item ms-md-3 d-flex align-items-center">
+                <div class="row haul-wrapper">
+                    <div class="col-12 col-md-3 bg-black d-flex justify-content-center align-items-center py-2">
+                        <div class="text-center">
+                            <h3 class="text-center align-items-center text-white">
+                                <i class="text-orange fas fa-check-circle"></i>
+                            </h3>
+                            <h5 class="text-white fw-bold">
+                                4000
+                            </h5>
+                            <h6 class="text-white fw-bold">
+                                Members
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 bg-white py-2">
+                        <div class="justify-content-center my-auto">
+                            <div>
+                                <h4 class="fw-bold text-black mb-3"> 
+                                    The 6cl<br />
+                                    Pouch Powerup
+                                </h4>
+                                <p class="text-black ">
+                                    We're going to celebrate by increasing our pouch from 5cl to 6cl, for life!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item ms-md-3 d-flex align-items-center">
+                <div class="row haul-wrapper">
+                    <div class="col-12 col-md-3 bg-black d-flex justify-content-center align-items-center py-2">
+                        <div class="text-center">
+                            <h3 class="text-center align-items-center text-white">
+                                <i class="text-orange fas fa-check-circle"></i>
+                            </h3>
+                            <h5 class="text-white fw-bold">
+                                2500
+                            </h5>
+                            <h6 class="text-white fw-bold">
+                                Members
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 bg-white py-2">
+                        <div class="justify-content-center my-auto">
+                            <div>
+                                <h4 class="fw-bold text-black mb-3"> 
+                                    The Whole<br />
+                                    barrel of whisky
+                                </h4>
+                                <p class="text-black ">
+                                    At 2,500 members we bought an entire barrel of whisky and sent it to our members.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item ms-md-3 d-flex align-items-center">
+                <div class="row haul-wrapper">
+                    <div class="col-12 col-md-3 bg-black d-flex justify-content-center align-items-center py-2">
+                        <div class="text-center">
+                            <h3 class="text-center align-items-center text-white">
+                                <i class="text-orange fas fa-check-circle"></i>
+                            </h3>
+                            <h5 class="text-white fw-bold">
+                                1750
+                            </h5>
+                            <h6 class="text-white fw-bold">
+                                Members
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 bg-white py-2">
+                        <div class="justify-content-center my-auto">
+                            <div>
+                                <h4 class="fw-bold text-black mb-3"> 
+                                    Whisky Me Tasting Glass
+                                </h4>
+                                <p class="text-black ">
+                                    When we hit 1,750 members we sent everyone in the club a free Glencairn tasting glass.                                        
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item ms-md-3 d-flex align-items-center">
+                <div class="row haul-wrapper">
+                    <div class="col-12 col-md-3 bg-black d-flex justify-content-center align-items-center py-2">
+                        <div class="text-center">
+                            <h3 class="text-center align-items-center text-white">
+                                <i class="text-orange fas fa-check-circle"></i>
+                            </h3>
+                            <h5 class="text-white fw-bold">
+                                1000
+                            </h5>
+                            <h6 class="text-white fw-bold">
+                                Members
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 bg-white py-2">
+                        <div class="justify-content-center my-auto">
+                            <div>
+                                <h4 class="fw-bold text-black mb-3"> 
+                                    A tiny barrel of strathearn
+                                </h4>
+                                <p class="text-black ">
+                                    We secured two 60-litre casks of single malt from Strathearn and featured it as our monthly dram once we hit 1000 members.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item ms-md-3 d-flex align-items-center">
+                <div class="row haul-wrapper">
+                    <div class="col-12 col-md-3 bg-black d-flex justify-content-center align-items-center py-2">
+                        <div class="text-center">
+                            <h3 class="text-center align-items-center text-white">
+                                <i class="text-orange fas fa-check-circle"></i>
+                            </h3>
+                            <h5 class="text-white fw-bold">
+                                500
+                            </h5>
+                            <h6 class="text-white fw-bold">
+                                Members
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 bg-white py-2">
+                        <div class="justify-content-center my-auto">
+                            <div>
+                                <h4 class="fw-bold text-black mb-3"> 
+                                    Black Rock House whisky blend
+                                </h4>
+                                <p>When we hit 500 members we sent every member a free pouch of Black Rock house whisky blend which was 'finished' in an 18ft English oak tree trunk.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container-fluid min-h-">
+    <div>
+        <h1 class="fw-bold text-center text-black my-5"> 
+            Our team of whisky geniuses.
+        </h1>
+    </div>
+    <div id="team">
+        <div class="owl-carousel team-carusal">
+            <div class="item p-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img class= "rounded-circle img-fluid mb-2" src="{% static 'new_static/assets/imgs/tom.jpg' %}">
+                    </div>
+                    <div class="col-12 text-center">
+                        <h5 class="fw-bold text-black">TOM</h5>
+                        <h6 class="fw-bold">Advisor, Ideas<br /> Generator, Drinks<br /> Explorer</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="item p-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img class= "rounded-circle img-fluid mb-2" src="{% static 'new_static/assets/imgs/thomas.jpg' %}">
+                    </div>
+                    <div class="col-12 text-center">
+                        <h5 class="fw-bold text-black">Thomas</h5>
+                        <h6 class="fw-bold">Advisor, Ideas<br /> Generator, Drinks<br /> Explorer</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="item p-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img class= "rounded-circle img-fluid mb-2" src="{% static 'new_static/assets/imgs/nancy.jpg' %}">
+                    </div>
+                    <div class="col-12 text-center">
+                        <h5 class="fw-bold text-black">Nancy</h5>
+                        <h6 class="fw-bold">Advisor, Ideas<br /> Generator, Drinks<br /> Explorer</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="item p-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img class= "rounded-circle img-fluid mb-2" src="{% static 'new_static/assets/imgs/tom.jpg' %}">
+                    </div>
+                    <div class="col-12 text-center">
+                        <h5 class="fw-bold text-black">TOM</h5>
+                        <h6 class="fw-bold">Advisor, Ideas<br /> Generator, Drinks<br /> Explorer</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="item p-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img class= "rounded-circle img-fluid mb-2" src="{% static 'new_static/assets/imgs/thomas.jpg' %}">
+                    </div>
+                    <div class="col-12 text-center">
+                        <h5 class="fw-bold text-black">Thomas</h5>
+                        <h6 class="fw-bold">Advisor, Ideas<br /> Generator, Drinks<br /> Explorer</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="item p-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <img class= "rounded-circle img-fluid mb-2" src="{% static 'new_static/assets/imgs/nancy.jpg' %}">
+                    </div>
+                    <div class="col-12 text-center">
+                        <h5 class="fw-bold text-black">Nancy</h5>
+                        <h6 class="fw-bold">Advisor, Ideas<br /> Generator, Drinks<br /> Explorer</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="container-fluid my-5" id="parallax">
+    <div class="container">
+        <h2  class="text-center fw-bold text-black" >And not forgetting our amazing club<br /> members #WHISKYMECLUB</h2>
+        <div class="p1">
+            <img src="{% static 'new_static/assets/imgs/p1.jpg' %}" class="object" data-value="-2" alt="1">
+        </div>
+        <div class="p2">
+            <img src="{% static 'new_static/assets/imgs/p2.png' %}" class=" object" data-value="6" alt="2">
+        </div>
+        <div class="p3">
+            <img src="{% static 'new_static/assets/imgs/p3.jpg' %}" class="object" data-value="4" alt="3">
+        </div>
+        <div class="p4">
+            <img src="{% static 'new_static/assets/imgs/p4.jpg' %}" class="object" data-value="-6" alt="4">
+        </div>
+        <div class="p5">
+            <img src="{% static 'new_static/assets/imgs/p5.png' %}" class="object" data-value="8" alt="5">
+        </div>
+        <div class="p6">
+            <img src="{% static 'new_static/assets/imgs/p6.jpg' %}" class="object" data-value="-4" alt="6">
+        </div>
+        <div class="p7">
+            <img src="{% static 'new_static/assets/imgs/p7.jpg' %}" class="object" data-value="5" alt="7">
+        </div>
+        <div class="p8">
+            <img src="{% static 'new_static/assets/imgs/p8.jpg' %}" class="object" data-value="-9" alt="8">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener("mousemove", parallax);
+        function parallax(e){
+        document.querySelectorAll(".object").forEach(function(move){
+
+        var moving_value = move.getAttribute("data-value");
+        var x = (e.clientX * moving_value) / 250;
+        var y = (e.clientY * moving_value) / 250;
+
+        move.style.transform = "translateX(" + x + "px) translateY(" + y + "px)";
+        });
+    }
+    </script>
+</section>
+
+
+{% endblock newMain %}

@@ -13,7 +13,6 @@ autoplayHoverPause:true,
 
 });
 
-
 $('.carousel-1').owlCarousel({
 loop:true,
 margin:10,
@@ -55,13 +54,6 @@ $(".product-page-carusal").owlCarousel({
     },
 });
 
-
-
-
-
-
-
-
 $('.discover-carousel').owlCarousel({
 loop:true,
 margin:10,
@@ -78,7 +70,6 @@ items:3
 }
 }
 })
-
 
 $('.drammers-carousel').owlCarousel({
 loop:true,
@@ -103,70 +94,77 @@ items:2
 });
 
 
-// quantity button
-
-var QtyInput = (function () {
-	var $qtyInputs = $(".qty-input");
-
-	if (!$qtyInputs.length) {
-		return;
+$('.how-we-get').owlCarousel({
+	loop:true,
+	margin:10,
+	nav:true,
+	autoplay:true,
+	autoplayTimeout:2000,
+	autoplayHoverPause:true,
+	navText: ['<span class="fw-bold mx-2 bi bi-arrow-left"></span>', '<span class="bi bi-arrow-right"></span>'],
+	responsive:{
+	0:{
+	 items:1
+	},
+	600:{
+	 items:2
+	},
+	1000:{
+	 items:2
+	 }
 	}
-
-	var $inputs = $qtyInputs.find(".product-qty");
-	//var $countBtn = $qtyInputs.find(".qty-count");
-	var $countBtn = "";
-	var qtyMin = parseInt($inputs.attr("min"));
-	var qtyMax = parseInt($inputs.attr("max"));
-
-	$inputs.change(function () {
-		var $this = $(this);
-		var $minusBtn = $this.siblings(".qty-count--minus");
-		var $addBtn = $this.siblings(".qty-count--add");
-		var qty = parseInt($this.val());
-
-		if (isNaN(qty) || qty <= qtyMin) {
-			$this.val(qtyMin);
-			$minusBtn.attr("disabled", true);
-		} else {
-			$minusBtn.attr("disabled", false);
-			
-			if(qty >= qtyMax){
-				$this.val(qtyMax);
-				$addBtn.attr('disabled', true);
-			} else {
-				$this.val(qty);
-				$addBtn.attr('disabled', false);
-			}
-		}
 	});
-
-	$countBtn.click(function () {
-		var operator = this.dataset.action;
-		var $this = $(this);
-		var $input = $this.siblings(".product-qty");
-		var qty = parseInt($input.val());
-
-		if (operator == "add") {
-			qty += 1;
-			if (qty >= qtyMin + 1) {
-				$this.siblings(".qty-count--minus").attr("disabled", false);
-			}
-
-			if (qty >= qtyMax) {
-				$this.attr("disabled", true);
-			}
-		} else {
-			qty = qty <= qtyMin ? qtyMin : (qty -= 1);
-			
-			if (qty == qtyMin) {
-				$this.attr("disabled", true);
-			}
-
-			if (qty < qtyMax) {
-				$this.siblings(".qty-count--add").attr("disabled", false);
-			}
-		}
-
-		$input.val(qty);
+	$('.Rewards-haul').owlCarousel({
+	loop:true,
+	stagePadding: 90,
+	margin:30,
+	nav:true,
+	autoplay:false,
+	navText: ['<span class="fw-bold mx-2 bi bi-arrow-left"></span>', '<span class="bi bi-arrow-right"></span>'],
+	responsive:{
+	0:{
+	 items:1,
+	 margin:20,
+	 stagePadding: false
+	},
+	768:{
+	 items:2,
+	  stagePadding: false
+	},
+	1000:{
+	 items:2
+	 }
+	}
 	});
-})();
+	
+	$('.team-carusal').owlCarousel({
+	loop:true,
+	margin:10,
+	nav:false,
+	autoplay:true,
+	autoplayTimeout:2000,
+	autoplayHoverPause:true,
+	responsive:{
+	0:{
+	 items:1
+	},
+	600:{
+	 items:2
+	},
+	1000:{
+	 items:5
+	 }
+	}
+	});
+	
+	$('.count').each(function () {
+		$(this).prop('Counter',0).animate({
+			Counter: $(this).text()
+		}, {
+			duration: 9500,
+			easing: 'swing',
+			step: function (now) {
+				$(this).text(Math.ceil(now));
+			}
+		});
+	});

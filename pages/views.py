@@ -128,7 +128,7 @@ class SingleCategoryView(View):
 class AboutView(View):
     def get(self, request,  *args, **kwargs):
         
-        return render(request,'pages/about.html')
+        return render(request,'new_template/about.html')
 
 
 

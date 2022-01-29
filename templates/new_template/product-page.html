@@ -231,9 +231,17 @@
                 -->
 
                 {% if buy == True %}
-                <div class="col-12 col-md-6 d-flex justify-content-end">
-                    <a href="" class="text-black" data-toggle="modal" onclick="displayForm()"> Write a Review </a>
-                </div>
+
+                    {% if reviewed == False %}
+                        <div class="col-12 col-md-6 d-flex justify-content-end">
+                            <a href="" class="text-black" data-toggle="modal" onclick="displayForm()"> Write a Review </a>
+                        </div>
+                    {% else %}
+                        <div class="col-12 col-md-6 d-flex justify-content-end">
+                            <a href="#" class="text-black" data-toggle="modal"> Already Reviewed </a>
+                        </div>
+                    {% endif %}
+
 
                 {% endif %}
             </div>

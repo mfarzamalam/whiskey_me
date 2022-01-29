@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import Comment
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView
@@ -29,6 +30,13 @@ class SingleProductView(View):
                     buy = True
         # print(buy)
 
+        if Rating.objects.filter(user=request.user, product=get_product).exists():
+            reviewed = True
+        else:
+            reviewed = False
+
+        print(reviewed)
+
         if get_product.category.name == '5cl':
             get_category = Category.objects.filter(name = '5cl').first()
             get_related =Product.objects.filter(category = get_category)
@@ -45,6 +53,7 @@ class SingleProductView(View):
             'comments': get_comment,
             'total_comment':Rating.objects.filter(product=get_product).count(),
             'buy':buy,
+            'reviewed':reviewed,
         }    
 
         return render(request,'new_template/product-page.html',context=context)   
