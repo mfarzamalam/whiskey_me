@@ -1,0 +1,107 @@
+{% extends 'new_template/base.html' %}
+{% block newMain %}
+
+
+<style type="text/css">
+    /*payment-sucessful*/
+    .payment-sucessful-wrapper{
+    -webkit-box-shadow: 0px 9px 62px -9px rgba(0,0,0,0.31);
+    -moz-box-shadow: 0px 9px 62px -9px rgba(0,0,0,0.31);
+    box-shadow: 0px 9px 62px -9px rgba(0,0,0,0.31);
+    border-radius: 20px;
+
+    }
+    @media (min-device-width: 768px) {
+         .payment-sucessful-wrapper{
+    -webkit-box-shadow: 0px 9px 62px -9px rgba(0,0,0,0.31);
+    -moz-box-shadow: 0px 9px 62px -9px rgba(0,0,0,0.31);
+    box-shadow: 0px 9px 62px -9px rgba(0,0,0,0.31);
+    border-radius: 20px;
+    min-width: 80vh;
+    }
+
+    }
+</style>
+
+
+<div class="container-fluid min-h-100 d-flex justify-content-center align-items-center my-2" id="payment-sucessful-wrapper">
+    <div class="row">
+        <div class="payment-sucessful-wrapper p-0">
+            <div class="payment-sucessful-inner p-4 p-md-5 ">
+                <div>
+                    <h3 class="fw-bold text-center text-orange my-3">
+                        Payment Sucessful!
+                    </h3>
+                    <h1 class="fw-bold text-center text-orange my-3">
+                        <i class="far fa-check-circle"></i>
+                    </h1>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-6">
+                                <h6>Payment Type</h6>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex justify-content-end">
+                                <h6 class=" text-black fw-bold">{{payment_type}}</h6>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-6">
+                                <h6>Bank</h6>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex justify-content-end">
+                                <h6 class=" text-black fw-bold">HDFC</h6>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-6">
+                                <h6>Mobile</h6>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex justify-content-end">
+                                <h6 class=" text-black fw-bold">{{phone}}</h6>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-6">
+                                <h6>Email</h6>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex justify-content-end">
+                                <h6 class=" text-black fw-bold">{{email}}</h6>
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-12 col-md-6">
+                                <p class="text-black fw-bold">Amount Paid</p>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex justify-content-end">
+                                <h4 class=" text-black fw-bold">£{{amount}}</h4>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12 col-md-6">
+                                <h6>Transaction id</h6>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex justify-content-end">
+                                <h6 class=" text-black fw-bold">{{id}}</h6>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-around my-3">
+                            <div>
+                                <a href="{% url 'pages:customer_dashboard' order_type %}"><button class="btn-4 fw-bold">Dashboard</button></a>
+                            </div>
+                        </div>
+                        <div class="d-flex fw-bold text-black justify-content-center">
+                            © 2022 WHISKYME
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d59f4fb1acec609',m:'WnTa0r9HLx1LJvIZx5le.8XAsxrJNNtRrGHjNTc2k8Y-1643537914-0-AXulNmksL0qrpY1ZAxKLkCiKNbqSNwIUH9QWySeN+lrr7IrIEQOGExuO6m3B6VEApPqWGBWsu5Jmwha6GHkF37KKlgvj7VYCWPzl+MBSJfghl37c1I03gErnBD75hF44Ta/LklJFejOzoVGK+/NM3JE5uLEuVZir2GdPeY6i4Z7LSsLOmXWwXXE55Ug0GUI6rYCM8uO4RiFSBkIu2Wu9rlc=',s:[0xc450da8e82,0x2c74c39bc0],}})();</script></body>
+
+
+
+{% endblock newMain %}

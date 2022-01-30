@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CustomerDeliver, changeStatus, CustomerAddressDetials, test, CreateDelivery
+from .views import CustomerDeliver, changeStatus, CustomerAddressDetials, test, CreateDelivery, paymentSuccess
 
 
 app_name = 'order'
@@ -12,6 +12,6 @@ urlpatterns = [
     path('change_delivery/<pk>/', changeStatus.as_view(), name='deliver_done'),
     path('create/delivery/<id>/<pk>/<quan>/<order_type>/', CreateDelivery, name='create_delivery'),
 
+    path('payment-successful/<id>/<order_type>/',paymentSuccess, name='payment-success'),
     path('test/', test, name='test'),
-
 ]

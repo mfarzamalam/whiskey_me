@@ -1,15 +1,12 @@
-from os import stat
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View
 from django.views.generic.base import TemplateView
-from stripe.api_resources import customer, subscription
 from .models import Review
 from product.models import Category, Product
 from registration.models import CustomUser
 from order.models import Delivery, Address
-from django.utils import timezone
 from .forms import ReviewForm, CustomerAddressForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages

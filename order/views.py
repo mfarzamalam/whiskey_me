@@ -1,4 +1,6 @@
 from ast import Add, Del
+from hashlib import new
+from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -67,4 +69,24 @@ def CreateDelivery(request, id, pk, quan, order_type):
             product   = Product.objects.filter(pk=pk).first(),
             quantity  = quan,
         )
-        return HttpResponseRedirect(f'/dashboard/{order_type}')
+        return HttpResponseRedirect(f'/orders/payment-successful/{id}/{order_type}/')
+
+
+def paymentSuccess(request, id, order_type):
+    if request.user.is_authenticated:
+        try:
+            subscription_id = stripe.checkout.Session.retrieve(id)
+        except:
+            return HttpResponse('Invalid ID')
+        context = {
+            'payment_type': subscription_id.payment_method_types[0],
+            'bank':'bank',
+            'phone':Address.objects.get(user=request.user).contact,
+            'email':subscription_id.customer_details.email,
+            'amount': subscription_id.amount_total / 100,
+            'id':id,
+            'order_type':order_type,
+        }
+        return render(request, 'new_template/payment-sucessful.html', context)
+    else:
+        return HttpResponse('Invalid User')
