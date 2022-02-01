@@ -68,22 +68,28 @@ def CreateDelivery(request, id, pk, quan, order_type):
             date      = timezone.now(),
             product   = Product.objects.filter(pk=pk).first(),
             quantity  = quan,
+            delivery  = 'undelivered',
         )
         return HttpResponseRedirect(f'/orders/payment-successful/{id}/{order_type}/')
 
 
 def paymentSuccess(request, id, order_type):
     if request.user.is_authenticated:
+        print(id)
         try:
             subscription_id = stripe.checkout.Session.retrieve(id)
+            address = Address.objects.get(user=request.user)
+            delivery = Delivery.objects.filter(address=address).first()
         except:
             return HttpResponse('Invalid ID')
         context = {
             'payment_type': subscription_id.payment_method_types[0],
             'bank':'bank',
-            'phone':Address.objects.get(user=request.user).contact,
-            'name':Address.objects.get(user=request.user),
+            'phone':address.contact,
+            'name':address.fname + ' ' + address.lname,
             'email':subscription_id.customer_details.email,
+            'product':delivery.product.product_name,
+            'quantity':delivery.quantity,
             'amount': subscription_id.amount_total / 100,
             'id':id,
             'order_type':order_type,
