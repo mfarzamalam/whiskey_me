@@ -82,6 +82,7 @@ def paymentSuccess(request, id, order_type):
             'payment_type': subscription_id.payment_method_types[0],
             'bank':'bank',
             'phone':Address.objects.get(user=request.user).contact,
+            'name':Address.objects.get(user=request.user),
             'email':subscription_id.customer_details.email,
             'amount': subscription_id.amount_total / 100,
             'id':id,
