@@ -79,7 +79,7 @@ def paymentSuccess(request, id, order_type):
         try:
             subscription_id = stripe.checkout.Session.retrieve(id)
             address = Address.objects.get(user=request.user)
-            delivery = Delivery.objects.filter(address=address).first()
+            delivery = Delivery.objects.filter(sub_id=id).first()
         except:
             return HttpResponse('Invalid ID')
         context = {
