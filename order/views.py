@@ -70,30 +70,34 @@ def CreateDelivery(request, id, pk, quan, order_type):
             quantity  = quan,
             delivery  = 'undelivered',
         )
-        return HttpResponseRedirect(f'/orders/payment-successful/{id}/{order_type}/')
+        context = {'id':id, 'order_type': order_type}
+        return render(request, 'new_template/dashboard/checkout_redirect.html', context)
+        # return HttpResponseRedirect(f'/orders/payment-successful/{id}/{order_type}/')
 
 
-def paymentSuccess(request, id, order_type):
+def paymentSuccess(request):
     if request.user.is_authenticated:
-        print(id)
-        try:
-            subscription_id = stripe.checkout.Session.retrieve(id)
-            address = Address.objects.get(user=request.user)
-            delivery = Delivery.objects.filter(sub_id=id).first()
-        except:
-            return HttpResponse('Invalid ID')
-        context = {
-            'payment_type': subscription_id.payment_method_types[0],
-            'bank':'bank',
-            'phone':address.contact,
-            'name':address.fname + ' ' + address.lname,
-            'email':subscription_id.customer_details.email,
-            'product':delivery.product.product_name,
-            'quantity':delivery.quantity,
-            'amount': subscription_id.amount_total / 100,
-            'id':id,
-            'order_type':order_type,
-        }
-        return render(request, 'new_template/payment-sucessful.html', context)
-    else:
-        return HttpResponse('Invalid User')
+        if request.method == "POST":
+            id = request.POST.get('id')
+            order_type = request.POST.get('order_type')
+            try:
+                subscription_id = stripe.checkout.Session.retrieve(id)
+                address = Address.objects.get(user=request.user)
+                delivery = Delivery.objects.filter(sub_id=id).first()
+            except:
+                return HttpResponse('Invalid ID')
+            context = {
+                'payment_type': subscription_id.payment_method_types[0],
+                'bank':'bank',
+                'phone':address.contact,
+                'name':address.fname + ' ' + address.lname,
+                'email':subscription_id.customer_details.email,
+                'product':delivery.product.product_name,
+                'quantity':delivery.quantity,
+                'amount': subscription_id.amount_total / 100,
+                'id':id,
+                'order_type':order_type,
+            }
+            return render(request, 'new_template/payment-sucessful.html', context)
+        else:
+            return HttpResponse('Invalid User')

@@ -14,6 +14,11 @@ from whiskey_me.stripe_key import SECRET_KEY
 stripe.api_key = SECRET_KEY
 
 
+def getDomain():
+    return 'http://whiskeymeee.pythonanywhere.com/'
+    # return 'http://127.0.0.1:8000/'
+
+
 # Create your views here.
 class ProductPageView(TemplateView):
     template_name = "new_template/product-page.html"
@@ -23,20 +28,17 @@ class SingleProductView(View):
     def get(self, request, id , *args, **kwargs):
         get_product = Product.objects.filter(id=id).first()
         buy = False
+        reviewed = False
+
         if request.user.is_authenticated:
             if Address.objects.filter(user=request.user).exists():
                 address = Address.objects.filter(user=request.user).first()
                 if Delivery.objects.filter(address=address, product=get_product).exists():
                     buy = True
+            if Rating.objects.filter(user=request.user, product=get_product).exists():
+                reviewed = True
         # print(buy)
-
-        if Rating.objects.filter(user=request.user, product=get_product).exists():
-            reviewed = True
-        else:
-            reviewed = False
-
-        print(reviewed)
-
+        
         if get_product.category.name == '5cl':
             get_category = Category.objects.filter(name = '5cl').first()
             get_related =Product.objects.filter(category = get_category)
@@ -120,10 +122,6 @@ class EditComment(LoginRequiredMixin, View):
             # return JsonResponse(data, status=200)
         else:
             return HttpResponseRedirect('/')
-
-def getDomain():
-    return 'http://whiskeymeee.pythonanywhere.com/'
-    # return 'http://127.0.0.1:8000/'
 
 
 class BuyNow(LoginRequiredMixin, View):

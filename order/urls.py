@@ -12,6 +12,6 @@ urlpatterns = [
     path('change_delivery/<pk>/', changeStatus.as_view(), name='deliver_done'),
     path('create/delivery/<id>/<pk>/<quan>/<order_type>/', CreateDelivery, name='create_delivery'),
 
-    path('payment-successful/<id>/<order_type>/',paymentSuccess, name='payment-success'),
+    path('payment-successful/',paymentSuccess, name='payment-successful'),
     path('test/', test, name='test'),
 ]
