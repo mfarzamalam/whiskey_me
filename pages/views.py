@@ -161,15 +161,26 @@ class AdminPanelView(LoginRequiredMixin, View):
                 singlePayment = stripe.PaymentIntent.list()
                 required_single_data = []
                 for s in singlePayment:
-                    print(s.status)
+                    # print(s.status)
                     if s.description != "Subscription creation" and s.status == "succeeded":
+                        try:
+                            product_id = s.metadata.product_id
+                            product_price = s.metadata.product_price
+                            quantity   = s.metadata.quantity
+                            total      = float(s.metadata.total)
+                        except:
+                            product_id = 0
+                            product_price = 0
+                            quantity   = 0
+                            total      = 0
+
                         single_item = {
                             'id': s.id,
-                            'product': Product.objects.filter(product_stripe_id=s.metadata.product_id).first(),
+                            'product': Product.objects.filter(product_stripe_id=product_id).first(),
                             'current_period_start': datetime.datetime.fromtimestamp(float(s.created)),
-                            'amount': s.metadata.product_price,
-                            'quantity': s.metadata.quantity,
-                            'total': float(s.metadata.total),
+                            'amount': product_price,
+                            'quantity': quantity,
+                            'total': total,
                             'status': s.status,
                         }
                         required_single_data.append(single_item)
