@@ -15,8 +15,8 @@ stripe.api_key = SECRET_KEY
 
 
 def getDomain():
-    # return 'http://whiskeymeee.pythonanywhere.com/'
-    return 'http://127.0.0.1:8000/'
+    return 'http://whiskeymeee.pythonanywhere.com/'
+    # return 'http://127.0.0.1:8000/'
 
 
 # Create your views here.
