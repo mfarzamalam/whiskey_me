@@ -21,12 +21,12 @@ class CustomerDeliver(LoginRequiredMixin,View):
     login_url = "/login/"
     def get(self, request, status="", *args, **kwargs):
         if status == "" or status == None:
-            items = Delivery.objects.all()
+            items = Delivery.objects.all().order_by('-pk')
             print(items)
             class_active = "all"
             action = None
         else:
-            items  = Delivery.objects.filter(delivery=status)
+            items  = Delivery.objects.filter(delivery=status).order_by('-pk')
             action = status
             class_active = status
         
@@ -49,6 +49,7 @@ class changeStatus(LoginRequiredMixin, View):
     login_url = "/login/"
     def post(self, request, pk, *args, **kwargs):
         status = request.POST.get('status')
+        # print(status)
         item = Delivery.objects.get(pk=pk)
         item.delivery = status
         item.save()
@@ -62,17 +63,22 @@ def test(request):
 
 def CreateDelivery(request, id, pk, quan, order_type):
     if request.user.is_authenticated:
+        get_session = stripe.checkout.Session.retrieve(id)
+        if order_type == 'single':
+            session_id = get_session['payment_intent']
+        else:
+            session_id = get_session['subscription']
         Delivery.objects.create(
-            address   = Address.objects.filter(user=request.user).first(),
-            sub_id    = id,
-            date      = timezone.now(),
-            product   = Product.objects.filter(pk=pk).first(),
-            quantity  = quan,
-            delivery  = 'undelivered',
+            address     = Address.objects.filter(user=request.user).first(),
+            checkout_id = id,
+            session_id  = session_id,
+            date        = timezone.now(),
+            product     = Product.objects.filter(pk=pk).first(),
+            quantity    = quan,
+            delivery    = 'undelivered',
         )
         context = {'id':id, 'order_type': order_type}
         return render(request, 'new_template/dashboard/checkout_redirect.html', context)
-        # return HttpResponseRedirect(f'/orders/payment-successful/{id}/{order_type}/')
 
 
 def paymentSuccess(request):
@@ -83,7 +89,7 @@ def paymentSuccess(request):
             try:
                 subscription_id = stripe.checkout.Session.retrieve(id)
                 address = Address.objects.get(user=request.user)
-                delivery = Delivery.objects.filter(sub_id=id).first()
+                delivery = Delivery.objects.filter(checkout_id=id).first()
             except:
                 return HttpResponse('Invalid ID')
             context = {

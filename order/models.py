@@ -27,11 +27,12 @@ class Address(models.Model):
 
 class Delivery(models.Model):
     address   = models.ForeignKey(Address, on_delete=models.CASCADE)
-    sub_id    = models.CharField(max_length=100)
+    checkout_id = models.CharField(max_length=100)
+    session_id = models.CharField(max_length=100)
     date      = models.DateTimeField(editable=False, auto_now_add=True, auto_created=True)
     product   = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity  = models.CharField(max_length=100)
     delivery  = models.CharField(choices=STATUS, default='undelivered', max_length=100)
 
     def __str__(self):
-        return f"{self.date}"
+        return f"{self.session_id}"

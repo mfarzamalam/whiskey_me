@@ -259,8 +259,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                     'quantity': s.quantity,
                     'total': (s.plan.amount/100) * (s.quantity),
                     'status': s.status,
-                    'delivery':Delivery.objects.filter(address=Address.objects.filter(user=request.user).first()).first(),
-
+                    'delivery':Delivery.objects.filter(session_id=s.id).first(),
                 }
                 
                 required_subscription_data.append(single_subscription_item)
@@ -271,10 +270,12 @@ class CustomerDashboard(LoginRequiredMixin ,View):
             }
 
         else:
+            # print(*stripe.checkout.Session.list())
             singlePayment = stripe.PaymentIntent.list(customer=stripe_user_id)
             required_single_data = []
             for s in singlePayment:
                 if s.description != "Subscription creation" and s.status == "succeeded":
+                    print(s.id)
                     single_item = {
                         'id': s.id,
                         'product': Product.objects.filter(product_stripe_id=s.metadata.product_id).first(),
@@ -282,7 +283,7 @@ class CustomerDashboard(LoginRequiredMixin ,View):
                         'amount': s.metadata.product_price,
                         'quantity': s.metadata.quantity,
                         'total': float(s.metadata.total),
-                        'delivery':Delivery.objects.filter(address=Address.objects.filter(user=request.user).first()).first(),
+                        'delivery':Delivery.objects.filter(session_id=s.id).first(),
                     }
                     required_single_data.append(single_item)
 
