@@ -9,14 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import stripe
 from django.db.models import Avg
 
+from whiskey_me.settings import DOMAIN_NAME
 
 from whiskey_me.stripe_key import SECRET_KEY
 stripe.api_key = SECRET_KEY
-
-
-def getDomain():
-    return 'http://whiskeymeee.pythonanywhere.com/'
-    # return 'http://127.0.0.1:8000/'
 
 
 # Create your views here.
@@ -136,7 +132,7 @@ class BuyNow(LoginRequiredMixin, View):
         user = CustomUser.objects.filter(email=request.user).first()
         stripe_user_id = user.stripe_id
         
-        DOMAIN = getDomain()
+        DOMAIN = DOMAIN_NAME
         
         checkout_session = stripe.checkout.Session.create(
             
@@ -181,7 +177,7 @@ class MonthlySubscription(LoginRequiredMixin, View):
         stripe_user_id = user.stripe_id
 
         # 4242 4242 4242 4242 -- Fake card to test the checkout session
-        DOMAIN = getDomain()
+        DOMAIN = DOMAIN_NAME
 
         checkout_session = stripe.checkout.Session.create(
             customer = stripe_user_id,
